@@ -7,9 +7,9 @@ declare var $: any;
 })
 export class AppComponent implements OnInit, AfterViewInit {
   title = 'pwfe';
+  opMobile = ['SERVICIOS','PACIENTES', 'CATEGORÍAS', 'SUBCATEGORÍAS'];
   ngAfterViewInit() {
     $('.sidenav').sidenav();
-
     $("#menu").click(function () {
       $('.sidenav').sidenav('open');
       $('.collapsible').collapsible();
