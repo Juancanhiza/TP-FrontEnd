@@ -1,0 +1,334 @@
+<nav class="navbar">
+  <div class="nav-wrapper">
+    <a href="#!" class="brand-logo">Autoevaluación <strong>Procesos</strong></a>
+    <ul class="right hide-on-med-and-down">
+      <li>
+        <div id='search-wrapper'>
+          <div class="row">
+            <div class="col s2" style="padding: 0">
+              <i class="material-icons right">search</i>
+            </div>
+            <div class="col s10" style="padding: 0">
+              <input placeholder="Buscar..." [(ngModel)]="search" id='search' type="text" class="browser-default">
+            </div>
+          </div>
+        </div>
+      </li>
+      <li>
+        <a (click)='clearModal()' href="#modal-add" class="waves-effect waves-light btn-small add modal-trigger">Agregar Registro
+          <i class="material-icons left">control_point</i>
+        </a>
+      </li>
+      <li>
+        <a id="eliminarRegistros" (click)="deleteRecords()"
+          class="waves-effect waves-light btn-small remove-all disabled">Eliminar <i
+            class="material-icons left">delete_forever</i></a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<table class="responsive-table">
+  <colgroup>
+    <col span="1" style="width: 2.5%;">
+    <col span="1" style="width: 2.5%;">
+    <col span="1" style="width: 10%;">
+    <col span="1" style="width: 10%;">
+    <col span="1" style="width: 10%;">
+    <col span="1" style="width: 10%;">
+    <col span="1" style="width: 10%;">
+    <col span="1" style="width: 10%;">
+    <col span="1" style="width: 10%;">
+    <col span="1" style="width: 10%;">
+    <col span="1" style="width: 10%;">
+    <col span="1" style="width: 2.5%;">
+    <col span="1" style="width: 2.5%;">
+  </colgroup>
+  <thead>
+    <tr>
+      <th>
+        <p>
+          <label>
+            <input id="checkTodo" (click)="checkedAll()" type="checkbox" class="filled-in" />
+            <span></span>
+          </label>
+        </p>
+      </th>
+      <th *ngFor="let i of tablaHeaders">{{ i }}</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    <tr *ngFor="let i of autoevaluacionProcesos | filter : search ; let j = index">
+      <td>
+        <p>
+          <label>
+            <input (click)="check(i.id)" id="check-{{ i.id }}" type="checkbox" class="filled-in" />
+            <span></span>
+          </label>
+        </p>
+      </td>
+      <td>{{ i.user }}</td>
+      <td>{{ i.macroproceso }}</td>
+      <td>{{ i.proceso }}</td>
+      <td>{{ i.riesgo }}</td>
+      <td>{{ i.implicancia_riesgo }}</td>
+      <td>{{ i.ocurrencia }}</td>
+      <td>{{ i.impacto }}</td>
+      <td>{{ i.descripcion }}</td>
+      <td>{{ i.recomendacion }}</td>
+      <td>{{ i.otros_campos }}</td>
+      <td>{{ i.fecha_creacion }}</td>
+      <td>
+        <a (click)="showModalEdit(i)" title="Editar"><i class="material-icons" style="color:#FFC107">create</i></a>
+        <a (click)="deleteRecord(i.id)" title="Eliminar"><i class="material-icons" style="color:#F44336">delete</i></a>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+
+<div id="modal-add" class="modal">
+  <div class="modal-content">
+    <nav class="navbar-modal">
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo center">Agregar Autoevaluación de Procesos</a>
+      </div>
+    </nav>
+    <div class="row" style="margin-top: 8px;">
+      <div class="input-field col s6">
+        <i class="material-icons prefix">account_circle</i>
+        <input id="usuario" type="text" class="">
+        <label for="usuario">Usuario</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <select id="macroproceso" class="browser-default">
+          <option value="" disabled selected>Seleccione</option>
+          <option *ngFor="let i of macroprocesos" value="{{ i.id }}">{{ i.macropr }}, {{ i.proceso }}</option>
+        </select>
+        <label for="macroproceso" class="active">Macro-Proceso, Proceso</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <select id="riesgo" class="browser-default">
+          <option value="" disabled selected>Seleccione</option>
+          <option *ngFor="let i of riesgos" value="{{ i.id }}">{{
+            i.riesgo
+          }}</option>
+        </select>
+        <label for="riesgo" class="active">Riesgo</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <textarea id="implicanciaRiesgo" class="materialize-textarea"></textarea>
+        <label for="implicanciaRiesgo">Implicancia de Riesgo</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <select id="ocurrencia" class="browser-default">
+          <option value="" disabled selected>Seleccione</option>
+          <option *ngFor="let i of ocurrencias" value="{{ i.id }}">{{
+            i.ocurrencia
+          }}</option>
+        </select>
+        <label for="ocurrencia" class="active">Probabilidad de Ocurrencia</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <select id="impacto" class="browser-default">
+          <option value="" disabled selected>Seleccione</option>
+          <option *ngFor="let i of impactos" value="{{ i.id }}">{{
+            i.impacto
+          }}</option>
+        </select>
+        <label for="impacto" class="active">Impacto</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <textarea id="descripcion" class="materialize-textarea"></textarea>
+        <label for="descripcion">Descripción del Control / Mitigación Existente</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s12">
+        <textarea id="recomendacion" class="materialize-textarea"></textarea>
+        <label for="recomendacion">Recomendación de Mejora Sugerida</label>
+      </div>
+    </div>
+    <div class="row">
+      <h5 style="margin-left: 12px;" class="">Otros campos</h5>
+      <div class="col s12">
+        <table>
+          <colgroup>
+            <col span="1" style="width: 20%;">
+            <col span="1" style="width: 70%;">
+            <col span="1" style="width: 10%;">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>Título</th>
+              <th>Descripción</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let i of otrosData; index as j'>
+              <td>{{i.header}}</td>
+              <td>{{i.body}}</td>
+              <td>
+                <a (click)='editOtro(i,j)'><i class="material-icons" style="color:#FFC107">edit</i></a>
+                <a (click)='deleteOtro(j)'><i class="material-icons" style="color:#F44336">delete</i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="input-field col s4">
+        <input [(ngModel)]="otros.header" name='otros_header' id="otros_header" type="text" class="">
+        <label for="otros_header">Título</label>
+      </div>
+      <div class="input-field col s8">
+        <textarea [(ngModel)]="otros.body" name='otros_body' id="otros_body" class="materialize-textarea"></textarea>
+        <label for="otros_body">Descripción</label>
+      </div>
+      <div class="col s12">
+        <a (click)='addOtro()' class="waves-effect waves-light btn">Guardar</a>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a (click)="addRecord()" class="waves-effect waves-green btn-small add" style="margin-right:4px;">Guardar</a>
+    <a (click)="clearModal()" class="modal-close waves-effect waves-green btn-small remove-all">Cancelar</a>
+  </div>
+</div>
+
+<!-- MODAL EDIT -->
+<div id="modal-edit" class="modal modal-fixed-footer">
+  <div class="modal-content">
+    <nav class="navbar-modal">
+      <div class="nav-wrapper">
+        <a href="#" class="brand-logo">Editar Autoevaluación de Procesos</a>
+      </div>
+    </nav>
+    <div class="row" style="margin-top: 8px;">
+      <div class="input-field col s6">
+        <i class="material-icons prefix">account_circle</i>
+        <input id="usuario-edit" type="text" class="">
+        <label for="usuario-edit">Usuario</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <select id="macroproceso-edit" class="browser-default">
+          <option value="" disabled selected>Seleccione</option>
+          <option *ngFor="let i of macroprocesos" value="{{ i.macropr }}">{{ i.macropr }}, {{ i.proceso }}</option>
+        </select>
+        <label for="macroproceso-edit" class="active">Macro-Proceso, Proceso</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <select id="riesgo-edit" class="browser-default">
+          <option value="" disabled selected>Seleccione</option>
+          <option *ngFor="let i of riesgos" value="{{ i.riesgo }}">{{
+            i.riesgo
+          }}</option>
+        </select>
+        <label for="riesgo-edit" class="active">Riesgo</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <label for="implicanciaRiesgo-edit">Implicancia de Riesgo</label>
+        <textarea id="implicanciaRiesgo-edit" class="materialize-textarea active"></textarea>
+
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <select id="ocurrencia-edit" class="browser-default">
+          <option value="" disabled selected>Seleccione</option>
+          <option *ngFor="let i of ocurrencias" value="{{ i.ocurrencia }}">{{
+            i.ocurrencia
+          }}</option>
+        </select>
+        <label for="ocurrencia-edit" class="active">Probabilidad de Ocurrencia</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <select id="impacto-edit" class="browser-default">
+          <option value="" disabled selected>Seleccione</option>
+          <option *ngFor="let i of impactos" value="{{ i.impacto }}">{{
+            i.impacto
+          }}</option>
+        </select>
+        <label for="impacto-edit" class="active">Impacto</label>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <label for="descripcion-edit">Descripción del Control / Mitigación Existente</label>
+        <textarea id="descripcion-edit" class="materialize-textarea"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col s12">
+        <label for="recomendacion-edit">Recomendación de Mejora Sugerida</label>
+        <textarea id="recomendacion-edit" class="materialize-textarea"></textarea>
+      </div>
+    </div>
+    <div class="row">
+      <h5 style="margin-left: 12px;" class="">Otros campos</h5>
+      <div class="col s12">
+        <table>
+          <colgroup>
+            <col span="1" style="width: 20%;">
+            <col span="1" style="width: 70%;">
+            <col span="1" style="width: 10%;">
+          </colgroup>
+          <thead>
+            <tr>
+              <th>Título</th>
+              <th>Descripción</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor='let i of otrosData; index as j'>
+              <td>{{i.header}}</td>
+              <td>{{i.body}}</td>
+              <td>
+                <a (click)='editOtro(i,j)'><i class="material-icons" style="color:#FFC107">edit</i></a>
+                <a (click)='deleteOtro(j)'><i class="material-icons" style="color:#F44336">delete</i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="input-field col s4">
+        <input [(ngModel)]="otros.header" name='otros_header' id="otros_header" type="text" class="">
+        <label for="otros_header">Título</label>
+      </div>
+      <div class="input-field col s8">
+        <textarea [(ngModel)]="otros.body" name='otros_body' id="otros_body" class="materialize-textarea"></textarea>
+        <label for="otros_body">Descripción</label>
+      </div>
+      <div class="col s12">
+        <a (click)='addOtro()' class="waves-effect waves-light btn">Guardar</a>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <a (click)="editRecord()" class="waves-effect waves-green btn-small add" style="margin-right:4px;">Guardar</a>
+    <a class="modal-close waves-effect waves-green btn-small remove-all">Cancelar</a>
+  </div>
+</div>
+<router-outlet></router-outlet>

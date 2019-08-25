@@ -5,11 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CategoriaComponent } from './categoria/categoria.component';
+import { SubcategoriaComponent } from './subcategoria/subcategoria.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CategoriaComponent
+    CategoriaComponent,
+    SubcategoriaComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +21,11 @@ import { CategoriaComponent } from './categoria/categoria.component';
       {
         path: 'categoria',
         component:CategoriaComponent
-      }
+      },
+      {
+        path : 'subcategoria',
+        component:SubcategoriaComponent
+      },
     ])
   ],
   providers: [],
