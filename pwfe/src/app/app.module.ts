@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { SubcategoriaComponent } from './subcategoria/subcategoria.component';
 import { HttpClientModule } from '@angular/common/http';
+import { PacientesComponent } from './pacientes/pacientes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoriaComponent,
-    SubcategoriaComponent
+    SubcategoriaComponent,
+    PacientesComponent
   ],
   imports: [
     BrowserModule,
@@ -27,6 +29,10 @@ import { HttpClientModule } from '@angular/common/http';
       {
         path : 'subcategoria',
         component:SubcategoriaComponent
+      },
+      {
+        path: 'pacientes',
+        component:PacientesComponent
       },
     ])
   ],
