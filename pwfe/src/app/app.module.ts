@@ -7,12 +7,14 @@ import { AppComponent } from './app.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { SubcategoriaComponent } from './subcategoria/subcategoria.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ServiciosComponent } from './servicios/servicios.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoriaComponent,
-    SubcategoriaComponent
+    SubcategoriaComponent,
+    ServiciosComponent
   ],
   imports: [
     BrowserModule,
@@ -21,13 +23,13 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     RouterModule.forRoot([
       {
-        path: 'categoria',
+        path: 'categorias',
         component:CategoriaComponent
       },
       {
-        path : 'subcategoria',
+        path : 'subcategorias',
         component:SubcategoriaComponent
-      },
+      }
     ])
   ],
   providers: [],

@@ -1,49 +1,49 @@
 <!--The content below is only a placeholder and can be replaced.-->
 <nav>
-  <div class="nav-wrapper">
-    <a href="#!" class="brand-logo center">FisioCenter</a>
-    <ul class="left hide-on-small-and-down">
-      <li><a id="menu" title="Menú"><i class="material-icons">menu</i></a></li>
-    </ul>
-  </div>
+    <div class="nav-wrapper">
+        <a href="#!" class="brand-logo center">FisioCenter</a>
+        <ul class="left hide-on-small-and-down">
+            <li><a id="menu" title="Menú"><i class="material-icons">menu</i></a></li>
+        </ul>
+    </div>
 </nav>
 <ul id="slide-out" class="sidenav">
-  <li>
-    <div class="user-view" style="background-color:#48a9c5;border-bottom: 2px solid #0085ad">
-      <div class="row">
-        <div class="col s12">
-          <div class="center" style="margin-top: 8px;">
-            <img src="assets/images/hospital.png" class="hide-on-small-and-down">
-            <img src="" class="hide-on-med-and-up">
-          </div>
+    <li>
+        <div class="user-view" style="background-color:#48a9c5;border-bottom: 2px solid #0085ad">
+            <div class="row">
+                <div class="col s12">
+                    <div class="center" style="margin-top: 8px;">
+                        <img src="assets/images/hospital.png" class="hide-on-small-and-down">
+                        <img src="" class="hide-on-med-and-up">
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
-  </li>
-  <li><a href="#!"><i class="material-icons">local_hospital</i>Servicios</a></li>
-  <li><a href="#!"><i class="material-icons">supervised_user_circle</i>Pacientes</a></li>
-  <li class="no-padding">
-    <ul class="collapsible collapsible-accordion">
-      <li>
-        <a  class="collapsible-header">Administración<i
+    </li>
+    <li><a href="#!"><i class="material-icons">local_hospital</i>Servicios</a></li>
+    <li><a href="#!"><i class="material-icons">supervised_user_circle</i>Pacientes</a></li>
+    <li class="no-padding">
+        <ul class="collapsible collapsible-accordion">
+            <li>
+                <a class="collapsible-header">Administración<i
             class="material-icons small">arrow_drop_down</i></a>
-        <div class="collapsible-body">
-          <ul>
-            <li><a routerLink='categoria' class="sidenav-close side-links"><i class="material-icons small">category</i>
+                <div class="collapsible-body">
+                    <ul>
+                        <li><a routerLink='categorias' class="sidenav-close side-links"><i class="material-icons small">category</i>
                 <p>Categorías</p>
-              </a></li> 
-            <li><a routerLink='subcategoria' class="sidenav-close side-links"><i class="material-icons small">format_list_bulleted</i>
+              </a></li>
+                        <li><a routerLink='subcategorias' class="sidenav-close side-links"><i class="material-icons small">format_list_bulleted</i>
                 <p>Sub categorías</p>
               </a></li>
-          </ul>
-        </div>
-      </li>
-    </ul>
-  </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </li>
 </ul>
 <div class="row hide-on-med-and-up">
-  <div *ngFor='let i of opMobile' class="col s6 op-mobile">
-    <p class="center-align"><strong>{{i}}</strong></p>
-  </div>
+    <div *ngFor='let i of opMobile' class="col s6 op-mobile">
+        <p class="center-align"><strong>{{i}}</strong></p>
+    </div>
 </div>
 <router-outlet></router-outlet>
