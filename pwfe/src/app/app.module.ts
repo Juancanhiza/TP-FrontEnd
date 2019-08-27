@@ -8,13 +8,15 @@ import { CategoriaComponent } from './categoria/categoria.component';
 import { SubcategoriaComponent } from './subcategoria/subcategoria.component';
 import { HttpClientModule } from '@angular/common/http';
 import { ServiciosComponent } from './servicios/servicios.component';
+import { ServiciosFilterPipe } from './servicios-filter.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoriaComponent,
     SubcategoriaComponent,
-    ServiciosComponent
+    ServiciosComponent,
+    ServiciosFilterPipe
   ],
   imports: [
     BrowserModule,
@@ -29,6 +31,10 @@ import { ServiciosComponent } from './servicios/servicios.component';
       {
         path : 'subcategorias',
         component:SubcategoriaComponent
+      },
+      {
+        path : 'servicios',
+        component:ServiciosComponent
       }
     ])
   ],

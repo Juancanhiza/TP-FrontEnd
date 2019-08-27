@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-servicios',
@@ -6,10 +7,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./servicios.component.css']
 })
 export class ServiciosComponent implements OnInit {
-
-  constructor() { }
-
+  data = [];
+  searchText: string= '';
+  constructor(private api: ApiService) {}
+  tableHeaders = ['Nombre', 'Subcategoria', 'Categoria', 'Acciones'];
   ngOnInit() {
+    this.getServicios();
   }
 
+  getServicios() {
+    var that = this;
+    this.api.getServicios().subscribe(
+      data => {
+        that.data = data.lista;
+        //console.log(data.totalDatos);
+        //that.data = data;
+        console.log(data);
+        // data.forEach(function (value) {
+        //   that.categorias.push(value);
+        // });
+        // console.log(that.categorias);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
 }
