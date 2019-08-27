@@ -22,3 +22,7 @@ a {
 .input-field .prefix.active {
     color: #0085ad !important;
 }
+
+[type="checkbox"].filled-in:checked+span:not(.lever):after {
+    background-color: #0085ad;
+}
