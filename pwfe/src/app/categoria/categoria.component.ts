@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ApiService } from '../api.service';
 
 @Component({
   selector: 'app-categoria',
@@ -7,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class CategoriaComponent implements OnInit {
   descripcion: string = '';
+  categorias = [];
   tableHeaders = ['Descripcion', 'Acciones'];
   data = [
     {
@@ -31,12 +33,29 @@ export class CategoriaComponent implements OnInit {
     }
   ]
 
-  constructor() { }
+  constructor(private api: ApiService) {}
 
   ngOnInit() {
+    this.getCategorias();
   }
 
   submmit () {
     alert(this.descripcion);
+  }
+
+  getCategorias() {
+    var that = this;
+    this.api.getCategorias().subscribe(
+      data => {
+        console.log(data);
+        // data.forEach(function (value) {
+        //   that.categorias.push(value);
+        // });
+        // console.log(that.categorias);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 }

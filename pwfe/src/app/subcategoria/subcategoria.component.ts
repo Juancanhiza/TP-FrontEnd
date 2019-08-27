@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { ApiService } from '../api.service';
+import { typeWithParameters } from '@angular/compiler/src/render3/util';
 @Component({
   selector: 'app-subcategoria',
   templateUrl: './subcategoria.component.html',
@@ -7,8 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SubcategoriaComponent implements OnInit {
   descripcion: string = '';
+  data = [];
   tableHeaders = ['Descripcion', 'Categoria', 'Acciones'];
-  data = [
+  data1 = [
     {
       id:"0",
       subcategoria: "Rodilla",
@@ -35,12 +37,32 @@ export class SubcategoriaComponent implements OnInit {
       categoria: "Pierna"
     }
   ]
-  constructor() { }
+  constructor(private api: ApiService) {}
 
   ngOnInit() {
+    this.getSubCategorias();
   }
 
   submmit () {
     alert(this.descripcion);
+  }
+
+  getSubCategorias() {
+    var that = this;
+    this.api.getSubCategorias().subscribe(
+      data => {
+        that.data = data.lista;
+        //console.log(data.totalDatos);
+        //that.data = data;
+        console.log(data);
+        // data.forEach(function (value) {
+        //   that.categorias.push(value);
+        // });
+        // console.log(that.categorias);
+      },
+      error => {
+        console.log(error);
+      }
+    )
   }
 }
