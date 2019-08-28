@@ -1,0 +1,22 @@
+
+    <div class="row">
+        <div class="col s12" style="margin-top: 16px;">
+            <h4 class="center">Editar servicio</h4>
+        </div>
+        <div class="input-field col s12 m8 offset-m2">
+            <i class="material-icons prefix">local_hospital</i>
+            <input [(ngModel)]="serv" name='serv' id="servicio" type="text" class="">
+            <label for="servicio" class="active">Nombre del servicio</label>
+        </div>
+        <div class="col s12 m8 offset-m2">
+            <label for="subCatSelect">Subcategorías</label>
+            <select id='subCatSelect' class="browser-default" name='subcategoria'>
+                <option value="-1" disabled selected>Seleccione</option>
+                <option *ngFor="let i of subcategorias" value="{{i.idTipoProducto}}">Subcategoría: {{i.descripcion}},
+                    Categoría: {{i.idCategoria.descripcion}}</option>
+            </select>
+        </div>
+        <div class="col s12 m2 offset-m8" style="margin-top:16px;">
+            <a (click)='put()' class="waves-effect waves-light btn right">Guardar</a>
+        </div>
+    </div>

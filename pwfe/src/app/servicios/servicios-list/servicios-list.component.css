@@ -1,0 +1,32 @@
+a {
+    cursor: pointer;
+}
+
+.wrapper {
+    margin: 16px;
+}
+
+.agregar {
+    background: #0085ad;
+}
+
+.input-field input[type=text]:focus+label {
+    color: #0085ad !important;
+}
+
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #0085ad !important;
+    box-shadow: 0 1px 0 0 #0085ad !important;
+}
+
+.input-field .prefix.active {
+    color: #0085ad !important;
+}
+
+[type="checkbox"].filled-in:checked+span:not(.lever):after {
+    background-color: #0085ad;
+}
+
+.btn-floating {
+    background-color: #00205b;
+}

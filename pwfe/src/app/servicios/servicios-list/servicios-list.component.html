@@ -1,5 +1,5 @@
 <div class="fixed-action-btn">
-    <a class="btn-floating btn-large agregar">
+    <a [routerLink]="['/servicio/add']" class="btn-floating btn-large agregar">
         <i class="large material-icons">{{icon}}</i>
     </a>
 </div>
@@ -53,7 +53,7 @@
                 <td>{{ i.idProducto.idTipoProducto.descripcion }}</td>
                 <td>{{ i.idProducto.idTipoProducto.idCategoria.descripcion }}</td>
                 <td>
-                    <a (click)="showModalEdit(i)" title="Editar"><i class="material-icons" style="color:#FFC107">mode_edit</i></a>
+                    <a [routerLink]="['/servicio/edit', i.idPresentacionProducto]" title="Editar"><i class="material-icons" style="color:#FFC107">mode_edit</i></a>
                     <a (click)="deleteRecord(i.idPresentacionProducto)" title="Eliminar"><i class="material-icons" style="color:#F44336">delete</i></a>
                 </td>
             </tr>
