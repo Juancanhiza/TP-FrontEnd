@@ -54,10 +54,29 @@
   <!-- Modal Structure -->
   <div id="modal-add" class="modal">
     <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
+        <nav class="navbar-modal">
+            <div class="nav-wrapper">
+              <a href="#" class="brand-logo center">Agregar Subcategorias</a>
+            </div>
+          </nav>
+      <div class="row" style="margin-top: 8px;">
+        <div class="row">
+          <div class="input-field col s6">
+            <select id="idCategoria" class="browser-default">
+              <option value="" disabled selected>Seleccione</option>
+              <option *ngFor="let i of data3" value="{{ i.id }}">{{ i.descripcion}}</option>
+            </select>
+            <label for="idCategoria" class="active">Categoria</label>
+          </div>
+        </div>
+        <div class="input-field col s66">
+          <i class="material-icons prefix">chevron_right</i>
+          <input id="descripcion" type="text" class="">
+          <label for="descripcion">Descripcion</label>
+        </div>
+      </div>
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agregar</a>
     </div>
   </div>

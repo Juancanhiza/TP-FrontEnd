@@ -1,4 +1,4 @@
-import { Component,AfterViewInit , OnInit } from '@angular/core';
+import { Component,AfterViewInit, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 declare var $: any;
 import { typeWithParameters } from '@angular/compiler/src/render3/util';
@@ -10,6 +10,7 @@ import { typeWithParameters } from '@angular/compiler/src/render3/util';
 export class SubcategoriaComponent implements OnInit {
   descripcion: string = '';
   data = [];
+  data3 = [];
   tableHeaders = ['Descripcion', 'Categoria', 'Acciones'];
   data1 = [
     {
@@ -42,6 +43,7 @@ export class SubcategoriaComponent implements OnInit {
 
   ngOnInit() {
     this.getSubCategorias();
+    this.getCategorias();
   }
 
   submmit () {
@@ -66,6 +68,24 @@ export class SubcategoriaComponent implements OnInit {
       }
     )
   }
+
+  getCategorias() {
+    var that = this;
+    this.api.getCategorias().subscribe(
+      data3 => {
+        that.data3 = data3.lista;
+        console.log(data3);
+        // data.forEach(function (value) {
+        //   that.categorias.push(value);
+        // });
+        // console.log(that.categorias);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
   ngAfterViewInit(){
     $('.modal').modal();
   }
