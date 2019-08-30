@@ -1,5 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,AfterViewInit , OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
+declare var $: any;
 import { typeWithParameters } from '@angular/compiler/src/render3/util';
 @Component({
   selector: 'app-subcategoria',
@@ -64,5 +65,8 @@ export class SubcategoriaComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+  ngAfterViewInit(){
+    $('.modal').modal();
   }
 }
