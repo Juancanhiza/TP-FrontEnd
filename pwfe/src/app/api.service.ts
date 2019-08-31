@@ -17,5 +17,8 @@ export class ApiService {
   getSubCategorias(): Observable<any> {
     return this.http.get('/stock-pwfe/tipoProducto', {headers: this.hhtpHeaders});
   }
+  getServicios(): Observable<any> {
+    return this.http.get('/stock-pwfe/presentacionProducto', {headers: this.hhtpHeaders});
+  }
 }
 
