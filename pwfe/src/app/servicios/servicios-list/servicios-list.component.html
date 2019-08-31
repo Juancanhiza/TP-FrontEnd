@@ -3,60 +3,70 @@
         <i class="large material-icons">{{icon}}</i>
     </a>
 </div>
-<div class="container">
-    <div class="row" style="margin:0">
+<div class="wrapper">
+    <div class="row">
         <div class="col s12">
             <h4>Servicios</h4>
         </div>
-        <div class="input-field col s12">
+        <div class="input-field col s12 m3">
             <i class="material-icons prefix">search</i>
-            <input [(ngModel)]="searchText" name='search' id="searchServicios" type="text" class="">
-            <span class="helper-text">Nombre, Categoria, Subcategoria</span>
-            <label for="searchServicios">Buscar</label>
+            <input id="buscar" type="text" class="" placeholder="Nombre...">
+            <span class="helper-text">(Enter para buscar)</span>
+            <label for="buscar" class="active">Buscar</label>
+
+            <ul class="collapsible">
+                <li>
+                    <div class="collapsible-header white-text"><i class="material-icons">format_list_bulleted</i>Subcategorías</div>
+                    <div class="collapsible-body">
+                        <p *ngFor='let i of subcategorias'>
+                            <label>
+                                <input (click)='getBySubcategoria(i.idTipoProducto)' class="with-gap"
+                                    name="{{i.descripcion}}" type="radio" id="{{i.idTipoProducto}}" />
+                                <span>{{i.descripcion}}</span>
+                            </label>
+                        </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col s12 m9">
+            <table class="striped">
+                <colgroup>
+                    <col span="1" style="width: 45%;">
+                    <col span="1" style="width: 45%;">
+                    <col span="1" style="width: 10%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th *ngFor="let i of tableHeaders">{{ i }}</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr *ngFor="let i of data | serviciosFilter : searchText; index as j">
+                        <td>{{ i.nombre }}</td>
+                        <td>{{ i.idProducto.idTipoProducto.descripcion }}</td>
+                        <td>
+                            <a [routerLink]="['/servicio/edit', i.idPresentacionProducto]" title="Editar"><i
+                                    class="material-icons" style="color:#FFC107">mode_edit</i></a>
+                            <a href='#modal_delete' (click)="saveDeleteRecord(i.idPresentacionProducto, j)" title="Eliminar" class="modal-trigger"><i
+                                    class="material-icons" style="color:#F44336">delete</i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
+</div>
 
-    <table>
-        <colgroup>
-            <col span="1" style="width: 7.5%;">
-            <col span="1" style="width: 35%;">
-            <col span="1" style="width: 25%;">
-            <col span="1" style="width: 25%;">
-            <col span="1" style="width: 7.5%;">
-        </colgroup>
-        <thead>
-            <tr>
-                <th>
-                    <p>
-                        <label>
-              <input id="checkTodo" type="checkbox" class="filled-in" />
-              <span></span>
-            </label>
-                    </p>
-                </th>
-                <th *ngFor="let i of tableHeaders">{{ i }}</th>
-            </tr>
-        </thead>
-
-        <tbody>
-
-            <tr *ngFor="let i of data | serviciosFilter : searchText">
-                <td>
-                    <p>
-                        <label>
-              <input (click)="check(i.idPresentacionProducto)" id="check-{{ i.idPresentacionProducto }}" type="checkbox" class="filled-in" />
-              <span></span>
-            </label>
-                    </p>
-                </td>
-                <td>{{ i.nombre }}</td>
-                <td>{{ i.idProducto.idTipoProducto.descripcion }}</td>
-                <td>{{ i.idProducto.idTipoProducto.idCategoria.descripcion }}</td>
-                <td>
-                    <a [routerLink]="['/servicio/edit', i.idPresentacionProducto]" title="Editar"><i class="material-icons" style="color:#FFC107">mode_edit</i></a>
-                    <a (click)="deleteRecord(i.idPresentacionProducto)" title="Eliminar"><i class="material-icons" style="color:#F44336">delete</i></a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+<div id="modal_delete" class="modal">
+    <div class="modal-content">
+        <h4>¿Eliminar registro?</h4>
+        <p class="red-text">Esta acción no puede deshacerse</p>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close waves-effect waves-green btn disagree" style="margin:4px;">Cancelar</a>
+        <a (click)='deleteRecord()' class="modal-close waves-effect waves-green btn agree" style="margin:4px;">Eliminar</a>
+    </div>
 </div>

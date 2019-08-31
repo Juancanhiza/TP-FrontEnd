@@ -6,7 +6,9 @@ a {
     margin: 16px;
 }
 
-.agregar {
+.agregar,
+.nav-wrapper,
+.collapsible-header {
     background: #0085ad;
 }
 
@@ -29,4 +31,27 @@ a {
 
 .btn-floating {
     background-color: #00205b;
+}
+
+.collapsible-body {
+    padding: 16px;
+}
+
+[type="radio"]:checked+span:after,
+[type="radio"].with-gap:checked+span:after {
+    background-color: #00205b !important;
+}
+
+[type="radio"]:checked+span:after,
+[type="radio"].with-gap:checked+span:before,
+[type="radio"].with-gap:checked+span:after {
+    border: 2px solid #00205b !important;
+}
+
+.agree {
+    background: #00205b !important;
+}
+
+.disagree {
+    background: #0085ad !important;
 }

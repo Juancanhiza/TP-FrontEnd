@@ -3,6 +3,7 @@ import { Router, ActivatedRoute, ParamMap } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { ServiciosService } from '../servicios.service';
 declare var $: any;
+declare var M: any;
 @Component({
   selector: 'app-servicios-edit',
   templateUrl: './servicios-edit.component.html',
@@ -64,25 +65,42 @@ export class ServiciosEditComponent implements OnInit, AfterViewInit {
         that.getServicio(params['id']);
       }
     });
-    
+
   }
 
   put = () => {
     var idSubCategoria = $('#subCatSelect').val();
-    var result = this.subcategorias.find(obj => {
-      return obj.idTipoProducto == idSubCategoria;
-    });
-    this.servicio.nombre = this.serv;
-    this.servicio.idProducto.idTipoProducto = result;
 
-    this.service.putServicio(this.servicio).subscribe(
-      data => {
-        console.log(data);
-      },
-      error => {
-        console.log(error);
+    if (this.serv != '') {
+      this.servicio.nombre = this.serv;
+
+      var e = {
+        idProducto: this.servicio.idProducto.idProducto,
+        idTipoProducto: Number(idSubCategoria)
       }
-    );
-      
+
+      this.service.putProducto(JSON.stringify(e)).subscribe(
+        data => {
+          //console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      )
+      this.service.putServicio(this.servicio).subscribe(
+        data => {
+          M.toast({ html: 'Servicio modificado correctamente' });
+          this.router.navigate(['/servicios']);
+          //console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    }else {
+      M.toast({ html: 'Nombre no puede quedar vacío' });
+    }
+
+
   }
 }

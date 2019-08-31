@@ -16,15 +16,27 @@ export class ServiciosService {
     return this.http.get('/stock-pwfe/presentacionProducto/' + id, {headers: this.hhtpHeaders});
   }
 
+  getBySubcategoria(element): Observable<any> {
+    console.log('/stock-pwfe/presentacionProducto?ejemplo=' + element);
+    var h = new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded'})
+    return this.http.get('/stock-pwfe/presentacionProducto?ejemplo=' + element, {headers: this.hhtpHeaders});
+  }
+
   postServicio(element): Observable<any> {
-    const body = {};
-    return this.http.post('/stock-pwfe/presentacionProducto', body, {headers: this.hhtpHeaders});
+    return this.http.post('/stock-pwfe/presentacionProducto', element, {headers: this.hhtpHeaders});
   }
 
   putServicio(element): Observable<any> {
     return this.http.put('/stock-pwfe/presentacionProducto', element, {headers: this.hhtpHeaders});
   }
 
+  putProducto(element): Observable<any> {
+    return this.http.put('/stock-pwfe/producto', element, {headers: this.hhtpHeaders});
+  }
+
+  postProducto(element): Observable<any> {
+    return this.http.post('/stock-pwfe/producto', element, {headers: this.hhtpHeaders});
+  }
   deleteSevicio(id): Observable<any> {
     return this.http.delete('/stock-pwfe/presentacionProducto/' + id, {headers: this.hhtpHeaders});
   }
