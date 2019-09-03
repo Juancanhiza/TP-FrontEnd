@@ -64,9 +64,9 @@
           <div class="input-field col s6">
             <select id="idCategoria" class="browser-default">
               <option value="" disabled selected>Seleccione</option>
-              <option *ngFor="let i of data3" value="{{ i.id }}">{{ i.descripcion}}</option>
+              <option *ngFor="let i of data3" [value]=" i.idCategoria ">{{ i.descripcion}}</option>
             </select>
-            <label for="idCategoria" class="active">Categoria</label>
+            <label for="categoria" class="active">Categoria</label>
           </div>
         </div>
         <div class="input-field col s66">
@@ -77,6 +77,6 @@
       </div>
     </div>
     <div class="modal-footer">
-      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agregar</a>
+        <a (click)="addRecord()" class="waves-effect waves-green btn-small add" style="margin-right:4px;">Guardar</a>
     </div>
   </div>

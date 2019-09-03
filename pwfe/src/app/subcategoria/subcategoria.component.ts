@@ -1,6 +1,7 @@
 import { Component,AfterViewInit, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 declare var $: any;
+declare var M: any;
 import { typeWithParameters } from '@angular/compiler/src/render3/util';
 @Component({
   selector: 'app-subcategoria',
@@ -9,6 +10,7 @@ import { typeWithParameters } from '@angular/compiler/src/render3/util';
 })
 export class SubcategoriaComponent implements OnInit {
   descripcion: string = '';
+  add = true;
   data = [];
   data3 = [];
   tableHeaders = ['Descripcion', 'Categoria', 'Acciones'];
@@ -39,7 +41,8 @@ export class SubcategoriaComponent implements OnInit {
       categoria: "Pierna"
     }
   ]
-  constructor(private api: ApiService) {}
+  constructor(private api: ApiService
+    ) {}
 
   ngOnInit() {
     this.getSubCategorias();
@@ -87,6 +90,37 @@ export class SubcategoriaComponent implements OnInit {
   }
 
   ngAfterViewInit(){
+    var that = this
     $('.modal').modal();
+    $('select').formSelect();
+  }
+
+  createSubcategoriaProcesos(element) {
+    this.api.createSubcategoriaProcesos(element).subscribe(
+      data => {
+        this.getSubCategorias();
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  addRecord() {
+    var idCategoria = $("#idCategoria option:selected").val();
+    var descripcion = $('#descripcion').val();
+
+    if (idCategoria == 'Seleccione' || descripcion == '' ) {
+      M.toast({ html: 'Complete todos los campos para guardar' });
+    } else {    
+      var recordPost = {
+        idCategoria:{idCategoria: idCategoria},
+         descripcion:descripcion
+      }
+      console.log(recordPost)
+      this.createSubcategoriaProcesos(JSON.stringify(recordPost));
+
+      $('#modal-add').modal('close');
+    }
   }
 }
