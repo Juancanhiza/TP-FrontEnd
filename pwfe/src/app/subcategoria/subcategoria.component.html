@@ -1,46 +1,82 @@
 <div class="container">
-    <h4 class="center">Subcategorias</h4>
-    <table>
-        <colgroup>
-            <col span="1" style="width: 10%;">
-            <col span="1" style="width: 40%;">
-            <col span="1" style="width: 40%;">
-            <col span="1" style="width: 10%;">
-        </colgroup>
-        <thead>
-            <tr>
-                <th>
-                    <p>
-                        <label>
+<h4 class="center">Subcategorias</h4>
+<li>
+  <a href="#modal-add" class="waves-effect waves-light btn-small add modal-trigger">Agregar Registro
+    <i class="material-icons left">control_point</i>
+  </a>
+</li>
+<table>
+    <colgroup>
+      <col span="1" style="width: 10%;">
+      <col span="1" style="width: 40%;">
+      <col span="1" style="width: 40%;">
+      <col span="1" style="width: 10%;">
+   </colgroup>
+    <thead>
+      <tr>
+        <th>
+          <p>
+            <label>
               <input id="checkTodo" (click)="checkedAll()" type="checkbox" class="filled-in" />
               <span></span>
             </label>
-                    </p>
-                </th>
-                <th *ngFor="let i of tableHeaders">{{ i }}</th>
-            </tr>
-        </thead>
+          </p>
+        </th>
+        <th *ngFor="let i of tableHeaders">{{ i }}</th>
+      </tr>
+    </thead>
 
-        <tbody>
+    <tbody>
 
-            <tr *ngFor="let i of data ; let j = index">
-                <td>
-                    <p>
-                        <label>
+      <tr *ngFor="let i of data ; let j = index">
+        <td>
+          <p>
+            <label>
               <input (click)="check(i.id)" id="check-{{ i.id }}" type="checkbox" class="filled-in" />
               <span></span>
             </label>
-                    </p>
-                </td>
-                <td>{{ i.descripcion }}</td>
-                <td>{{ i.idCategoria.descripcion }}</td>
-                <td>
-                    <a (click)="showModalEdit(i)" title="Editar"><i class="material-icons" style="color:#FFC107">create</i></a>
-                    <a (click)="deleteRecord(i.id)" title="Eliminar"><i class="material-icons"
+          </p>
+        </td>
+        <td>{{ i.descripcion }}</td>
+        <td>{{ i.idCategoria.descripcion }}</td>
+        <td>
+          <a (click)="showModalEdit(i)" title="Editar"><i class="material-icons" style="color:#FFC107">create</i></a>
+          <a (click)="deleteRecord(i.id)" title="Eliminar"><i class="material-icons"
               style="color:#F44336">delete</i></a>
-                </td>
-            </tr>
-        </tbody>
-    </table>
+        </td>
+      </tr>
+    </tbody>
+</table>
 
 </div>
+
+
+  <!-- Modal Structure -->
+  <div id="modal-add" class="modal">
+    <div class="modal-content">
+        <nav class="navbar-modal">
+            <div class="nav-wrapper">
+              <a href="#" class="brand-logo center">Agregar Subcategorias</a>
+            </div>
+          </nav>
+      <div class="row" style="margin-top: 8px;">
+        <div class="row">
+          <div class="input-field col s6">
+            <select id="idCategoria" class="browser-default">
+              <option value="" disabled selected>Seleccione</option>
+              <option *ngFor="let i of data3" [value]=" i.idCategoria ">{{ i.descripcion}}</option>
+            </select>
+            <label for="categoria" class="active">Categoria</label>
+          </div>
+        </div>
+        <div class="input-field col s66">
+          <i class="material-icons prefix">chevron_right</i>
+          <input id="descripcion" type="text" class="">
+          <label for="descripcion">Descripcion</label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+        <a (click)="addRecord()" class="waves-effect waves-green btn-small add" style="margin-right:4px;">Guardar</a>
+    </div>
+  </div>
