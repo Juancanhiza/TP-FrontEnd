@@ -20,5 +20,8 @@ export class ApiService {
   createSubcategoriaProcesos(element): Observable<any> {
     return this.http.post('/stock-pwfe/tipoProducto', element, {headers: this.hhtpHeaders});
   }
+  updateSubCategoriaProcesos(element): Observable<any> {
+    return this.http.put('/stock-pwfe/tipoProducto', element, {headers: this.hhtpHeaders});
+  }
 }
 

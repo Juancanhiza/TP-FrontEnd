@@ -80,3 +80,33 @@
         <a (click)="addRecord()" class="waves-effect waves-green btn-small add" style="margin-right:4px;">Guardar</a>
     </div>
   </div>
+
+  <!-- Modal Structure -->
+  <div id="modal-edit" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <nav class="navbar-modal">
+            <div class="nav-wrapper">
+              <a href="#" class="brand-logo">Editar Subcategorias</a>
+            </div>
+          </nav>
+      <div class="row" style="margin-top: 8px;">
+        <div class="row">
+          <div class="input-field col s6">
+            <select id="idCategoria-edit" class="browser-default">
+              <option value="" disabled selected>Seleccione</option>
+              <option *ngFor="let i of data3" [value]=" i.idCategoria ">{{ i.descripcion}}</option>
+            </select>
+            <label for="idCategoria-edit" class="active">Categoria</label>
+          </div>
+        </div>
+        <div class="input-field col s66">
+          <i class="material-icons prefix">chevron_right</i>
+          <input id="descripcion-edit" type="text" class="">
+          <label for="descripcion-edit">Descripcion</label>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <a (click)="editRecord()" class="waves-effect waves-green btn-small add" style="margin-right:4px;">Guardar</a>
+    </div>
+  </div>
