@@ -166,4 +166,18 @@ export class SubcategoriaComponent implements OnInit {
     $('#descripcion-edit').val(element.descripcion);
     $('#modal-edit').modal('open');
   }
+
+
+  deleteRecord(idTipoProducto) {
+    console.log(idTipoProducto);
+    this.api.deleteSubCategoriaProcesos(idTipoProducto).subscribe(
+      data => {
+        this.getSubCategorias();
+      },
+      error => {
+        console.log(error);
+      }
+    )
+   }
+  
 }

@@ -23,5 +23,8 @@ export class ApiService {
   updateSubCategoriaProcesos(element): Observable<any> {
     return this.http.put('/stock-pwfe/tipoProducto', element, {headers: this.hhtpHeaders});
   }
+  deleteSubCategoriaProcesos(id): Observable<any> {
+    return this.http.delete('/stock-pwfe/tipoProducto/' + id, {headers: this.hhtpHeaders});
+  }
 }
 
