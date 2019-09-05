@@ -78,6 +78,7 @@
     </div>
     <div class="modal-footer">
         <a (click)="addRecord()" class="waves-effect waves-green btn-small add" style="margin-right:4px;">Guardar</a>
+        <a class="btn modal-close">Cancelar</a>
     </div>
   </div>
 
@@ -86,7 +87,7 @@
     <div class="modal-content">
         <nav class="navbar-modal">
             <div class="nav-wrapper">
-              <a href="#" class="brand-logo">Editar Subcategorias</a>
+              <a href="#" class="brand-logo">Editar Subcategorias {{editId}}</a>
             </div>
           </nav>
       <div class="row" style="margin-top: 8px;">
@@ -108,5 +109,6 @@
     </div>
     <div class="modal-footer">
       <a (click)="editRecord()" class="waves-effect waves-green btn-small add" style="margin-right:4px;">Guardar</a>
+      <a class="btn modal-close">Cancelar</a>
     </div>
   </div>

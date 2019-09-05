@@ -147,7 +147,7 @@ export class SubcategoriaComponent implements OnInit {
     } else {    
       var recordUpdate = {
         idTipoProducto: this.editId,
-        idCategoria:{idCategoria:(idCategoria)},
+        idCategoria:{idCategoria:idCategoria},
          descripcion:descripcion,
          flagVisible : "S",
          posicion:1
@@ -161,7 +161,7 @@ export class SubcategoriaComponent implements OnInit {
   }
   showModalEdit(element) {
 
-    this.editId = element.id;
+    this.editId = element.idTipoProducto;
     $('#idCategoria-edit').val(element.idCategoria);
     $('#descripcion-edit').val(element.descripcion);
     $('#modal-edit').modal('open');
