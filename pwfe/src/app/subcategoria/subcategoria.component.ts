@@ -172,10 +172,11 @@ export class SubcategoriaComponent implements OnInit {
     console.log(idTipoProducto);
     this.api.deleteSubCategoriaProcesos(idTipoProducto).subscribe(
       data => {
+        M.toast({ html: 'SubCategoria Eliminada' });
         this.getSubCategorias();
       },
       error => {
-        console.log(error);
+        M.toast({ html: 'La SubCategoria está en uso y no puede eliminarse' });
       }
     )
    }
