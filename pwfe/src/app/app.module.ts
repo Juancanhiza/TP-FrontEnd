@@ -6,12 +6,14 @@ import { AppComponent } from './app.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { SubcategoriaComponent } from './subcategoria/subcategoria.component';
 import { ServiciosModule } from './servicios/servicios.module';
+import { PacientesComponent } from './pacientes/pacientes.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoriaComponent,
     SubcategoriaComponent,
+    PacientesComponent
   ],
   imports: [
     BrowserModule,
