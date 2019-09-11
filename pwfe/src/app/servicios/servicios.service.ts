@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams  } from '@angular/common/http';
 import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -17,9 +17,17 @@ export class ServiciosService {
   }
 
   getBySubcategoria(element): Observable<any> {
-    console.log('/stock-pwfe/presentacionProducto?ejemplo=' + element);
-    var h = new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded'})
-    return this.http.get('/stock-pwfe/presentacionProducto?ejemplo=' + element, {headers: this.hhtpHeaders});
+    // let param = new HttpParams().set('ejemplo', JSON.stringify(element));
+    // let param2 = new HttpParams().set('like', 'S');
+
+    var params = new HttpParams();
+    params = params.append('ejemplo', JSON.stringify(element));
+    params = params.append('like', 'S');
+    
+    // params.append('ejemplo', JSON.stringify(element));
+    // params.append('like',"S");
+    console.log(params);
+    return this.http.get('/stock-pwfe/presentacionProducto', { params: params});
   }
 
   postServicio(element): Observable<any> {
