@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { SubcategoriaComponent } from './subcategoria/subcategoria.component';
 import { ServiciosModule } from './servicios/servicios.module';
+import { CategoriasModule } from './categorias/categorias.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { ServiciosModule } from './servicios/servicios.module';
     AppRoutingModule,
     FormsModule,
     ServiciosModule,
-    AppRoutingModule
+    CategoriasModule
   ],
   providers: [],
   bootstrap: [AppComponent]

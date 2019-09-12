@@ -1,0 +1,17 @@
+<div class="row">
+  <div class="col s12" style="margin-top: 16px;">
+      <h4 class="center">Agregar Categoria</h4>
+  </div>
+  <div class="input-field col s12 m8 offset-m2">
+    <i class="material-icons prefix">local_hospital</i>
+    <input [(ngModel)]="categoria" name='categoria' id="categoria" type="text" class="">
+    <label for="categoria" class="active">Nombre de la categoria</label>
+
+  </div>
+  <div class="col s12 m2 offset-m8">
+      <a (click)='post()' class="waves-effect waves-light btn right">Guardar</a>
+
+      <a [routerLink]="['/categorias/']" class="waves-effect waves-light btn left-align red">Atras</a>
+  </div>
+
+</div>

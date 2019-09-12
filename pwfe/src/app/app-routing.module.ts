@@ -4,8 +4,12 @@ import { CategoriaComponent } from './categoria/categoria.component';
 import { SubcategoriaComponent } from './subcategoria/subcategoria.component';
 
 const appRoutes: Routes = [
-  { path: 'categorias', component:CategoriaComponent },
-  { path : 'subcategorias', component:SubcategoriaComponent }
+  { 
+    path: 'categoria', component:CategoriaComponent 
+  },
+  { 
+    path : 'subcategorias', component:SubcategoriaComponent 
+  }
 ];
 
 @NgModule({
