@@ -20,7 +20,7 @@ export class CategoriaListComponent implements OnInit, AfterViewInit {
 
   data = [];
 
-  tableHeaders = ['ID', 'Categoria', 'Acciones'];
+  tableHeaders = ['ID', 'Categoría', 'Acciones'];
 
 
   constructor(private api: CategoriasService) { }
