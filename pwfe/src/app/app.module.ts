@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CategoriaComponent } from './categoria/categoria.component';
 import { SubcategoriaComponent } from './subcategoria/subcategoria.component';
 import { ServiciosModule } from './servicios/servicios.module';
 import { PacientesComponent } from './pacientes/pacientes.component';
@@ -12,7 +11,6 @@ import { ConfagendamientoExcepModule } from './confagendamiento-excep/confagenda
 @NgModule({
   declarations: [
     AppComponent,
-    CategoriaComponent,
     SubcategoriaComponent,
     PacientesComponent
   ],
