@@ -3,15 +3,15 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CategoriaComponent } from './categoria/categoria.component';
 import { SubcategoriaComponent } from './subcategoria/subcategoria.component';
 import { ServiciosModule } from './servicios/servicios.module';
 import { PacientesComponent } from './pacientes/pacientes.component';
 import { ConfagendamientoModule } from './confagendamiento/confagendamiento.module'
+import { CategoriasModule } from './categorias/categorias.module';
+
 @NgModule({
   declarations: [
     AppComponent,
-    CategoriaComponent,
     SubcategoriaComponent,
     PacientesComponent
   ],
@@ -21,7 +21,8 @@ import { ConfagendamientoModule } from './confagendamiento/confagendamiento.modu
     FormsModule,
     ServiciosModule,
     ConfagendamientoModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CategoriasModule
   ],
   providers: [],
   bootstrap: [AppComponent]
