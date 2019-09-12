@@ -1,0 +1,47 @@
+<div class="row">
+    <div class="col s12" style="margin-top: 16px;">
+        <h4 class="center">Editar horario de atención (excepciones)</h4>
+    </div>
+</div>
+<div class="container">
+    <div class="row" style="margin:0;">
+        <div class="col s12 m4">
+            <label for="selectMedicos">Médicos</label>
+            <select id='selectMedicos' class="browser-default" name='subcategoria'>
+                <option *ngFor="let i of medicos" value="{{i.idPersona}}">{{i.nombre}} {{i.apellido}}</option>
+            </select>
+        </div>
+        <div class="input-field s12 col m4">
+            <input type="text" id='fecha' class="datepicker">
+            <label for="fecha" class="active">Fecha</label>
+        </div>
+        <div class="col s12 m4">
+            <label for="selectAtendera">¿Atenderá?</label>
+            <select id='selectAtendera' class="browser-default" name='atendera'>
+                <option *ngFor="let i of atendera" value="{{i.id}}">{{i.nombre}}</option>
+            </select>
+        </div>
+    </div>
+    <div *ngIf="showTime" class="row" style="margin:0;">
+        <div class="input-field col s12 m4">
+            <i class="material-icons prefix">access_time</i>
+            <input name='horaI' id='horaI' type="text" class="timepicker">
+            <label for="horaI" class="active">Horario de inicio</label>
+        </div>
+        <div class="input-field col s12 m4">
+            <i class="material-icons prefix">access_time</i>
+            <input name='horaF' id='horaF' type="text" class="timepicker">
+            <label for="horaF" class="active">Horario de finalización</label>
+        </div>
+        <div class="input-field col s12 m4">
+            <i class="material-icons prefix">timer</i>
+            <input name='tiempoConsulta' id='tiempoConsulta' type="text">
+            <label for="tiempoConsulta" class="active">Tiempo de consulta</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col s12">
+            <a (click)='guardarHorarioExcepcion()' class="waves-effect waves-light btn right">Guardar</a>
+        </div>
+    </div>
+</div>
