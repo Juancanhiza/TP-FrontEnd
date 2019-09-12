@@ -5,7 +5,6 @@
     <div class="col s12 m8 offset-m2">
         <label for="selectDias">Día de la semana</label>
         <select id='selectDias' class="browser-default" name='subcategoria'>
-            <option value="-1" disabled selected>Seleccione</option>
             <option *ngFor="let i of dias" value="{{i.id}}">{{i.nombre}}</option>
         </select>
     </div>
@@ -13,17 +12,16 @@
     <div class="col s12 m8 offset-m2">
         <label for="selectMedicos">Médicos</label>
         <select id='selectMedicos' class="browser-default" name='subcategoria'>
-            <option value="-1" disabled selected>Seleccione</option>
             <option *ngFor="let i of medicos" value="{{i.idPersona}}">{{i.nombre}} {{i.apellido}}</option>
         </select>
     </div>
 
-    <div class="input-field col s12 m8 offset-m2">
+    <div class="input-field col s12 m4 offset-m2">
         <i class="material-icons prefix">access_time</i>
         <input name='horaI' id='horaI' type="text" class="timepicker">
         <label for="horaI" class="active">Horario de inicio</label>
     </div>
-    <div class="input-field col s12 m8 offset-m2">
+    <div class="input-field col s12 m4">
         <i class="material-icons prefix">access_time</i>
         <input name='horaF' id='horaF' type="text" class="timepicker">
         <label for="horaF" class="active">Horario de finalización</label>
