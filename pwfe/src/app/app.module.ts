@@ -7,7 +7,7 @@ import { CategoriaComponent } from './categoria/categoria.component';
 import { SubcategoriaComponent } from './subcategoria/subcategoria.component';
 import { ServiciosModule } from './servicios/servicios.module';
 import { PacientesComponent } from './pacientes/pacientes.component';
-
+import { ConfagendamientoModule } from './confagendamiento/confagendamiento.module'
 @NgModule({
   declarations: [
     AppComponent,
@@ -20,6 +20,7 @@ import { PacientesComponent } from './pacientes/pacientes.component';
     AppRoutingModule,
     FormsModule,
     ServiciosModule,
+    ConfagendamientoModule,
     AppRoutingModule
   ],
   providers: [],

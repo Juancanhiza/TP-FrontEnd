@@ -1,0 +1,76 @@
+<div class="fixed-action-btn">
+    <a [routerLink]="['/horario-atencion-conf/add']" class="btn-floating btn-large agregar">
+        <i class="large material-icons">{{icon}}</i>
+    </a>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <h4>Configuración de horarios de atención</h4>
+        </div>
+        <div class="col s6">
+            <label for="selectMedicos">Médico</label>
+            <select id='selectMedicos' class="browser-default" name='medicos'>
+                <option value="-1" disabled selected>Seleccione</option>
+                <option *ngFor="let i of medicos" value="{{i.idPersona}}">{{i.nombre}} {{i.apellido}}</option>
+            </select>
+        </div>
+        <div class="col s6">
+            <label for="selectDias">Día de la semana</label>
+            <select id='selectDias' class="browser-default" name='dias'>
+                <option value="-1" disabled selected>Seleccione</option>
+                <option *ngFor="let i of dias" value="{{i.id}}">{{i.nombre}}</option>
+            </select>
+        </div>
+        <div class="col s12">
+            <a (click)='filter()' class="waves-effect waves-light btn right disagree" style="margin:8px;"><i
+                    class="material-icons left">search</i>Buscar</a>
+            <a (click)='clearFilter()' class="waves-effect waves-light btn right agree" style="margin:8px;">Limpiar</a>
+        </div>
+        <div class="col s12">
+            <table class="striped centered">
+                <colgroup>
+                    <col span="1" style="width: 10%;">
+                    <col span="1" style="width: 16%;">
+                    <col span="1" style="width: 16%;">
+                    <col span="1" style="width: 16%;">
+                    <col span="1" style="width: 16%;">
+                    <col span="1" style="width: 16%;">
+                    <col span="1" style="width: 10%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th *ngFor="let i of tableHeaders">{{ i }}</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr *ngFor="let i of data; index as j">
+                        <td>{{ i.diaCadena }}</td>
+                        <td>{{ i.idEmpleado.nombre }} {{ i.idEmpleado.apellido }}</td>
+                        <td>{{ i.horaApertura }} hs.</td>
+                        <td>{{ i.horaCierre }} hs.</td>
+                        <td>{{ i.intervaloMinutos }} min.</td>
+                        <td>
+                            <a [routerLink]="['/horario-atencion-conf/edit', i.idPersonaHorarioAgenda]" title="Editar"><i class="material-icons" style="color:#FFC107">mode_edit</i></a>
+                            <a href='#modal_delete' (click)="saveDeleteRecord(i.idPersonaHorarioAgenda, j)" title="Eliminar" class="modal-trigger"><i class="material-icons"
+                                    style="color:#F44336">delete</i></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="modal_delete" class="modal">
+    <div class="modal-content">
+        <h4>¿Eliminar registro?</h4>
+        <p class="red-text">Esta acción no puede deshacerse</p>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close waves-effect waves-green btn disagree" style="margin:4px;">Cancelar</a>
+        <a (click)='deleteRecord()' class="modal-close waves-effect waves-green btn agree" style="margin:4px;">Eliminar</a>
+    </div>
+</div>
