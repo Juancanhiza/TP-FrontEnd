@@ -68,8 +68,7 @@ export class ConfagendamientoEditComponent implements OnInit {
   }
 
   actualizarAgendamiento() {
-    if ($('#selectDias').val() != '' && $('#horaI').val() != '' && $('#horaF').val() != '' && Number.isInteger(Number($('#tiempoConsulta').val()))
-      && Number($('#selectMedicos').val()) != -1) {
+    if ($('#horaI').val() != '' && $('#horaF').val() != '' && Number.isInteger(Number($('#tiempoConsulta').val()))) {
       var e = {
         idPersonaHorarioAgenda: this.confAgendamiento.id,
         dia: $('#selectDias').val(),

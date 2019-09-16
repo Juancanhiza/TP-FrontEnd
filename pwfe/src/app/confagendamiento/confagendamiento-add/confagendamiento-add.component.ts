@@ -64,9 +64,7 @@ export class ConfagendamientoAddComponent implements OnInit {
   }
 
   guardarAgendamiento(){
-    //mystring = mystring.replace('/r','/');
-    if($('#selectDias').val() != '' && $('#horaI').val() != '' && $('#horaF').val() != '' && Number.isInteger(Number($('#tiempoConsulta').val())) 
-    && Number($('#selectMedicos').val()) != -1){
+    if($('#horaI').val() != -1 && $('#horaF').val() != '' && Number.isInteger(Number($('#tiempoConsulta').val()))){
       var e = {
         dia: $('#selectDias').val(),
         horaAperturaCadena: $('#horaI').val().replace(':',''),
