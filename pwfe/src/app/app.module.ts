@@ -6,21 +6,20 @@ import { AppComponent } from './app.component';
 import { CategoriaComponent } from './categoria/categoria.component';
 import { SubcategoriaComponent } from './subcategoria/subcategoria.component';
 import { ServiciosModule } from './servicios/servicios.module';
-import { PacientesComponent } from './pacientes/pacientes.component';
+import { PacientesModule } from './pacientes/pacientes.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     CategoriaComponent,
     SubcategoriaComponent,
-    PacientesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
     ServiciosModule,
-    AppRoutingModule
+    PacientesModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

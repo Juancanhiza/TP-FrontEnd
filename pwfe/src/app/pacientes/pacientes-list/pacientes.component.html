@@ -1,0 +1,53 @@
+<div class="fixed-action-btn">
+  <a [routerLink]="['/pacientes/add']" class="btn-floating btn-large agregar">
+      <i class="large material-icons">{{icon}}</i>
+  </a>
+</div>
+
+<div class="container">
+    <h4 class="center">Pacientes</h4>
+    <table>
+        <colgroup>
+          <col span="1" style="width: 15%;">
+          <col span="1" style="width: 15%;">
+          <col span="1" style="width: 15%;">
+          <col span="1" style="width: 15%;">
+          <col span="1" style="width: 15%;">
+       </colgroup>
+        <thead>
+          <tr>
+            <th *ngFor="let i of tableHeaders">{{ i }}</th>
+          </tr>
+        </thead>
+        
+        <tbody>
+    
+          <tr *ngFor="let i of data ; let j = index">
+            <td>{{ i.idPersona }}</td>
+            <td>{{ i.nombre }}</td>
+            <td>{{ i.apellido }}</td>
+            <td>{{ i.cedula }}</td>
+            <td>{{ i.email }}</td>
+            <td>{{ i.telefono }}</td>
+            <td>
+              <a [routerLink]="['/pacientes/edit', i.idPersona]" title="Editar"><i
+                                    class="material-icons" style="color:#FFC107">mode_edit</i></a>
+              <a href='#modal_delete' (click)="saveDeleteRecord(i.idPersona, j)" title="Eliminar" class="modal-trigger"><i
+                class="material-icons" style="color:#F44336">delete</i></a>
+            </td>
+          </tr>
+        </tbody>
+    </table>
+    
+    </div>
+  
+  <div id="modal_delete" class="modal">
+    <div class="modal-content">
+        <h4>¿Eliminar registro?</h4>
+        <p class="red-text">Esta acción no puede deshacerse</p>
+    </div>
+      <div class="modal-footer">
+        <a class="modal-close waves-effect waves-green btn disagree" style="margin:4px;">Cancelar</a>
+        <a (click)='deleteRecord()' class="modal-close waves-effect waves-green btn agree" style="margin:4px;">Eliminar</a>
+      </div>
+  </div>
