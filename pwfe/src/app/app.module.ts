@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { SubcategoriaComponent } from './subcategoria/subcategoria.component';
 import { ServiciosModule } from './servicios/servicios.module';
 import { PacientesComponent } from './pacientes/pacientes.component';
-import { ConfagendamientoModule } from './confagendamiento/confagendamiento.module'
+import { ConfagendamientoModule } from './confagendamiento/confagendamiento.module';
 import { CategoriasModule } from './categorias/categorias.module';
 
 @NgModule({
