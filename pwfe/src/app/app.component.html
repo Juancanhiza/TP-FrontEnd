@@ -20,23 +20,40 @@
             </div>
         </div>
     </li>
-    <li><a routerLink='/servicios'  routerLinkActive="active"
-         class="sidenav-close"><i class="material-icons">local_hospital</i>Servicios</a></li>
-    <li><a routerLink='/pacientes' routerLinkActive="active" 
-         class="sidenav-close"><i class="material-icons">supervised_user_circle</i>Pacientes</a></li>
+    <li><a a routerLink='/servicios' class="sidenav-close"><i class="material-icons">local_hospital</i>Servicios</a>
+    </li>
+    <li><a routerLink='/pacientes' class="sidenav-close"><i
+                class="material-icons">supervised_user_circle</i>Pacientes</a></li>
     <li class="no-padding">
         <ul class="collapsible collapsible-accordion">
             <li>
-                <a class="collapsible-header">Administración<i
-            class="material-icons small">arrow_drop_down</i></a>
+                <a class="collapsible-header">Administración<i class="material-icons small">arrow_drop_down</i></a>
                 <div class="collapsible-body">
                     <ul>
-                        <li><a routerLink='categorias' class="sidenav-close"><i class="material-icons small">category</i>
-                <p>Categorías</p>
-              </a></li>
-                        <li><a routerLink='subcategorias' class="sidenav-close"><i class="material-icons small">format_list_bulleted</i>
-                <p>Sub categorías</p>
-              </a></li>
+                        <li>
+                            <a routerLink='categorias' class="sidenav-close">
+                                <i class="material-icons small">category</i>
+                                <p>Categorías</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink='subcategorias' class="sidenav-close">
+                                <i class="material-icons small">format_list_bulleted</i>
+                                <p>Sub categorías</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink='/horario-atencion-conf' class="sidenav-close">
+                                <i class="material-icons small">schedule</i>
+                                <p>Conf. horarios</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink='/horario-atencion-excep-conf' class="sidenav-close">
+                                <i class="material-icons small">schedule</i>
+                                <p>Conf. horarios (excepciones)</p>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </li>

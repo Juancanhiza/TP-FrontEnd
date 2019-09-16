@@ -17,11 +17,21 @@ export class ServiciosListComponent implements OnInit, AfterViewInit {
     id: '',
     pos: ''
   }
+  filter = {
+    nombre: '',
+    subcategoria: ''
+  }
   constructor(private api: ServiciosService) { }
   tableHeaders = ['Nombre', 'Subcategoría', 'Acciones'];
   ngOnInit() {
     this.getSubcategorias();
     this.getServicios();
+
+    var that = this;
+    $('#subCatSelect').change(function() {
+      that.filter.subcategoria = $(this).val(); 
+//      that.getBySubcategoria($(this).val());
+    });
   }
 
   ngAfterViewInit() {
@@ -60,24 +70,31 @@ export class ServiciosListComponent implements OnInit, AfterViewInit {
     )
   }
 
-  getBySubcategoria = (id) => {
-    //{"idProducto":{"idTipoProducto":{"idTipoProducto":2}}}
-    var e = {
-      idProducto: {
-        idTipoProducto: {
-          idTipoProducto: id
+  getBySubcategoria = () => {
+    //{"idProducto":{"idTipoProducto":{"idTipoProducto":2}}
+   
+    if(this.filter.nombre == '' && this.filter.subcategoria == ''){
+      M.toast({html: 'Filtros vacíos'});
+    }else {
+      var e = {
+        nombre: this.filter.nombre,
+        idProducto: {
+          idTipoProducto: {
+            idTipoProducto: this.filter.subcategoria
+          }
         }
       }
+      
+      this.api.getBySubcategoria(e).subscribe(
+        data => {
+          console.log(data);
+          this.data = data.lista;
+        },
+        error => {
+          console.log(error);
+        }
+      ) 
     }
-    this.api.getBySubcategoria(JSON.stringify(e)).subscribe(
-      data => {
-        this.data = data.lista;
-      },
-      error => {
-        console.log(error);
-      }
-
-    )
   }
 
   saveDeleteRecord(id,pos){
@@ -96,5 +113,13 @@ export class ServiciosListComponent implements OnInit, AfterViewInit {
         console.log(error);
       }
     )
+  }
+
+  clearFilter()
+  {
+    this.filter.nombre = '';
+    this.filter.subcategoria = '';
+    $("select").val(-1);
+    this.getServicios();
   }
 }
