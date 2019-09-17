@@ -1,0 +1,39 @@
+<div class="row">
+    <div class="col s12" style="margin-top: 16px;">
+        <h4 class="center">Editar Paciente</h4>
+    </div>
+
+    <div class="input-field col s12 m8 offset-m2">
+        <input [(ngModel)]="nombre" name='nombre' id="paciente_nombre" type="text" class="">
+        <label for="paciente" class="active">Nombre</label>
+    </div>
+    
+    <div class="input-field col s12 m8 offset-m2">
+        <input [(ngModel)]="apellido" name='apellido' id="paciente_apellido" type="text" class="">
+        <label for="paciente" class="active">Apellido</label>
+    </div>
+
+    <div class="input-field col s12 m8 offset-m2">
+        <input [(ngModel)]="cedula" name='cedula' id="paciente_cedula" type="text" class="">
+        <label for="paciente" class="active">CI</label>
+    </div>
+
+    <div class="input-field col s12 m8 offset-m2">
+        <input [(ngModel)]="ruc" name='ruc' id="paciente_ruc" type="text" class="">
+        <label for="paciente" class="active">RUC</label>
+    </div>
+
+    <div class="input-field col s12 m8 offset-m2">
+        <input [(ngModel)]="telefono" name='telefono' id="paciente_telefono" type="text" class="">
+        <label for="paciente" class="active">Teléfono</label>
+    </div>
+
+    <div class="input-field col s12 m8 offset-m2">
+        <input [(ngModel)]="email" name='email' id="paciente_email" type="text" class="">
+        <label for="paciente" class="active">Email</label>
+    </div>
+    
+    <div class="col s12 m2 offset-m8" style="margin-top:16px;">
+        <a (click)='put()' class="waves-effect waves-light btn right">Guardar</a>
+    </div>
+</div>

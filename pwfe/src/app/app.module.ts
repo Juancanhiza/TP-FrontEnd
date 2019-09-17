@@ -1,34 +1,29 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule} from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CategoriaComponent } from './categoria/categoria.component';
 import { SubcategoriaComponent } from './subcategoria/subcategoria.component';
-import { HttpClientModule } from '@angular/common/http';
-
+import { ServiciosModule } from './servicios/servicios.module';
+import { PacientesModule } from './pacientes/pacientes.module';
+import { ConfagendamientoModule } from './confagendamiento/confagendamiento.module';
+import { ConfagendamientoExcepModule } from './confagendamiento-excep/confagendamiento-excep.module';
+import { CategoriasModule } from './categorias/categorias.module'
 @NgModule({
   declarations: [
     AppComponent,
-    CategoriaComponent,
-    SubcategoriaComponent
+    SubcategoriaComponent,
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     FormsModule,
-    HttpClientModule,
-    RouterModule.forRoot([
-      {
-        path: 'categoria',
-        component:CategoriaComponent
-      },
-      {
-        path : 'subcategoria',
-        component:SubcategoriaComponent
-      },
-    ])
+    ServiciosModule,
+    PacientesModule,
+    AppRoutingModule,
+    ConfagendamientoModule,
+    ConfagendamientoExcepModule,
+    CategoriasModule,
+    AppRoutingModule
   ],
   providers: [],
   bootstrap: [AppComponent]
