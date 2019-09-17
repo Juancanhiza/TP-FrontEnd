@@ -9,6 +9,7 @@ import { PacientesModule } from './pacientes/pacientes.module';
 import { ConfagendamientoModule } from './confagendamiento/confagendamiento.module';
 import { ConfagendamientoExcepModule } from './confagendamiento-excep/confagendamiento-excep.module';
 import { CategoriasModule } from './categorias/categorias.module'
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
 @NgModule({
   declarations: [
     AppComponent,
@@ -16,6 +17,7 @@ import { CategoriasModule } from './categorias/categorias.module'
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     FormsModule,
     ServiciosModule,
     PacientesModule,

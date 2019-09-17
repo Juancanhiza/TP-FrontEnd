@@ -12,6 +12,7 @@ export class SubcategoriaComponent implements OnInit {
   descripcion: string = '';
   add = true;
   data = [];
+  p: number = 1;
   data3 = [];
   editId = -1;
   tableHeaders = ['Descripcion', 'Categoria', 'Acciones'];

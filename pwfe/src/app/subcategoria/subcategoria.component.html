@@ -21,7 +21,7 @@
 
     <tbody>
 
-      <tr *ngFor="let i of data ; let j = index">
+      <tr *ngFor="let i of data | paginate: { itemsPerPage: 10, currentPage: p }; let j = index">
         <td>
           <p>
             
@@ -37,7 +37,10 @@
       </tr>
     </tbody>
 </table>
-
+<div class="center">
+<pagination-controls previousLabel="Anterior"
+nextLabel="Siguiente" (pageChange)="p = $event"></pagination-controls>
+</div>
 </div>
 <div class="fixed-action-btn">
   <a href="#modal-add" class="btn-floating btn-large agregar add modal-trigger">
