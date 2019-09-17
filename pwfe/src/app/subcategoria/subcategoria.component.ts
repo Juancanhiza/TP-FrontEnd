@@ -94,6 +94,7 @@ export class SubcategoriaComponent implements OnInit {
     var that = this
     $('.modal').modal();
     $('select').formSelect();
+    $('.fixed-action-btn').floatingActionButton();
   }
 
   createSubcategoriaProcesos(element) {
