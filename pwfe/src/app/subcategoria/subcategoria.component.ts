@@ -13,6 +13,7 @@ export class SubcategoriaComponent implements OnInit {
   add = true;
   data = [];
   data3 = [];
+  editId = -1;
   tableHeaders = ['Descripcion', 'Categoria', 'Acciones'];
   data1 = [
     {
@@ -106,6 +107,8 @@ export class SubcategoriaComponent implements OnInit {
     )
   }
 
+
+
   addRecord() {
     var idCategoria = $("#idCategoria option:selected").val();
     var descripcion = $('#descripcion').val();
@@ -123,4 +126,59 @@ export class SubcategoriaComponent implements OnInit {
       $('#modal-add').modal('close');
     }
   }
+
+  updateSubCategoriaProcesos(element) { 
+    this.api.updateSubCategoriaProcesos(element).subscribe(
+      data => {
+        this.getSubCategorias();
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+  
+  editRecord() {
+    var idCategoria = $("#idCategoria-edit option:selected").val();
+    var descripcion = $('#descripcion-edit').val();
+    console.log(this.editId);
+    if (idCategoria == 'Seleccione' || descripcion == '' ) {
+      M.toast({ html: 'Complete todos los campos para guardar' });
+    } else {    
+      var recordUpdate = {
+        idTipoProducto: this.editId,
+        idCategoria:{idCategoria:idCategoria},
+         descripcion:descripcion,
+         flagVisible : "S",
+         posicion:1
+      }
+      console.log(recordUpdate);
+      this.updateSubCategoriaProcesos(JSON.stringify(recordUpdate));
+
+
+      $('#modal-edit').modal('close');
+    }
+  }
+  showModalEdit(element) {
+
+    this.editId = element.idTipoProducto;
+    $('#idCategoria-edit').val(element.idCategoria);
+    $('#descripcion-edit').val(element.descripcion);
+    $('#modal-edit').modal('open');
+  }
+
+
+  deleteRecord(idTipoProducto) {
+    console.log(idTipoProducto);
+    this.api.deleteSubCategoriaProcesos(idTipoProducto).subscribe(
+      data => {
+        M.toast({ html: 'SubCategoria Eliminada' });
+        this.getSubCategorias();
+      },
+      error => {
+        M.toast({ html: 'La SubCategoria está en uso y no puede eliminarse' });
+      }
+    )
+   }
+  
 }
