@@ -54,6 +54,14 @@ export class SubcategoriaComponent implements OnInit {
     alert(this.descripcion);
   }
 
+  deleteItem = {
+    id: -1
+  }
+
+  guardarPos(id){
+    this.deleteItem.id = id
+  }
+
   getSubCategorias() {
     var that = this;
     this.api.getSubCategorias().subscribe(
@@ -168,6 +176,17 @@ export class SubcategoriaComponent implements OnInit {
     $('#modal-edit').modal('open');
   }
 
+  delete() {
+    this.api.deleteSubCategoriaProcesos(this.deleteItem.id).subscribe(
+      data => {
+        M.toast({ html: 'SubCategoria Eliminada' });
+        this.getSubCategorias();
+      },
+      error => {
+        M.toast({ html: 'La SubCategoria está en uso y no puede eliminarse' });
+      }
+    )
+   }
 
   deleteRecord(idTipoProducto) {
     console.log(idTipoProducto);

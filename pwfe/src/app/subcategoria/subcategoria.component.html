@@ -31,7 +31,7 @@
         <td>{{ i.idCategoria.descripcion }}</td>
         <td>
           <a (click)="showModalEdit(i)" title="Editar"><i class="material-icons" style="color:#FFC107">create</i></a>
-          <a (click)="deleteRecord(i.idTipoProducto)" title="Eliminar"><i class="material-icons" style="color:#F44336">delete</i></a>
+          <a class="material-icons modal-trigger" href="#modal-del"  (click)="guardarPos(i.idTipoProducto)" title="Eliminar"><i  style="color:#F44336">delete</i></a>
               
         </td>
       </tr>
@@ -74,6 +74,16 @@
     <div class="modal-footer">
         <a (click)="addRecord()" class="waves-effect waves-green btn-small add" style="margin-right:4px;">Guardar</a>
         <a class="btn modal-close">Cancelar</a>
+    </div>
+  </div>
+  <!-- Modal Structure -->
+  <div id="modal-del" class="modal">
+    <div class="modal-content">
+      <h4>Estas seguro de eliminar la Subcategoria?</h4>
+    </div>
+    <div class="modal-footer">
+      <a (click)="delete()" class="modal-close waves-effect waves-green btn-flat">Eliminar</a>
+      <a class="btn modal-close">Cancelar</a>
     </div>
   </div>
 
