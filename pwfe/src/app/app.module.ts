@@ -12,6 +12,7 @@ import { CategoriasModule } from './categorias/categorias.module';
 import { ReservasModule } from './reservas/reservas.module';
 import {NgxPaginationModule} from 'ngx-pagination'; 
 import { ExcelService } from './servicios/servicios-list/service/excel.service';
+import { FichasModule } from './fichas/fichas.module';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { ExcelService } from './servicios/servicios-list/service/excel.service';
     ConfagendamientoExcepModule,
     CategoriasModule,
     ReservasModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FichasModule
   ],
   providers: [ExcelService],
   bootstrap: [AppComponent]

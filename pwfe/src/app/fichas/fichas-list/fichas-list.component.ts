@@ -1,19 +1,27 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
-import { ReservasService } from '../reservas.service';
+import { FichasService } from '../fichas.service';
 declare var $: any;
 declare var M: any;
 @Component({
-  selector: 'app-reservas-list',
-  templateUrl: './reservas-list.component.html',
-  styleUrls: ['./reservas-list.component.css']
+  selector: 'app-fichas-list',
+  templateUrl: './fichas-list.component.html',
+  styleUrls: ['./fichas-list.component.css']
 })
-export class ReservasListComponent implements OnInit, AfterViewInit {
+export class FichasListComponent implements OnInit, AfterViewInit{
 
   data = [];
   medicos = [];
   medicosMap = {};
   clientesMap = {};
   clientes = [];
+  subcategorias = [];
+  detail = {
+    hora: '',
+    categoria: '',
+    subcategoria: '',
+    medico: '',
+    paciente: ''
+  }
   del = {
     id: '',
     pos: ''
@@ -26,22 +34,19 @@ export class ReservasListComponent implements OnInit, AfterViewInit {
     nombre: '',
     apellido: '',
     obs: '',
-    id: -1,
-    horaI: '',
-    horaF: '',
-    fecha: ''
+    id: -1
   };
   put = {
-    idReserva: -1,
-    observacion: '',
-    flagAsistio: ''
+    idFichaClinica: -1,
+    observacion: ''
   }
-  constructor(private api: ReservasService) {
+  constructor(private api: FichasService) {
   }
   ngOnInit() {
     this.getMedicos();
-    this.getReservas();
+    this.getFichas();
     this.getClientes();
+    this.getSubcategorias();
     var that = this;
     $('#selectMedicos').change(function () {
       that.filtros.doc = $(this).val();
@@ -64,40 +69,23 @@ export class ReservasListComponent implements OnInit, AfterViewInit {
         weekdaysShort: ["Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab"],
         weekdaysAbbrev: ["D", "L", "M", "M", "J", "V", "S"]
       },
-      // minDate: new Date(1940,1,1),
-      // maxDate: new Date(),
-      //yearRange:[(new Date).getFullYear(),2080],
       container: 'body'
     });
-    // $('input.autocomplete').autocomplete({
-    //   data: {
-    //     "Apple": null,
-    //     "Microsoft": null,
-    //     "Google": 'https://placehold.it/250x250'
-    //   },
-    // });
-   
+    
   }
 
   saveEdit(element){
     this.edit.nombre = element.idCliente.nombre;
     this.edit.apellido = element.idCliente.apellido;
     this.edit.obs = element.observacion;
-    this.edit.id = element.idReserva;
-    this.edit.horaI = element.horaInicio;
-    this.edit.horaF = element.horaFin;
-    this.edit.fecha = element.fecha;
+    this.edit.id = element.idFichaClinica;
     $('#obs').val(this.edit.obs);
-    if(element.flagAsistio == null){
-      $('#no').prop('checked', true)
-    }else {
-      $('#si').prop('checked', true)
-    }
   }
-  getReservas = () => {
-    this.api.getReservas().subscribe(
+  getFichas = () => {
+    this.api.getFichas().subscribe(
       data => {
         this.data = data.lista;
+        console.log(this.data);
       },
       error => {
         console.log(error);
@@ -112,14 +100,14 @@ export class ReservasListComponent implements OnInit, AfterViewInit {
   }
 
   deleteRecord() {
-    this.api.deleteReserva(this.del.id).subscribe(
+    this.api.deleteFicha(this.del.id).subscribe(
       data => {
         this.data.splice(Number(this.del.pos), 1);
-        M.toast({ html: 'Reserva eliminada correctamente' });
+        M.toast({ html: 'Ficha eliminada correctamente' });
       },
       error => {
         console.log(error);
-        M.toast({ html: 'La reserva no puede ser eliminada' });
+        M.toast({ html: 'La ficha no puede ser eliminada' });
       }
     )
   }
@@ -166,7 +154,20 @@ export class ReservasListComponent implements OnInit, AfterViewInit {
     )
   }
 
+  getSubcategorias(){
+    this.api.getSubCategorias().subscribe(
+      data => {
+        this.subcategorias = data.lista;
+        setTimeout( ()=>{
+          $('#selectSubcategorias').formSelect();
+        },2000)
+      }, error => {
+        console.log(error);
+      }
+    )
+  }
   filter () {
+    console.log($('#selectSubcategorias').val());
     // /reserva?ejemplo={"idEmpleado":{"idPersona":3},"fechaDesdeCadena":"20190903","fechaHastaCadena":"20
     // 190920"}
     var c = null;
@@ -181,11 +182,14 @@ export class ReservasListComponent implements OnInit, AfterViewInit {
       idEmpleado: {idPersona: m},
       idCliente: {idPersona: c},
       fechaDesdeCadena: $('#fechaDesde').val().replace('/','').replace('/',''),
-      fechaHastaCadena: $('#fechaHasta').val().replace('/','').replace('/','')
+      fechaHastaCadena: $('#fechaHasta').val().replace('/','').replace('/',''),
+      idTipoProducto: { idTipoProducto: $('#selectSubcategorias').val() == null? null: Number($('#selectSubcategorias').val())}
     }
+    console.log(fil);
     this.api.filter(fil).subscribe(
       data => {
         this.data = data.lista;
+        console.log(this.data);
       },
       error => {
         console.log(error);
@@ -199,26 +203,29 @@ export class ReservasListComponent implements OnInit, AfterViewInit {
     $('#fechaHasta').val('');
     $('#autocomplete-input-clientes').val('');
     $('#autocomplete-input-medicos').val('');
-    this.getReservas();
+    this.getFichas();
   }
 
   putService = () => {
-    this.put.idReserva = this.edit.id;  
+    this.put.idFichaClinica = this.edit.id;  
     this.put.observacion = $('#obs').val();
-    
-    // this.api.putReserva(this.put).subscribe(
-    //   data => {
-    //     console.log(data);
-    //   },
-    //   error => {
-    //     console.log(error);
-    //   }
-    // )
+      this.api.putFicha(this.put).subscribe(
+        data => {
+          this.getFichas();
+          console.log(data);
+        },
+        error => {
+          console.log(error);
+        }
+      )
   }
 
-  asistio(flag){
-    if(flag){
-      this.put.flagAsistio = 'S';
-    }else{this.put.flagAsistio = null}
+  saveDetail(el){
+    this.detail.hora = el.fechaHora;
+    this.detail.medico = el.idEmpleado.nombre + " " + el.idEmpleado.apellido;
+    this.detail.paciente = el.idCliente.nombre + " " + el.idCliente.apellido;
+    this.detail.categoria = el.idTipoProducto.idCategoria.descripcion;
+    this.detail.subcategoria = el.idTipoProducto.descripcion;
   }
+//"java.lang.IllegalArgumentException: id to load is required for loading"
 }

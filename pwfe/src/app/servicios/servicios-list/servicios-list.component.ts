@@ -96,6 +96,9 @@ export class ServiciosListComponent implements OnInit, AfterViewInit {
     this.api.getSubcategorias().subscribe(
       data => {
         this.subcategorias = data.lista;
+        setTimeout (()=>{
+          $('select').formSelect();
+        },2000)
       },
       error => {
         console.log(error);

@@ -2,4 +2,14 @@
     margin: 8px;
 }
 
-a{cursor:pointer}
+a {
+    cursor: pointer
+}
+
+.agree {
+    background-color: #005670;
+}
+
+.disagree {
+    background-color: #00205b;
+}
