@@ -8,11 +8,12 @@ import { ServiciosModule } from './servicios/servicios.module';
 import { PacientesModule } from './pacientes/pacientes.module';
 import { ConfagendamientoModule } from './confagendamiento/confagendamiento.module';
 import { ConfagendamientoExcepModule } from './confagendamiento-excep/confagendamiento-excep.module';
-import { CategoriasModule } from './categorias/categorias.module'
+import { CategoriasModule } from './categorias/categorias.module';
+
 @NgModule({
   declarations: [
     AppComponent,
-    SubcategoriaComponent,
+    SubcategoriaComponent
   ],
   imports: [
     BrowserModule,

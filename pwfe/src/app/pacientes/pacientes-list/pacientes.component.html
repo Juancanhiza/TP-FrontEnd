@@ -39,6 +39,18 @@
         </tbody>
     </table>
     
+    <div class="center-align" style="margin: 16px">
+      <app-paginacion
+        (goPage)="goToPage($event)"
+        (goNext)="onNext()"
+        (goPrev)="onPrev()"
+        [pagesToShow]="3"
+        [page]="page"
+        [perPage]="limit"
+        [count]="total">
+      </app-paginacion>
+    </div>
+  
     </div>
   
   <div id="modal_delete" class="modal">
