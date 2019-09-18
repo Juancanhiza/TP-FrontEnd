@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-servicios-create',
@@ -7,15 +9,34 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ServiciosCreateComponent implements OnInit {
 
+  idFicha;
+
   tableHeaders = [
     'idFicha', 'Fecha',
     'Categoria', 'Subcategoria',
     'Acciones'
   ];
 
-  constructor() { }
+  constructor(
+    private route: ActivatedRoute,
+    private router: Router
+  ) { }
 
   ngOnInit() {
+  }
+
+  inicializar = () => {
+
+
+    const context = this;
+    this.route.params.subscribe(params => {
+      if (params.idFicha) {
+        context.idFicha = params.idFicha;
+      } else {
+        //M.toast({ html:'Error no puede editar este id' });
+      }
+    });
+
   }
 
 }

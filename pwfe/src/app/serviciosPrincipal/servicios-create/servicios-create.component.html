@@ -38,10 +38,10 @@
             </thead>
             <tbody>
               <tr *ngFor="let i of datos; index as j">
-                <th></th>
-                <th></th>
-                <th></th>
-                <th></th>
+                <th>{{ i.idFichaClinica }}</th>
+                <th>{{i.fechaHora}}</th>
+                <th>{{ i.idTipoProducto.idCategoria.descripcion }}</th>
+                <th>{{ i.idTipoProducto.descripcion }}</th>
                 <th></th>
               </tr>
             </tbody>
