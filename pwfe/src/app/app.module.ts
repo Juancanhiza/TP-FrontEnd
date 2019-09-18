@@ -11,6 +11,7 @@ import { ConfagendamientoExcepModule } from './confagendamiento-excep/confagenda
 import { CategoriasModule } from './categorias/categorias.module';
 import { ReservasModule } from './reservas/reservas.module';
 import {NgxPaginationModule} from 'ngx-pagination'; 
+import { ExcelService } from './servicios/servicios-list/service/excel.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     ReservasModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [ExcelService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
