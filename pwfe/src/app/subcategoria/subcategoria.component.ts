@@ -1,4 +1,6 @@
-import { Component,AfterViewInit, OnInit } from '@angular/core';
+import { Component,AfterViewInit,ElementRef, OnInit } from '@angular/core';
+import * as jspdf from 'jspdf';  
+import html2canvas from 'html2canvas'; 
 import { ApiService } from '../api.service';
 declare var $: any;
 declare var M: any;
@@ -8,6 +10,7 @@ import { typeWithParameters } from '@angular/compiler/src/render3/util';
   templateUrl: './subcategoria.component.html',
   styleUrls: ['./subcategoria.component.css']
 })
+
 export class SubcategoriaComponent implements OnInit {
   descripcion: string = '';
   add = true;
@@ -50,6 +53,23 @@ export class SubcategoriaComponent implements OnInit {
     this.getSubCategorias();
     this.getCategorias();
   }
+  public captureScreen()  
+  {  
+    var data = document.getElementById('contentToConvert');  
+    html2canvas(data).then(canvas => {  
+      // Few necessary setting options  
+      var imgWidth = 208;   
+      var pageHeight = 295;    
+      var imgHeight = canvas.height * imgWidth / canvas.width;  
+      var heightLeft = imgHeight;  
+  
+      const contentDataURL = canvas.toDataURL('image/png')  
+      let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF  
+      var position = 0;  
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
+      pdf.save('MYPdf.pdf'); // Generated PDF   
+    });  
+  }  
 
   submmit () {
     alert(this.descripcion);
