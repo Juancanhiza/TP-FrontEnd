@@ -9,6 +9,7 @@ import { PacientesModule } from './pacientes/pacientes.module';
 import { ConfagendamientoModule } from './confagendamiento/confagendamiento.module';
 import { ConfagendamientoExcepModule } from './confagendamiento-excep/confagendamiento-excep.module';
 import { CategoriasModule } from './categorias/categorias.module';
+import { PaginacionSharedModule } from './paginacionShared/paginacionShared.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CategoriasModule } from './categorias/categorias.module';
     ConfagendamientoModule,
     ConfagendamientoExcepModule,
     CategoriasModule,
-    AppRoutingModule
+    AppRoutingModule,
+    PaginacionSharedModule
   ],
   providers: [],
   bootstrap: [AppComponent]

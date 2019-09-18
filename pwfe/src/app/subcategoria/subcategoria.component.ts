@@ -41,11 +41,18 @@ export class SubcategoriaComponent implements OnInit {
       categoria: "Pierna"
     }
   ]
+
+  /* Paginacion */
+  loading = false;
+  total = 0;
+  page = 1;
+  limit = 20;
+
   constructor(private api: ApiService
     ) {}
 
   ngOnInit() {
-    this.getSubCategorias();
+    this.getSubCategoriasRango();
     this.getCategorias();
   }
 
@@ -123,4 +130,43 @@ export class SubcategoriaComponent implements OnInit {
       $('#modal-add').modal('close');
     }
   }
+
+  /* Metodos para la paginacion */
+
+  getSubCategoriasRango = () => {
+    this.loading=true;
+    var e = 
+    { 
+      inicio: this.page, 
+      cantidad: this.limit
+    }
+    var that = this;
+    this.api.getSubCategoriasRango(e).subscribe(
+      data => {
+        console.log(data.lista);
+        that.data = data.lista;
+        this.total = data.totalDatos;
+        this.loading=false;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  goToPage(n: number): void {
+    this.page = n;
+    this.getSubCategoriasRango();
+  }
+
+  onNext(): void {
+    this.page++;
+    this.getSubCategoriasRango();
+  }
+
+  onPrev(): void {
+    this.page--;
+    this.getSubCategoriasRango();
+  }
+
 }

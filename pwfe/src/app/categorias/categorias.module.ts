@@ -6,6 +6,8 @@ import { CategoriaListComponent } from './categoria-list/categoria-list.componen
 import { CategoriaAddComponent } from './categoria-add/categoria-add.component';
 import { CategoriaEditComponent } from './categoria-edit/categoria-edit.component';
 import { FormsModule } from '@angular/forms';
+import { PaginacionSharedModule } from '../paginacionShared/paginacionShared.module';
+
 
 
 @NgModule({
@@ -13,7 +15,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     FormsModule,
-    CategoriasRoutingModule
+    CategoriasRoutingModule,
+    PaginacionSharedModule
   ]
 })
 export class CategoriasModule { }

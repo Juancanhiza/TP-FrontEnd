@@ -30,10 +30,17 @@ export class ConfagendamientoListComponent implements OnInit {
     doc: '',
     dia: ''
   }
+
+  /* Paginacion */
+  loading = false;
+  total = 0;
+  page = 1;
+  limit = 10;
+
   constructor(private api: ConfagendamientoService) { }
   tableHeaders = ['Día', 'Médico', 'Desde', 'Hasta', 'Tiempo de consulta', 'Acciones'];
   ngOnInit() {
-    this.getAgendamientosConf();
+    this.getAgendamientosConfRango();
     this.getMedicos();
     var that = this;
     $('#selectDias').change(function() {
@@ -114,5 +121,43 @@ export class ConfagendamientoListComponent implements OnInit {
         console.log(error);
       }
     )
+  }
+
+  /* Metodos para la paginacion */
+
+  getAgendamientosConfRango = () => {
+    this.loading=true;
+    var e = 
+    { 
+      inicio: this.page, 
+      cantidad: this.limit
+    }
+    var that = this;
+    this.api.getAgendamientosConfRango(e).subscribe(
+      data => {
+        console.log(data.lista);
+        that.data = data.lista;
+        this.total = data.totalDatos;
+        this.loading=false;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  goToPage(n: number): void {
+    this.page = n;
+    this.getAgendamientosConfRango();
+  }
+
+  onNext(): void {
+    this.page++;
+    this.getAgendamientosConfRango();
+  }
+
+  onPrev(): void {
+    this.page--;
+    this.getAgendamientosConfRango();
   }
 }

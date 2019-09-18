@@ -19,7 +19,7 @@ export class ServiciosService {
     var params = new HttpParams();
     params = params.append('inicio', JSON.stringify(element.inicio));
     params = params.append('cantidad', JSON.stringify(element.cantidad));
-    params = params.append('orderBy', 'idPresentacionProducto');
+    params = params.append('orderBy', 'nombre');
     params = params.append('orderDir', 'asc');
     return this.http.get('/stock-pwfe/presentacionProducto/', { params: params});
   }
