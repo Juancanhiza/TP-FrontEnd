@@ -21,6 +21,8 @@ export class PacientesService {
     var params = new HttpParams();
     params = params.append('inicio', JSON.stringify(element.inicio));
     params = params.append('cantidad', JSON.stringify(element.cantidad));
+    params = params.append('orderBy', 'idPersona');
+    params = params.append('orderDir', 'asc');
     return this.http.get('/stock-pwfe/persona/', { params: params});
   }
 
@@ -35,30 +37,4 @@ export class PacientesService {
   postPaciente(element): Observable<any> {
     return this.http.post('/stock-pwfe/persona', element, {headers: this.hhtpHeaders});
   }
-
-  /*
-  getBySubcategoria(element): Observable<any> {
-    console.log('/stock-pwfe/presentacionProducto?ejemplo=' + element);
-    var h = new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded'})
-    return this.http.get('/stock-pwfe/presentacionProducto?ejemplo=' + element, {headers: this.hhtpHeaders});
-  } */
-  /*
-  getByNombre(element): Observable<any> {
-    console.log('/stock-pwfe/presentacionProducto?ejemplo=' + element);
-    var h = new HttpHeaders({'Content-Type':'application/x-www-form-urlencoded'})
-    return this.http.get('/stock-pwfe/presentacionProducto?ejemplo=' + element, {headers: this.hhtpHeaders});
-  }
-
-  putProducto(element): Observable<any> {
-    return this.http.put('/stock-pwfe/producto', element, {headers: this.hhtpHeaders});
-  }
-
-  postProducto(element): Observable<any> {
-    return this.http.post('/stock-pwfe/producto', element, {headers: this.hhtpHeaders});
-  }*/
-
-  /*
-  getSubcategorias(): Observable<any> {
-    return this.http.get('/stock-pwfe/tipoProducto', {headers: this.hhtpHeaders});
-  } */
 }

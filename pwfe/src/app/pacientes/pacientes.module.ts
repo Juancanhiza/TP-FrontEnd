@@ -7,22 +7,20 @@ import { PacientesComponent } from './pacientes-list/pacientes.component';
 import { PacientesEditComponent } from './pacientes-edit/pacientes-edit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { PaginacionComponent } from '../paginacion/paginacion.component';
+import { PaginacionSharedModule } from '../paginacionShared/paginacionShared.module';
 
 @NgModule({
   declarations: [
     PacientesComponent,
     PacientesAddComponent,
     PacientesEditComponent,
-    PaginacionComponent    
   ],
   imports: [
     CommonModule,
     HttpClientModule,
     PacientesRoutingModule,
-    FormsModule
-  ],
-  exports: [PaginacionComponent]
-
+    FormsModule,
+    PaginacionSharedModule
+  ]
 })
 export class PacientesModule { }

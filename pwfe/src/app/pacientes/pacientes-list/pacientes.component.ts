@@ -64,14 +64,18 @@ export class PacientesComponent implements OnInit, AfterViewInit {
 
   getPacientesRango = () => {
     this.loading=true;
-    var e = { inicio: this.page, cantidad: this.limit }
+    var e = 
+    { 
+      inicio: this.page, 
+      cantidad: this.limit
+    }
     var that = this;
     this.api.getPacienteRango(e).subscribe(
       data => {
         console.log(data.lista);
         that.data = data.lista;
         this.total = data.totalDatos;
-        this.loading=true;
+        this.loading=false;
       },
       error => {
         console.log(error);

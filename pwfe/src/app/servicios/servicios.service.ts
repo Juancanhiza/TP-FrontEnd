@@ -15,6 +15,14 @@ export class ServiciosService {
   getServicio(id): Observable<any> {
     return this.http.get('/stock-pwfe/presentacionProducto/' + id, {headers: this.hhtpHeaders});
   }
+  getServiciosRango(element): Observable<any> {
+    var params = new HttpParams();
+    params = params.append('inicio', JSON.stringify(element.inicio));
+    params = params.append('cantidad', JSON.stringify(element.cantidad));
+    params = params.append('orderBy', 'idPresentacionProducto');
+    params = params.append('orderDir', 'asc');
+    return this.http.get('/stock-pwfe/presentacionProducto/', { params: params});
+  }
 
   getBySubcategoria(element): Observable<any> {
     // let param = new HttpParams().set('ejemplo', JSON.stringify(element));
