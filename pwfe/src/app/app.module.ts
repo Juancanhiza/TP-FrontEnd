@@ -8,8 +8,12 @@ import { ServiciosModule } from './servicios/servicios.module';
 import { PacientesModule } from './pacientes/pacientes.module';
 import { ConfagendamientoModule } from './confagendamiento/confagendamiento.module';
 import { ConfagendamientoExcepModule } from './confagendamiento-excep/confagendamiento-excep.module';
-import { CategoriasModule } from './categorias/categorias.module'
+<<<<<<< pwfe/src/app/app.module.ts
+import { CategoriasModule } from './categorias/categorias.module';
+import { ReservasModule } from './reservas/reservas.module'
+=======
 import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+>>>>>>> pwfe/src/app/app.module.ts
 @NgModule({
   declarations: [
     AppComponent,
@@ -25,6 +29,7 @@ import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
     ConfagendamientoModule,
     ConfagendamientoExcepModule,
     CategoriasModule,
+    ReservasModule,
     AppRoutingModule
   ],
   providers: [],
