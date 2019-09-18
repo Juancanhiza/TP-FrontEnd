@@ -22,5 +22,5 @@ select {
 }
 
 .btn {
-    background-color: #00205b;
+    background-color: #00205b !important;
 }

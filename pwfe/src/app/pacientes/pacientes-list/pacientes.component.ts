@@ -10,13 +10,20 @@ declare var $: any;
 export class PacientesComponent implements OnInit, AfterViewInit {
   icon = 'add';
   data = [];
+  detail = {
+    correo: '',
+    telefono: '',
+    cedula: '',
+    nombre: '',
+    apellido: ''
+  };
   del = {
     id: '',
     pos: ''
   }
 
   constructor(private api: PacientesService) { }
-  tableHeaders = ['ID', 'Nombre', 'Apellido', 'CI','Email','Telefono', 'Acciones'];
+ 
   ngOnInit() {
     this.getPacientes();
   }
@@ -53,5 +60,11 @@ export class PacientesComponent implements OnInit, AfterViewInit {
       }
     )
   }
-
+  saveDetail(el){
+    this.detail.nombre = el.nombre;
+    this.detail.apellido = el.apellido;
+    this.detail.correo = el.email;
+    this.detail.telefono = el.telefono;
+    this.detail.cedula = el.cedula;
+  }
 }

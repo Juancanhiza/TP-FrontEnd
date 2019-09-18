@@ -5,6 +5,9 @@
         <ul class="left hide-on-small-and-down">
             <li><a id="menu" title="Menú"><i class="material-icons">menu</i></a></li>
         </ul>
+        <ul class="left hide-on-med-and-up">
+            <li><a id="menu-mobile" title="Menú"><i class="tiny material-icons">menu</i></a></li>
+        </ul>
     </div>
 </nav>
 <ul id="slide-out" class="sidenav" style="width: 350px !important;">
@@ -24,7 +27,8 @@
         <a routerLink='/servicios' class="sidenav-close"><i class="material-icons">local_hospital</i>Servicios</a>
     </li>
     <li>
-        <a routerLink='/pacientes' class="sidenav-close"><i class="material-icons">supervised_user_circle</i>Pacientes</a>
+        <a routerLink='/pacientes' class="sidenav-close"><i
+                class="material-icons">supervised_user_circle</i>Pacientes</a>
     </li>
     <li>
         <a routerLink='/reservas' class="sidenav-close"><i class="material-icons">assignment_turned_in</i>Reservas</a>
@@ -68,9 +72,23 @@
         </ul>
     </li>
 </ul>
-<div class="row hide-on-med-and-up">
-    <div *ngFor='let i of opMobile' class="col s6 op-mobile">
-        <p class="center-align"><strong>{{i}}</strong></p>
-    </div>
-</div>
+
+<ul id="slide-out-mobile" class="sidenav">
+    <li><a><b>FisioCenter</b></a></li>
+    <li>
+        <div class="divider" style="margin:0"></div>
+    </li>
+    <li><a routerLink='/pacientes' class="sidenav-close">Pacientes</a></li>
+    <li><a routerLink='/reservas' class="sidenav-close">Reservas</a></li>
+    <li><a routerLink='/fichas' class="sidenav-close">Fichas</a></li>
+    <li><a><b>Administración</b></a></li>
+    <li>
+        <div class="divider" style="margin:0"></div>
+    </li>
+    <li><a routerLink='/categorias' class="sidenav-close">Categorías</a></li>
+    <li><a routerLink='/subcategorias' class="sidenav-close">Sub categorías</a></li>
+    <li><a routerLink='/horario-atencion-conf' class="sidenav-close">Horarios</a></li>
+    <li><a routerLink='/horario-atencion-excep-conf' class="sidenav-close">Horarios (excepciones)</a></li>
+    <li><a routerLink='/servicios-admin' class="sidenav-close">Servicios (administración)</a></li>
+</ul>
 <router-outlet></router-outlet>

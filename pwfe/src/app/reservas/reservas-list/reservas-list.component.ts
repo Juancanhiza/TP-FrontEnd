@@ -26,7 +26,10 @@ export class ReservasListComponent implements OnInit, AfterViewInit {
     nombre: '',
     apellido: '',
     obs: '',
-    id: -1
+    id: -1,
+    horaI: '',
+    horaF: '',
+    fecha: ''
   };
   put = {
     idReserva: -1,
@@ -35,7 +38,6 @@ export class ReservasListComponent implements OnInit, AfterViewInit {
   }
   constructor(private api: ReservasService) {
   }
-  tableHeaders = ['Fecha', 'Hora inicio', 'Hora fin', 'Profesional', 'Cliente', 'Acciones'];
   ngOnInit() {
     this.getMedicos();
     this.getReservas();
@@ -82,6 +84,9 @@ export class ReservasListComponent implements OnInit, AfterViewInit {
     this.edit.apellido = element.idCliente.apellido;
     this.edit.obs = element.observacion;
     this.edit.id = element.idReserva;
+    this.edit.horaI = element.horaInicio;
+    this.edit.horaF = element.horaFin;
+    this.edit.fecha = element.fecha;
     $('#obs').val(this.edit.obs);
     if(element.flagAsistio == null){
       $('#no').prop('checked', true)

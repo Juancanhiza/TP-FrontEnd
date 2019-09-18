@@ -7,10 +7,10 @@ import { ServiciosListComponent } from './servicios-list/servicios-list.componen
 
 
 const serviciosRoutes: Routes = [
-  { path: 'servicio/add',  component: ServiciosAddComponent }, 
-  { path: 'servicio/edit/:id',  component: ServiciosEditComponent },
+  { path: 'servicio-admin/add',  component: ServiciosAddComponent }, 
+  { path: 'servicio-admin/edit/:id',  component: ServiciosEditComponent },
 /*   { path: 'servicios/:id',  component: ServiciosDetailComponent },*/
-  { path: 'servicios',  component: ServiciosListComponent },
+  { path: 'servicios-admin',  component: ServiciosListComponent },
 ];
 
 @NgModule({

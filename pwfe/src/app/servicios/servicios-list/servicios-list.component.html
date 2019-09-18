@@ -1,25 +1,29 @@
-<div class="fixed-action-btn">
-    <a [routerLink]="['/servicio/add']" class="btn-floating btn-large agregar">
+<div class="fixed-action-btn hide-on-small-and-down">
+    <a [routerLink]="['/servicio-admin/add']" class="btn-floating btn-large agregar">
+        <i class="large material-icons">{{icon}}</i>
+    </a>
+</div>
+<div class="fixed-action-btn hide-on-med-and-up">
+    <a [routerLink]="['/servicio-admin/add']" class="btn-floating btn agregar">
         <i class="large material-icons">{{icon}}</i>
     </a>
 </div>
 <div class="container">
     <div class="row">
         <div class="col s12">
-            <h4>Servicios</h4>
+            <h5 class="center-align">Servicios Administración</h5>
         </div>
-        <div class="input-field col s6">
+        <div class="input-field col s12 m6">
             <i class="material-icons prefix">search</i>
             <input [(ngModel)]="filter.nombre" name='buscar' id="buscar" type="text" class="" placeholder="Nombre...">
-            <span class="helper-text">(Enter para buscar)</span>
             <label for="buscar" class="active">Buscar</label>
         </div>
-        <div class="col s6">
-            <label for="subCatSelect">Subcategorías</label>
-            <select id='subCatSelect' class="browser-default" name='subcategoria'>
+        <div class="col s12 m6">
+            <label for="subCatSelect">Categoría, Subcategoría</label>
+            <select id='subCatSelect' name='subcategoria'>
                 <option value="-1" disabled selected>Seleccione</option>
-                <option *ngFor="let i of subcategorias" value="{{i.idTipoProducto}}">Subcategoría: {{i.descripcion}},
-                    Categoría: {{i.idCategoria.descripcion}}</option>
+                <option *ngFor="let i of subcategorias" value="{{i.idTipoProducto}}">{{i.idCategoria.descripcion}},
+                    {{i.descripcion}}</option>
             </select>
         </div>
         <div class="col s12">
@@ -41,11 +45,11 @@
 
                 <tbody>
 
-                    <tr *ngFor="let i of data | serviciosFilter : searchText; index as j">
+                    <tr *ngFor="let i of data; index as j">
                         <td>{{ i.nombre }}</td>
                         <td>{{ i.idProducto.idTipoProducto.descripcion }}</td>
                         <td>
-                            <a [routerLink]="['/servicio/edit', i.idPresentacionProducto]" title="Editar"><i
+                            <a [routerLink]="['/servicio-admin/edit', i.idPresentacionProducto]" title="Editar"><i
                                     class="material-icons" style="color:#FFC107">mode_edit</i></a>
                             <a href='#modal_delete' (click)="saveDeleteRecord(i.idPresentacionProducto, j)" title="Eliminar" class="modal-trigger"><i class="material-icons"
                                     style="color:#F44336">delete</i></a>

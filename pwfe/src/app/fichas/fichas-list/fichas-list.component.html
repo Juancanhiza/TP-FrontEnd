@@ -37,7 +37,8 @@
                 <div class="input-field col s12 m8">
                     <select id='selectSubcategorias'>
                         <option value="" disabled selected>Seleccione</option>
-                        <option *ngFor='let i of subcategorias' value="{{i.idTipoProducto}}">{{i.idCategoria.descripcion}}, {{i.descripcion}}</option>
+                        <option *ngFor='let i of subcategorias' value="{{i.idTipoProducto}}">
+                            {{i.idCategoria.descripcion}}, {{i.descripcion}}</option>
                     </select>
                     <label>Categoría, Subcategoría</label>
                 </div>
@@ -63,24 +64,39 @@
                 </colgroup>
                 <thead>
                     <tr>
-                        <th *ngFor="let i of tableHeaders">{{ i }}</th>
+                        <th class="hide-on-small-and-down">Fecha</th>
+                        <th>Profesional</th>
+                        <th>Cliente</th>
+                        <th class="hide-on-small-and-down">Categoria</th>
+                        <th class="hide-on-small-and-down">Subcategoria</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
 
                 <tbody>
 
                     <tr *ngFor="let i of data; index as j">
-                        <td>{{ i.fechaHora }}</td>
+                        <td class="hide-on-small-and-down">{{ i.fechaHora }}</td>
                         <td>{{ i.idEmpleado.nombre }} {{ i.idEmpleado.apellido }}</td>
                         <td>{{ i.idCliente.nombre }} {{ i.idCliente.apellido }}</td>
-                        <td>{{ i.idTipoProducto.idCategoria.descripcion }}</td>
-                        <td>{{ i.idTipoProducto.descripcion }}</td>
+                        <td class="hide-on-small-and-down">{{ i.idTipoProducto.idCategoria.descripcion }}</td>
+                        <td class="hide-on-small-and-down">{{ i.idTipoProducto.descripcion }}</td>
                         <td>
-                            <a href='#modal_edit' (click)="saveEdit(i)" class="modal-trigger" title="Editar"><i
-                                    class="material-icons" style="color:#FFC107">mode_edit</i></a>
-                            <a href='#modal_delete' (click)="saveDeleteRecord(i.idFichaClinica, j)" title="Eliminar" class="modal-trigger"><i class="material-icons" style="color:#F44336">delete</i></a>
-                            <a title="Agregar Servicio"><i class="material-icons"
-                                    style="color:#0085ad">local_hospital</i></a>
+                            <a href='#modal_edit' (click)="saveEdit(i)" class="modal-trigger" title="Editar">
+                                <i class="material-icons hide-on-small-and-down" style="color:#FFC107">mode_edit</i>
+                                <i class="tiny material-icons hide-on-med-and-up" style="color:#FFC107">mode_edit</i>
+                            </a>
+                            <a href='#modal_delete' (click)="saveDeleteRecord(i.idFichaClinica, j)" title="Eliminar" class="modal-trigger">
+                                <i class="material-icons hide-on-small-and-down" style="color:#F44336">delete</i>
+                                <i class="tiny material-icons hide-on-med-and-up" style="color:#F44336">delete</i>
+                            </a>
+                            <a (click)="saveDetail(i)" href='#modal_detail' title="Ver detalles" class="modal-trigger">
+                                <i class="tiny material-icons hide-on-med-and-up" style="color:#371777">details</i>
+                            </a>
+                            <a title="Agregar Servicio">
+                                <i class="material-icons hide-on-small-and-down" style="color:#0085ad">local_hospital</i>
+                                <i class="tiny material-icons hide-on-med-and-up" style="color:#0085ad">local_hospital</i>
+                            </a>
                         </td>
                     </tr>
                 </tbody>
@@ -118,5 +134,19 @@
     <div class="modal-footer">
         <a class="modal-close waves-effect waves-green btn disagree" style="margin:4px;">Cancelar</a>
         <a (click)='putService()' class="modal-close waves-effect waves-green btn agree" style="margin:4px;">Guardar</a>
+    </div>
+</div>
+<div id="modal_detail" class="modal">
+    <div class="modal-content">
+        <h5>Detalles</h5>
+        <blockquote>
+            <p>Fisioterapeuta: {{detail.medico}}</p>
+            <p>Paciente: {{detail.paciente}}</p>
+            <p>Categoria: {{detail.categoria}}</p>
+            <p>Subcategoria: {{detail.subcategoria}}</p>
+        </blockquote>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close waves-effect waves-green btn agree" style="margin:4px;">Cerrar</a>
     </div>
 </div>

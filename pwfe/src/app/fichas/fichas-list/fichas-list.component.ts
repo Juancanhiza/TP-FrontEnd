@@ -15,6 +15,13 @@ export class FichasListComponent implements OnInit, AfterViewInit{
   clientesMap = {};
   clientes = [];
   subcategorias = [];
+  detail = {
+    hora: '',
+    categoria: '',
+    subcategoria: '',
+    medico: '',
+    paciente: ''
+  }
   del = {
     id: '',
     pos: ''
@@ -35,7 +42,6 @@ export class FichasListComponent implements OnInit, AfterViewInit{
   }
   constructor(private api: FichasService) {
   }
-  tableHeaders = ['Fecha', 'Profesional', 'Cliente', 'Categoria', 'Subcategoria', 'Acciones'];
   ngOnInit() {
     this.getMedicos();
     this.getFichas();
@@ -212,6 +218,14 @@ export class FichasListComponent implements OnInit, AfterViewInit{
           console.log(error);
         }
       )
+  }
+
+  saveDetail(el){
+    this.detail.hora = el.fechaHora;
+    this.detail.medico = el.idEmpleado.nombre + " " + el.idEmpleado.apellido;
+    this.detail.paciente = el.idCliente.nombre + " " + el.idCliente.apellido;
+    this.detail.categoria = el.idTipoProducto.idCategoria.descripcion;
+    this.detail.subcategoria = el.idTipoProducto.descripcion;
   }
 //"java.lang.IllegalArgumentException: id to load is required for loading"
 }

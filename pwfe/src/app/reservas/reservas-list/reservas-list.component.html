@@ -1,5 +1,10 @@
-<div class="fixed-action-btn">
+<div class="fixed-action-btn hide-on-small-and-down">
     <a [routerLink]="['/reserva/add']" class="btn-floating btn-large agregar">
+        <i class="large material-icons">add</i>
+    </a>
+</div>
+<div class="fixed-action-btn hide-on-med-and-up">
+    <a [routerLink]="['/reserva/add']" class="btn-floating btn agregar">
         <i class="large material-icons">add</i>
     </a>
 </div>
@@ -10,24 +15,24 @@
         </div>
         <div class="container">
             <div class="row" style="margin:0;">
-                <div class="input-field col s6">
+                <div class="input-field col s12 m6">
                     <i class="material-icons prefix">date_range</i>
                     <input type="text" id='fechaDesde' class="datepicker">
                     <label for="fechaDesde">Fecha Desde</label>
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s12 m6">
                     <i class="material-icons prefix">date_range</i>
                     <input type="text" id='fechaHasta' class="datepicker">
                     <label for="fechaHasta">Fecha Hasta</label>
                 </div>
             </div>
             <div class="row">
-                <div class="input-field col s6">
+                <div class="input-field col s12 m6">
                     <i class="material-icons prefix">person</i>
                     <input type="text" id="autocomplete-input-medicos" class="autocomplete">
                     <label for="autocomplete-input-medicos">Médico</label>
                 </div>
-                <div class="input-field col s6">
+                <div class="input-field col s12 m6">
                     <i class="material-icons prefix">person</i>
                     <input type="text" id="autocomplete-input-clientes" class="autocomplete">
                     <label for="autocomplete-input-clientes">Cliente</label>
@@ -36,7 +41,7 @@
             <div class="row">
                 <div class="col s12">
                     <a (click)='filter()' class="waves-effect waves-light btn right disagree" style="margin:4px;"><i
-                            class="material-icons left">search</i>Buscar</a>
+                            class="material-icons left hide-on-small-and-down">search</i>Buscar</a>
                     <a (click)='clearFilter()' class="waves-effect waves-light btn right agree" style="margin:4px;">Limpiar</a>
                 </div>
             </div>
@@ -54,23 +59,39 @@
                 </colgroup>
                 <thead>
                     <tr>
-                        <th *ngFor="let i of tableHeaders">{{ i }}</th>
+                        <th class="hide-on-small-and-down">Fecha</th>
+                        <th class="hide-on-small-and-down">Hora inicio</th>
+                        <th class="hide-on-small-and-down">Hora fin</th>
+                        <th>Profesional</th>
+                        <th>Cliente</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
 
                 <tbody>
 
                     <tr *ngFor="let i of data; index as j">
-                        <td>{{ i.fecha }}</td>
-                        <td>{{ i.horaInicio }} hs.</td>
-                        <td>{{ i.horaFin }} hs.</td>
+                        <td class="hide-on-small-and-down">{{ i.fecha }}</td>
+                        <td class="hide-on-small-and-down">{{ i.horaInicio }} hs.</td>
+                        <td class="hide-on-small-and-down">{{ i.horaFin }} hs.</td>
                         <td>{{ i.idEmpleado.nombre }} {{ i.idEmpleado.apellido }}</td>
                         <td>{{ i.idCliente.nombre }} {{ i.idCliente.apellido }}</td>
                         <td>
-                            <a href='#modal_edit' (click)="saveEdit(i)" class="modal-trigger" title="Editar"><i
-                                    class="material-icons" style="color:#FFC107">mode_edit</i></a>
-                            <a href='#modal_delete' (click)="saveDeleteRecord(i.idReserva, j)" title="Eliminar" class="modal-trigger"><i class="material-icons" style="color:#F44336">delete</i></a>
-                            <a title="Agregar Ficha"><i class="material-icons" style="color:#0085ad">assignment</i></a>
+                            <a href='#modal_edit' (click)="saveEdit(i)" class="modal-trigger" title="Editar">
+                                <i class="material-icons hide-on-small-and-down" style="color:#FFC107">mode_edit</i>
+                                <i class="tiny material-icons hide-on-med-and-up" style="color:#FFC107">mode_edit</i>
+                            </a>
+                            <a href='#modal_delete' (click)="saveDeleteRecord(i.idReserva, j)" title="Eliminar" class="modal-trigger">
+                                <i class="material-icons hide-on-small-and-down" style="color:#F44336">delete</i>
+                                <i class="tiny material-icons hide-on-med-and-up" style="color:#F44336">delete</i>
+                            </a>
+                            <a href='#modal_detail' (click)='saveEdit(i)' title="Detalles" class="hide-on-med-and-up modal-trigger">
+                                <i class="tiny material-icons" style="color:#371777">details</i>
+                            </a>
+                            <a title="Agregar Ficha">
+                                <i class="material-icons hide-on-small-and-down" style="color:#0085ad">assignment</i>
+                                <i class="tiny material-icons hide-on-med-and-up" style="color:#0085ad">assignment</i>
+                            </a>
                         </td>
                     </tr>
                 </tbody>
@@ -78,6 +99,21 @@
         </div>
     </div>
 
+</div>
+
+<div id="modal_detail" class="modal">
+    <div class="modal-content">
+        <h5>Detalles</h5>
+        <blockquote>
+            <p>{{edit.nombre}} {{edit.apellido}}</p>
+            <p><strong>Hora inicio:</strong> {{edit.horaI}}</p>
+            <p><strong>Hora fin:</strong> {{edit.horaF}}</p>
+            <p><strong>Fecha:</strong> {{edit.fecha}}</p>
+        </blockquote>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close waves-effect waves-green btn agree">Cerrar</a>
+    </div>
 </div>
 
 <div id="modal_delete" class="modal">

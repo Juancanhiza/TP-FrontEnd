@@ -2,7 +2,6 @@ import { Component,AfterViewInit, OnInit } from '@angular/core';
 import { ApiService } from '../api.service';
 declare var $: any;
 declare var M: any;
-import { typeWithParameters } from '@angular/compiler/src/render3/util';
 @Component({
   selector: 'app-subcategoria',
   templateUrl: './subcategoria.component.html',
@@ -13,7 +12,7 @@ export class SubcategoriaComponent implements OnInit {
   add = true;
   data = [];
   p: number = 1;
-  data3 = [];
+  categorias = [];
   editId = -1;
   tableHeaders = ['Descripcion', 'Categoria', 'Acciones'];
   data1 = [
@@ -68,13 +67,7 @@ export class SubcategoriaComponent implements OnInit {
     this.api.getSubCategorias().subscribe(
       data => {
         that.data = data.lista;
-        //console.log(data.totalDatos);
-        //that.data = data;
-        console.log(data);
-        // data.forEach(function (value) {
-        //   that.categorias.push(value);
-        // });
-        // console.log(that.categorias);
+        console.log(this.data);
       },
       error => {
         console.log(error);
@@ -85,13 +78,12 @@ export class SubcategoriaComponent implements OnInit {
   getCategorias() {
     var that = this;
     this.api.getCategorias().subscribe(
-      data3 => {
-        that.data3 = data3.lista;
-        console.log(data3);
-        // data.forEach(function (value) {
-        //   that.categorias.push(value);
-        // });
-        // console.log(that.categorias);
+      data => {
+        that.categorias = data.lista;
+        setTimeout(()=>{
+          $('select').formSelect();
+        },2000);
+        console.log(this.categorias);
       },
       error => {
         console.log(error);
@@ -137,8 +129,8 @@ export class SubcategoriaComponent implements OnInit {
     }
   }
 
-  updateSubCategoriaProcesos(element) { 
-    this.api.updateSubCategoriaProcesos(element).subscribe(
+  updateSubCategoria(element) { 
+    this.api.updateSubCategoria(element).subscribe(
       data => {
         this.getSubCategorias();
       },
@@ -149,29 +141,27 @@ export class SubcategoriaComponent implements OnInit {
   }
   
   editRecord() {
-    var idCategoria = $("#idCategoria-edit option:selected").val();
+    var idCategoria = Number($("#selectCategoriasEdit").val());
     var descripcion = $('#descripcion-edit').val();
-    console.log(this.editId);
-    if (idCategoria == 'Seleccione' || descripcion == '' ) {
-      M.toast({ html: 'Complete todos los campos para guardar' });
-    } else {    
+    console.log(idCategoria, descripcion, $('#descripcion-edit').val());
+    // if (idCategoria == 'Seleccione' || descripcion == '' ) {
+    //   M.toast({ html: 'Complete todos los campos para guardar' });
+    // } else {    
       var recordUpdate = {
         idTipoProducto: this.editId,
         idCategoria:{idCategoria:idCategoria},
-         descripcion:descripcion,
-         flagVisible : "S",
-         posicion:1
+        descripcion:descripcion,
+        flagVisible : "S",
+        posicion:1
       }
-      console.log(recordUpdate);
-      this.updateSubCategoriaProcesos(JSON.stringify(recordUpdate));
-
-
-      $('#modal-edit').modal('close');
-    }
+      this.updateSubCategoria(recordUpdate);
+     $('#modal-edit').modal('close');
+    // }
   }
   showModalEdit(element) {
 
     this.editId = element.idTipoProducto;
+    $('#selectCategoriasEdit').val(element.idCategoria.idCategoria);
     $('#idCategoria-edit').val(element.idCategoria);
     $('#descripcion-edit').val(element.descripcion);
     $('#modal-edit').modal('open');
