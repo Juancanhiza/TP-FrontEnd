@@ -8,7 +8,8 @@ import { ServiciosModule } from './servicios/servicios.module';
 import { PacientesComponent } from './pacientes/pacientes.component';
 import { ConfagendamientoModule } from './confagendamiento/confagendamiento.module';
 import { ConfagendamientoExcepModule } from './confagendamiento-excep/confagendamiento-excep.module';
-import { CategoriasModule } from './categorias/categorias.module'
+import { CategoriasModule } from './categorias/categorias.module';
+import { ReservasModule } from './reservas/reservas.module'
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { CategoriasModule } from './categorias/categorias.module'
     ConfagendamientoModule,
     ConfagendamientoExcepModule,
     CategoriasModule,
+    ReservasModule,
     AppRoutingModule
   ],
   providers: [],
