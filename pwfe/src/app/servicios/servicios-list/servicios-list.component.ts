@@ -1,5 +1,8 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { ServiciosService } from '../servicios.service'
+import {ExcelService} from './service/excel.service';
+import * as jspdf from 'jspdf';  
+import html2canvas from 'html2canvas'; 
 declare var $: any;
 declare var M: any;
 @Component({
@@ -21,7 +24,7 @@ export class ServiciosListComponent implements OnInit, AfterViewInit {
     nombre: '',
     subcategoria: ''
   }
-  constructor(private api: ServiciosService) { }
+  constructor(private api: ServiciosService,private excelService:ExcelService) { }
   tableHeaders = ['Nombre', 'Subcategoría', 'Acciones'];
   ngOnInit() {
     this.getSubcategorias();
@@ -33,13 +36,43 @@ export class ServiciosListComponent implements OnInit, AfterViewInit {
 //      that.getBySubcategoria($(this).val());
     });
   }
+  exportAsXLSX():void {
+    var dataExcel = [];
+    for(var i=0; i< this.data.length; i++){
+      var x = {
+        id: this.data[i].idPresentacionProducto, 
+        nombre: this.data[i].descripcionGeneral,
+        subcategoria:this.data[i].idProducto.idTipoProducto.descripcion
+      }
+      dataExcel.push(x);
+    }
+    this.excelService.exportAsExcelFile(dataExcel, 'Servicios');
+ }
 
   ngAfterViewInit() {
     $('.modal').modal({
       dismissible:false
     });
     $('.collapsible').collapsible();
+    $('.fixed-action-btn').floatingActionButton();
   }
+  public captureScreen()  
+  {  
+    var data = document.getElementById('contentToConvert');  
+    html2canvas(data).then(canvas => {  
+      // Few necessary setting options  
+      var imgWidth = 208;   
+      var pageHeight = 295;    
+      var imgHeight = canvas.height * imgWidth / canvas.width;  
+      var heightLeft = imgHeight;  
+  
+      const contentDataURL = canvas.toDataURL('image/png')  
+      let pdf = new jspdf('p', 'mm', 'a4'); // A4 size page of PDF  
+      var position = 0;  
+      pdf.addImage(contentDataURL, 'PNG', 0, position, imgWidth, imgHeight)  
+      pdf.save('Servicios.pdf'); // Generated PDF   
+    });  
+  }  
   getServicios = () => {
     var that = this;
     this.api.getServicios().subscribe(

@@ -6,7 +6,10 @@
 <div class="fixed-action-btn hide-on-med-and-up">
     <a [routerLink]="['/servicio-admin/add']" class="btn-floating btn agregar">
         <i class="large material-icons">{{icon}}</i>
-    </a>
+    </a></li>
+    <li><a class="btn-floating yellow darken-1" (click)="captureScreen()" title="Descargar pdf"><i class="material-icons">description</i></a></li>
+    <li><a class="btn-floating green" (click)="exportAsXLSX()" title="Descargar excel"><i class="material-icons">description</i></a></li>
+  </ul>
 </div>
 <div class="container">
     <div class="row">
@@ -31,7 +34,7 @@
             <a (click)='clearFilter()' class="waves-effect waves-light btn right azul-marino" style="margin:4px;">Limpiar</a>
         </div>
         <div class="col s12">
-            <table class="striped">
+            <table class="striped" id="contentToConvert">
                 <colgroup>
                     <col span="1" style="width: 45%;">
                     <col span="1" style="width: 45%;">
