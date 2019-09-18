@@ -12,7 +12,9 @@ export class SubcategoriaComponent implements OnInit {
   descripcion: string = '';
   add = true;
   data = [];
+  p: number = 1;
   data3 = [];
+  editId = -1;
   tableHeaders = ['Descripcion', 'Categoria', 'Acciones'];
   data1 = [
     {
@@ -51,6 +53,14 @@ export class SubcategoriaComponent implements OnInit {
 
   submmit () {
     alert(this.descripcion);
+  }
+
+  deleteItem = {
+    id: -1
+  }
+
+  guardarPos(id){
+    this.deleteItem.id = id
   }
 
   getSubCategorias() {
@@ -93,6 +103,7 @@ export class SubcategoriaComponent implements OnInit {
     var that = this
     $('.modal').modal();
     $('select').formSelect();
+    $('.fixed-action-btn').floatingActionButton();
   }
 
   createSubcategoriaProcesos(element) {
@@ -105,6 +116,8 @@ export class SubcategoriaComponent implements OnInit {
       }
     )
   }
+
+
 
   addRecord() {
     var idCategoria = $("#idCategoria option:selected").val();
@@ -123,4 +136,70 @@ export class SubcategoriaComponent implements OnInit {
       $('#modal-add').modal('close');
     }
   }
+
+  updateSubCategoriaProcesos(element) { 
+    this.api.updateSubCategoriaProcesos(element).subscribe(
+      data => {
+        this.getSubCategorias();
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+  
+  editRecord() {
+    var idCategoria = $("#idCategoria-edit option:selected").val();
+    var descripcion = $('#descripcion-edit').val();
+    console.log(this.editId);
+    if (idCategoria == 'Seleccione' || descripcion == '' ) {
+      M.toast({ html: 'Complete todos los campos para guardar' });
+    } else {    
+      var recordUpdate = {
+        idTipoProducto: this.editId,
+        idCategoria:{idCategoria:idCategoria},
+         descripcion:descripcion,
+         flagVisible : "S",
+         posicion:1
+      }
+      console.log(recordUpdate);
+      this.updateSubCategoriaProcesos(JSON.stringify(recordUpdate));
+
+
+      $('#modal-edit').modal('close');
+    }
+  }
+  showModalEdit(element) {
+
+    this.editId = element.idTipoProducto;
+    $('#idCategoria-edit').val(element.idCategoria);
+    $('#descripcion-edit').val(element.descripcion);
+    $('#modal-edit').modal('open');
+  }
+
+  delete() {
+    this.api.deleteSubCategoriaProcesos(this.deleteItem.id).subscribe(
+      data => {
+        M.toast({ html: 'SubCategoria Eliminada' });
+        this.getSubCategorias();
+      },
+      error => {
+        M.toast({ html: 'La SubCategoria está en uso y no puede eliminarse' });
+      }
+    )
+   }
+
+  deleteRecord(idTipoProducto) {
+    console.log(idTipoProducto);
+    this.api.deleteSubCategoriaProcesos(idTipoProducto).subscribe(
+      data => {
+        M.toast({ html: 'SubCategoria Eliminada' });
+        this.getSubCategorias();
+      },
+      error => {
+        M.toast({ html: 'La SubCategoria está en uso y no puede eliminarse' });
+      }
+    )
+   }
+  
 }

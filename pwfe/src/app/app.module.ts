@@ -5,22 +5,27 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SubcategoriaComponent } from './subcategoria/subcategoria.component';
 import { ServiciosModule } from './servicios/servicios.module';
-import { PacientesComponent } from './pacientes/pacientes.component';
+import { PacientesModule } from './pacientes/pacientes.module';
 import { ConfagendamientoModule } from './confagendamiento/confagendamiento.module';
 import { ConfagendamientoExcepModule } from './confagendamiento-excep/confagendamiento-excep.module';
+<<<<<<< pwfe/src/app/app.module.ts
 import { CategoriasModule } from './categorias/categorias.module';
 import { ReservasModule } from './reservas/reservas.module'
+=======
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+>>>>>>> pwfe/src/app/app.module.ts
 @NgModule({
   declarations: [
     AppComponent,
     SubcategoriaComponent,
-    PacientesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
+    NgxPaginationModule,
     FormsModule,
     ServiciosModule,
+    PacientesModule,
+    AppRoutingModule,
     ConfagendamientoModule,
     ConfagendamientoExcepModule,
     CategoriasModule,
