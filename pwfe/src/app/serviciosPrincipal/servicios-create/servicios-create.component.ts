@@ -23,6 +23,7 @@ export class ServiciosCreateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.inicializar();
   }
 
   inicializar = () => {
@@ -36,6 +37,8 @@ export class ServiciosCreateComponent implements OnInit {
         //M.toast({ html:'Error no puede editar este id' });
       }
     });
+
+    console.log(this.idFicha);
 
   }
 
