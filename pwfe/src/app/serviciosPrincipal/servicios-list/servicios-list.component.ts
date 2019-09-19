@@ -16,7 +16,7 @@ export class ServiciosListComponent implements OnInit, AfterViewInit {
 
   tableHeaders = ['Fecha', 'Id ficha', 'Profesional', 'Cliente', 'Categoria', 'Subcategoria', 'Acciones'];
 
-  datos = [];
+  datos : Array<any>;
   subcategorias = [];
   medicos = [];
   medicosMap = {};
@@ -59,7 +59,7 @@ export class ServiciosListComponent implements OnInit, AfterViewInit {
     const context = this;
     this.api.getServicios().subscribe(
       (data) => {
-        context.datos = data.lista;
+        context.datos = data['lista'];
         console.log(context.datos);
       }, error => {
         console.log(error);
