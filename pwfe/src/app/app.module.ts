@@ -9,8 +9,9 @@ import { PacientesModule } from './pacientes/pacientes.module';
 import { ConfagendamientoModule } from './confagendamiento/confagendamiento.module';
 import { ConfagendamientoExcepModule } from './confagendamiento-excep/confagendamiento-excep.module';
 import { CategoriasModule } from './categorias/categorias.module';
+import { ServiciosPrincipalModule } from './serviciosPrincipal/servicios-principal.module';
 import { ReservasModule } from './reservas/reservas.module';
-import {NgxPaginationModule} from 'ngx-pagination'; 
+import {NgxPaginationModule} from 'ngx-pagination';
 import { ExcelService } from './servicios/servicios-list/service/excel.service';
 import { FichasModule } from './fichas/fichas.module';
 
@@ -29,10 +30,10 @@ import { FichasModule } from './fichas/fichas.module';
     ConfagendamientoModule,
     ConfagendamientoExcepModule,
     CategoriasModule,
-    ReservasModule,
     AppRoutingModule,
-    FichasModule
-  ],
+    ServiciosPrincipalModule,
+    ReservasModule,
+    FichasModule  ],
   providers: [ExcelService],
   bootstrap: [AppComponent]
 })
