@@ -5,7 +5,7 @@ import { ServiciosCreateComponent } from './servicios-create/servicios-create.co
 
 const routes: Routes = [
   { path: 'serviciosPrincipal',  component: ServiciosListComponent },
-  { path: 'serviciosPrincipal/:idFicha/add', component: ServiciosCreateComponent }
+  { path: 'serviciosPrincipal/:idCliente/:idEmpleado/add', component: ServiciosCreateComponent }
 ];
 @NgModule({
   imports: [RouterModule.forChild(routes)],

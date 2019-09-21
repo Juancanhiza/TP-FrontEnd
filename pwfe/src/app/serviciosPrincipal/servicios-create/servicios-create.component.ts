@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ServiciosPrincipalService } from '../servicios-principal.service';
 
 
 @Component({
@@ -9,7 +10,10 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ServiciosCreateComponent implements OnInit {
 
-  idFicha;
+  idCliente;
+  idEmpleado;
+
+  fichas;
 
   tableHeaders = [
     'idFicha', 'Fecha',
@@ -17,12 +21,16 @@ export class ServiciosCreateComponent implements OnInit {
     'Acciones'
   ];
 
+  
+
   constructor(
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    private api: ServiciosPrincipalService
   ) { }
 
   ngOnInit() {
+    
     this.inicializar();
   }
 
@@ -31,15 +39,25 @@ export class ServiciosCreateComponent implements OnInit {
 
     const context = this;
     this.route.params.subscribe(params => {
-      if (params.idFicha) {
-        context.idFicha = params.idFicha;
+      if (params.idCliente && params.idEmpleado) {
+        context.idCliente = params.idCliente;
+        context.idEmpleado = params.idEmpleado;
+        context.getFicha(context.idCliente, context.idEmpleado);
       } else {
         //M.toast({ html:'Error no puede editar este id' });
       }
     });
 
-    console.log(this.idFicha);
+  }
 
+  getFicha = (idCliente,idEmpleado) =>{
+    const context = this;
+
+    this.api.getFicha(idCliente,idEmpleado).subscribe( 
+      (data) => {
+        context.fichas = data.lista;
+      }
+      );
   }
 
 }

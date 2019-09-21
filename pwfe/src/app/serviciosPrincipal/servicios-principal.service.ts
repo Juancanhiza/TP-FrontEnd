@@ -46,6 +46,21 @@ export class ServiciosPrincipalService {
     return this.http.get('/stock-pwfe/servicio/', { params: params});
   }
 
+  getFicha(idCliente,idEmpleado): Observable<any> {
+    const parametros = {
+        idEmpleado: { 
+          idPersona: Number.parseInt(idEmpleado)
+        },
+        idCliente: { 
+          idPersona: Number.parseInt(idCliente) 
+        }
+    };
+
+    let params = new HttpParams();
+    params = params.append('ejemplo', JSON.stringify(parametros));
+
+    return this.http.get('/stock-pwfe/fichaClinica/', {params});
+  }
 
 
 
