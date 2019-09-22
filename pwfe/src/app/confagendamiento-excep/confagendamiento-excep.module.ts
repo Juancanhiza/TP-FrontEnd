@@ -5,13 +5,15 @@ import { ConfagendamientoExcepRoutingModule } from './confagendamiento-excep-rou
 import { ConfagendamientoExcepAddComponent } from './confagendamiento-excep-add/confagendamiento-excep-add.component';
 import { ConfagendamientoExcepListComponent } from './confagendamiento-excep-list/confagendamiento-excep-list.component';
 import { ConfagendamientoExcepEditComponent } from './confagendamiento-excep-edit/confagendamiento-excep-edit.component';
+import { SharedHomeModule } from '../home/shared-home/shared-home.module';
 
 
 @NgModule({
   declarations: [ConfagendamientoExcepAddComponent, ConfagendamientoExcepListComponent, ConfagendamientoExcepEditComponent],
   imports: [
     CommonModule,
-    ConfagendamientoExcepRoutingModule
+    ConfagendamientoExcepRoutingModule,
+    SharedHomeModule
   ]
 })
 export class ConfagendamientoExcepModule { }

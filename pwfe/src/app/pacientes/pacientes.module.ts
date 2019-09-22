@@ -7,6 +7,7 @@ import { PacientesComponent } from './pacientes-list/pacientes.component';
 import { PacientesEditComponent } from './pacientes-edit/pacientes-edit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { SharedHomeModule } from '../home/shared-home/shared-home.module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { FormsModule } from '@angular/forms';
     CommonModule,
     HttpClientModule,
     PacientesRoutingModule,
-    FormsModule
+    FormsModule,
+    SharedHomeModule
   ]
 })
 export class PacientesModule { }
