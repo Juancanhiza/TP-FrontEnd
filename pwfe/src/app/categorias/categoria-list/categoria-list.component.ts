@@ -22,11 +22,17 @@ export class CategoriaListComponent implements OnInit, AfterViewInit {
 
   tableHeaders = ['ID', 'Categoría', 'Acciones'];
 
+  /* Paginacion */
+  loading = false;
+  total = 0;
+  page = 1;
+  limit = 20;
+
 
   constructor(private api: CategoriasService) { }
 
   ngOnInit() {
-    this.getCategorias();
+    this.getCategoriaRango();
   }
 
   // tslint:disable-next-line: use-lifecycle-interface
@@ -65,6 +71,44 @@ export class CategoriaListComponent implements OnInit, AfterViewInit {
         console.log(error);
       }
     );
+  }
+
+  /* Metodos para la paginacion */
+
+  getCategoriaRango = () => {
+    this.loading=true;
+    var e = 
+    { 
+      inicio: this.page, 
+      cantidad: this.limit
+    }
+    var that = this;
+    this.api.getCategoriaRango(e).subscribe(
+      data => {
+        console.log(data.lista);
+        that.data = data.lista;
+        this.total = data.totalDatos;
+        this.loading=false;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  goToPage(n: number): void {
+    this.page = n;
+    this.getCategoriaRango();
+  }
+
+  onNext(): void {
+    this.page++;
+    this.getCategoriaRango();
+  }
+
+  onPrev(): void {
+    this.page--;
+    this.getCategoriaRango();
   }
 
 }

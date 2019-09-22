@@ -18,38 +18,17 @@ export class SubcategoriaComponent implements OnInit {
   categorias = [];
   editId = -1;
   tableHeaders = ['Descripcion', 'Categoria', 'Acciones'];
-  data1 = [
-    {
-      id:"0",
-      subcategoria: "Rodilla",
-      categoria: "Pierna"
-    },
-    {
-      id:"1",
-      subcategoria: "Tobillo",
-      categoria: "Pie"
-    },
-    {
-      id:"2",
-      subcategoria: "Codo",
-      categoria: "Brazo"
-    },
-    {
-      id:"3",
-      subcategoria: "Muñeca",
-      categoria: "Mano"
-    },
-    {
-      id:"4",
-      subcategoria: "Muslo",
-      categoria: "Pierna"
-    }
-  ]
+  /* Paginacion */
+  loading = false;
+  total = 0;
+  page = 1;
+  limit = 20;
+
   constructor(private api: ApiService
     ) {}
 
   ngOnInit() {
-    this.getSubCategorias();
+    this.getSubCategoriasRango();
     this.getCategorias();
   }
   public captureScreen()  
@@ -149,6 +128,22 @@ export class SubcategoriaComponent implements OnInit {
     }
   }
 
+  /* Metodos para la paginacion */
+
+  getSubCategoriasRango = () => {
+    this.loading=true;
+    var e = 
+    { 
+      inicio: this.page, 
+      cantidad: this.limit
+    }
+    var that = this;
+    this.api.getSubCategoriasRango(e).subscribe(
+      data => {
+        console.log(data.lista);
+        that.data = data.lista;
+        this.total = data.totalDatos;
+        this.loading=false;
   updateSubCategoria(element) { 
     this.api.updateSubCategoria(element).subscribe(
       data => {
@@ -159,6 +154,23 @@ export class SubcategoriaComponent implements OnInit {
       }
     )
   }
+
+
+  goToPage(n: number): void {
+    this.page = n;
+    this.getSubCategoriasRango();
+  }
+
+  onNext(): void {
+    this.page++;
+    this.getSubCategoriasRango();
+  }
+
+  onPrev(): void {
+    this.page--;
+    this.getSubCategoriasRango();
+  }
+
   
   editRecord() {
     var idCategoria = Number($("#selectCategoriasEdit").val());

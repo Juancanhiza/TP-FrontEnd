@@ -9,6 +9,7 @@ import { ServiciosEditComponent } from './servicios-edit/servicios-edit.componen
 import { ServiciosDetailComponent } from './servicios-detail/servicios-detail.component';
 import { ServiciosFilterPipe } from './servicios-filter.pipe';
 import { HttpClientModule } from '@angular/common/http';
+import { PaginacionSharedModule } from '../paginacionShared/paginacionShared.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     FormsModule,
     HttpClientModule,
-    ServiciosRoutingModule
+    ServiciosRoutingModule,
+    PaginacionSharedModule
   ]
 })
 export class ServiciosModule { }

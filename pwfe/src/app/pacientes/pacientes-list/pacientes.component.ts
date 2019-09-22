@@ -22,10 +22,16 @@ export class PacientesComponent implements OnInit, AfterViewInit {
     pos: ''
   }
 
+  /* Paginacion */
+  loading = false;
+  total = 0;
+  page = 1;
+  limit = 20;
+
   constructor(private api: PacientesService) { }
  
   ngOnInit() {
-    this.getPacientes();
+    this.getPacientesRango();
   }
   ngAfterViewInit() {
     $('.modal').modal();
@@ -60,6 +66,45 @@ export class PacientesComponent implements OnInit, AfterViewInit {
       }
     )
   }
+  
+  /* Metodos para la paginacion */
+
+  getPacientesRango = () => {
+    this.loading=true;
+    var e = 
+    { 
+      inicio: this.page, 
+      cantidad: this.limit
+    }
+    var that = this;
+    this.api.getPacienteRango(e).subscribe(
+      data => {
+        console.log(data.lista);
+        that.data = data.lista;
+        this.total = data.totalDatos;
+        this.loading=false;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  goToPage(n: number): void {
+    this.page = n;
+    this.getPacientesRango();
+  }
+
+  onNext(): void {
+    this.page++;
+    this.getPacientesRango();
+  }
+
+  onPrev(): void {
+    this.page--;
+    this.getPacientesRango();
+  }
+}
   saveDetail(el){
     this.detail.nombre = el.nombre;
     this.detail.apellido = el.apellido;

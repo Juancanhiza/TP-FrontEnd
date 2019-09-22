@@ -16,6 +16,15 @@ export class ConfagendamientoService {
   getAgendamientoConf(id): Observable<any> {
     return this.http.get('/stock-pwfe/personaHorarioAgenda/' + id, {headers: this.hhtpHeaders});
   }
+  
+  getAgendamientosConfRango(element): Observable<any> {
+    var params = new HttpParams();
+    params = params.append('inicio', JSON.stringify(element.inicio));
+    params = params.append('cantidad', JSON.stringify(element.cantidad));
+    params = params.append('orderBy', 'dia');
+    params = params.append('orderDir', 'asc');
+    return this.http.get('/stock-pwfe/personaHorarioAgenda/', { params: params});
+  }
 
   deleteAgendamientoConf(id): Observable<any> {
     return this.http.delete('/stock-pwfe/personaHorarioAgenda/' + id, {headers: this.hhtpHeaders});

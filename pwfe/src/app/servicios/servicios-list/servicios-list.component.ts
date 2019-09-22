@@ -24,11 +24,20 @@ export class ServiciosListComponent implements OnInit, AfterViewInit {
     nombre: '',
     subcategoria: ''
   }
+
+
+  /* Paginacion */
+  loading = false;
+  total = 0;
+  page = 1;
+  limit = 20;
+
+  constructor(private api: ServiciosService) { }
   constructor(private api: ServiciosService,private excelService:ExcelService) { }
   tableHeaders = ['Nombre', 'Subcategoría', 'Acciones'];
   ngOnInit() {
     this.getSubcategorias();
-    this.getServicios();
+    this.getServiciosRango();
 
     var that = this;
     $('#subCatSelect').change(function() {
@@ -56,6 +65,7 @@ export class ServiciosListComponent implements OnInit, AfterViewInit {
     $('.collapsible').collapsible();
     $('.fixed-action-btn').floatingActionButton();
   }
+
   public captureScreen()  
   {  
     var data = document.getElementById('contentToConvert');  
@@ -73,6 +83,8 @@ export class ServiciosListComponent implements OnInit, AfterViewInit {
       pdf.save('Servicios.pdf'); // Generated PDF   
     });  
   }  
+
+
   getServicios = () => {
     var that = this;
     this.api.getServicios().subscribe(
@@ -158,4 +170,43 @@ export class ServiciosListComponent implements OnInit, AfterViewInit {
     $("select").val(-1);
     this.getServicios();
   }
+
+  /* Metodos para la paginacion */
+
+  getServiciosRango = () => {
+    this.loading=true;
+    var e = 
+    { 
+      inicio: this.page, 
+      cantidad: this.limit
+    }
+    var that = this;
+    this.api.getServiciosRango(e).subscribe(
+      data => {
+        console.log(data.lista);
+        that.data = data.lista;
+        this.total = data.totalDatos;
+        this.loading=false;
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  goToPage(n: number): void {
+    this.page = n;
+    this.getServiciosRango();
+  }
+
+  onNext(): void {
+    this.page++;
+    this.getServiciosRango();
+  }
+
+  onPrev(): void {
+    this.page--;
+    this.getServiciosRango();
+  }
+
 }
