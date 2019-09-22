@@ -1,0 +1,18 @@
+table {
+  width: 100%;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.m1mtop{
+  margin-top:1em;
+}
+
+.azul-marino {
+  background: #00205b !important;
+}
+
+.azul-claro {
+  background: #0085ad !important;
+}

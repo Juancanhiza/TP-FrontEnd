@@ -1,43 +1,65 @@
-<div class="fixed-action-btn">
-  <a [routerLink]="['/pacientes/add']" class="btn-floating btn-large agregar">
-      <i class="large material-icons">{{icon}}</i>
-  </a>
+<div class="fixed-action-btn hide-on-small-and-down">
+    <a [routerLink]="['/pacientes/add']" class="btn-floating btn-large agregar">
+        <i class="large material-icons">{{icon}}</i>
+    </a>
+</div>
+<div class="fixed-action-btn hide-on-med-and-up">
+    <a [routerLink]="['/pacientes/add']" class="btn-floating btn agregar">
+        <i class="large material-icons">{{icon}}</i>
+    </a>
 </div>
 
-<div class="container">
+<div class="wrapper">
     <h4 class="center">Pacientes</h4>
-    <table>
+    <table class="centered striped">
         <colgroup>
-          <col span="1" style="width: 15%;">
-          <col span="1" style="width: 15%;">
-          <col span="1" style="width: 15%;">
-          <col span="1" style="width: 15%;">
-          <col span="1" style="width: 15%;">
-       </colgroup>
+            <col span="1" style="width: 15%;">
+            <col span="1" style="width: 15%;">
+            <col span="1" style="width: 15%;">
+            <col span="1" style="width: 15%;">
+            <col span="1" style="width: 15%;">
+            <col span="1" style="width: 15%;">
+            <col span="1" style="width: 10%;">
+        </colgroup>
         <thead>
-          <tr>
-            <th *ngFor="let i of tableHeaders">{{ i }}</th>
-          </tr>
+            <tr>
+                <th class="hide-on-small-and-down">ID</th>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th class="hide-on-small-and-down">CI</th>
+                <th class="hide-on-small-and-down hide-on-med-and-down">Email</th>
+                <th class="hide-on-small-and-down">Teléfono</th>
+                <th>Acciones</th>
+            </tr>
         </thead>
-        
+
         <tbody>
-    
-          <tr *ngFor="let i of data ; let j = index">
-            <td>{{ i.idPersona }}</td>
-            <td>{{ i.nombre }}</td>
-            <td>{{ i.apellido }}</td>
-            <td>{{ i.cedula }}</td>
-            <td>{{ i.email }}</td>
-            <td>{{ i.telefono }}</td>
-            <td>
-              <a [routerLink]="['/pacientes/edit', i.idPersona]" title="Editar"><i
-                                    class="material-icons" style="color:#FFC107">mode_edit</i></a>
-              <a href='#modal_delete' (click)="saveDeleteRecord(i.idPersona, j)" title="Eliminar" class="modal-trigger"><i
-                class="material-icons" style="color:#F44336">delete</i></a>
-            </td>
-          </tr>
+
+            <tr *ngFor="let i of data ; let j = index">
+                <td class="hide-on-small-and-down">{{ i.idPersona }}</td>
+                <td>{{ i.nombre }}</td>
+                <td>{{ i.apellido }}</td>
+                <td class="hide-on-small-and-down">{{ i.cedula }}</td>
+                <td class="hide-on-small-and-down hide-on-med-and-down">{{ i.email }}</td>
+                <td class="hide-on-small-and-down">{{ i.telefono }}</td>
+                <td>
+                    <a [routerLink]="['/pacientes/edit', i.idPersona]" title="Editar">
+                        <i class="material-icons hide-on-small-and-down" style="color:#FFC107">mode_edit</i>
+                        <i class="tiny material-icons hide-on-med-and-up" style="color:#FFC107">mode_edit</i>
+                    </a>
+                    <a href='#modal_delete' (click)="saveDeleteRecord(i.idPersona, j)" title="Eliminar" class="modal-trigger">
+                        <i class="material-icons hide-on-small-and-down" style="color:#F44336">delete</i>
+                        <i class="tiny material-icons hide-on-med-and-up" style="color:#F44336">delete</i>
+                    </a>
+                    <a href='#modal_detail' (click)="saveDetail(i)" title="Ver detalles" class="modal-trigger">
+                        <i class="material-icons hide-on-small-and-down" style="color:#371777">details</i>
+                        <i class="tiny material-icons hide-on-med-and-up" style="color:#371777">details</i>
+                    </a>
+                </td>
+            </tr>
         </tbody>
     </table>
+
     
     <div class="center-align" style="margin: 16px">
       <app-paginacion
@@ -54,12 +76,30 @@
     </div>
   
   <div id="modal_delete" class="modal">
+
+</div>
+
+<div id="modal_delete" class="modal">
     <div class="modal-content">
         <h4>¿Eliminar registro?</h4>
         <p class="red-text">Esta acción no puede deshacerse</p>
     </div>
-      <div class="modal-footer">
+    <div class="modal-footer">
         <a class="modal-close waves-effect waves-green btn disagree" style="margin:4px;">Cancelar</a>
         <a (click)='deleteRecord()' class="modal-close waves-effect waves-green btn agree" style="margin:4px;">Eliminar</a>
-      </div>
-  </div>
+    </div>
+</div>
+<div id="modal_detail" class="modal">
+    <div class="modal-content">
+        <h5>Detalles</h5>
+        <blockquote>
+            <p>{{detail.nombre}} {{detail.apellido}}</p>
+            <p><strong>Cédula:</strong> {{detail.cedula}}</p>
+            <p><strong>Teléfono:</strong> {{detail.telefono}}</p>
+            <p><strong>Email:</strong> {{detail.correo}}</p>
+        </blockquote>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close waves-effect waves-green btn agree" style="margin:4px;">Cerrar</a>
+    </div>
+</div>

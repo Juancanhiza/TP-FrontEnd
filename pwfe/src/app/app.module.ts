@@ -10,6 +10,11 @@ import { ConfagendamientoModule } from './confagendamiento/confagendamiento.modu
 import { ConfagendamientoExcepModule } from './confagendamiento-excep/confagendamiento-excep.module';
 import { CategoriasModule } from './categorias/categorias.module';
 import { PaginacionSharedModule } from './paginacionShared/paginacionShared.module';
+import { ServiciosPrincipalModule } from './serviciosPrincipal/servicios-principal.module';
+import { ReservasModule } from './reservas/reservas.module';
+import {NgxPaginationModule} from 'ngx-pagination';
+import { ExcelService } from './servicios/servicios-list/service/excel.service';
+import { FichasModule } from './fichas/fichas.module';
 
 @NgModule({
   declarations: [
@@ -18,17 +23,22 @@ import { PaginacionSharedModule } from './paginacionShared/paginacionShared.modu
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     FormsModule,
     ServiciosModule,
     PacientesModule,
-    AppRoutingModule,
     ConfagendamientoModule,
     ConfagendamientoExcepModule,
     CategoriasModule,
     AppRoutingModule,
     PaginacionSharedModule
-  ],
-  providers: [],
+    ServiciosPrincipalModule,
+    ReservasModule,
+    FichasModule,
+    AppRoutingModule
+    ],
+  providers: [ExcelService],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }

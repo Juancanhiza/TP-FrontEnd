@@ -6,22 +6,24 @@
 <div class="wrapper">
     <div class="row">
         <div class="col s12">
-            <h4 class="center-align">Configuración de horarios de atención (excepciones)</h4>
+            <h4 class="center-align hide-on-small-and-down">Configuración de horarios de atención (excepciones)</h4>
+            <h5 class="center-align hide-on-med-and-up">Configuración de horarios de atención (excepciones)</h5>
         </div>
         <div class="container">
-            <div class="col s6">
+            <div class="col s12 m6">
                 <label for="selectMedicos">Médico</label>
-                <select id='selectMedicos' class="browser-default" name='medicos'>
+                <select id='selectMedicos' name='medicos'>
                     <option value="-1" disabled selected>Seleccione</option>
                     <option *ngFor="let i of medicos" value="{{i.idPersona}}">{{i.nombre}} {{i.apellido}}</option>
                 </select>
             </div>
-            <div class="input-field col s6">
+            <div class="input-field col s12 m6">
                 <input type="text" id='fecha' class="datepicker">
                 <label for="fecha">Fecha</label>
             </div>
             <div class="col s12">
-                <a (click)='filter()' class="waves-effect waves-light btn right disagree" style="margin:4px;"><i class="material-icons left">search</i>Buscar</a>
+                <a (click)='filter()' class="waves-effect waves-light btn right disagree" style="margin:4px;"><i
+                        class="material-icons left">search</i>Buscar</a>
                 <a (click)='clearFilter()' class="waves-effect waves-light btn right agree" style="margin:4px;">Limpiar</a>
             </div>
         </div>
@@ -37,7 +39,12 @@
                 </colgroup>
                 <thead>
                     <tr>
-                        <th *ngFor="let i of tableHeaders">{{ i }}</th>
+                        <th>Médico</th>
+                        <th class="hide-on-small-and-down">Desde</th>
+                        <th class="hide-on-small-and-down">Hasta</th>
+                        <th>Fecha</th>
+                        <th class="hide-on-small-and-down">Atenderá</th>
+                        <th>Acciones</th>
                     </tr>
                 </thead>
 
@@ -45,14 +52,22 @@
 
                     <tr *ngFor="let i of data; index as j">
                         <td>{{ i.idEmpleado.nombre }} {{ i.idEmpleado.apellido }}</td>
-                        <td>{{ i.horaApertura }} hs.</td>
-                        <td>{{ i.horaCierre }} hs.</td>
+                        <td class="hide-on-small-and-down">{{ i.horaApertura }} hs.</td>
+                        <td class="hide-on-small-and-down">{{ i.horaCierre }} hs.</td>
                         <td>{{ i.fecha }}</td>
-                        <td>{{ i.flagEsHabilitar }}</td>
+                        <td class="hide-on-small-and-down">{{ i.flagEsHabilitar }}</td>
                         <td>
-                            <a [routerLink]="['/horario-atencion-excep-conf/edit', i.idHorarioExcepcion]" title="Editar"><i class="material-icons" style="color:#FFC107">mode_edit</i></a>
-                            <a href='#modal_delete' (click)="saveDeleteRecord(i.idHorarioExcepcion, j)" title="Eliminar" class="modal-trigger"><i class="material-icons"
-                                    style="color:#F44336">delete</i></a>
+                            <a [routerLink]="['/horario-atencion-excep-conf/edit', i.idHorarioExcepcion]" title="Editar">
+                                <i class="material-icons hide-on-small-and-down" style="color:#FFC107">mode_edit</i>
+                                <i class="tiny material-icons hide-on-med-and-up" style="color:#FFC107">mode_edit</i>
+                            </a>
+                            <a href='#modal_delete' (click)="saveDeleteRecord(i.idHorarioExcepcion, j)" title="Eliminar" class="modal-trigger">
+                                <i class="material-icons hide-on-small-and-down" style="color:#F44336">delete</i>
+                                <i class="tiny material-icons hide-on-med-and-up" style="color:#F44336">delete</i>
+                            </a>
+                            <a href='#modal_detail' (click)="saveDetail(i)" title="Ver detalles" class="modal-trigger">
+                                <i class="tiny material-icons hide-on-med-and-up" style="color:#371777">details</i>
+                            </a>
                         </td>
                     </tr>
                 </tbody>
@@ -82,5 +97,20 @@
     <div class="modal-footer">
         <a class="modal-close waves-effect waves-green btn disagree" style="margin:4px;">Cancelar</a>
         <a (click)='deleteRecord()' class="modal-close waves-effect waves-green btn agree" style="margin:4px;">Eliminar</a>
+    </div>
+</div>
+<div id="modal_detail" class="modal">
+    <div class="modal-content">
+        <h5>Detalles</h5>
+        <blockquote>
+            <p> <strong>Médico</strong> {{detail.medico}}</p>
+            <p><strong>Fecha:</strong> {{detail.tiempo}}</p>
+            <p> <strong>Día:</strong> {{detail.dia}}</p>
+            <p><strong>Desde:</strong> {{detail.desde}}</p>
+            <p><strong>Hasta:</strong> {{detail.hasta}}</p>
+        </blockquote>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close waves-effect waves-green btn agree" style="margin:4px;">Cerrar</a>
     </div>
 </div>

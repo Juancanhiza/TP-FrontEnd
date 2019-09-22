@@ -1,0 +1,26 @@
+a {
+    cursor: pointer;
+}
+
+.input-field input[type=text]:focus+label {
+    color: #0085ad !important;
+}
+
+.input-field input[type=text]:focus {
+    border-bottom: 1px solid #0085ad !important;
+    box-shadow: 0 1px 0 0 #0085ad !important;
+}
+
+.input-field .prefix.active {
+    color: #0085ad !important;
+}
+
+select {
+    border: none !important;
+    border-bottom: 1px solid #9e9e9e !important;
+    margin-top: -5px;
+}
+
+.btn {
+    background-color: #00205b !important;
+}

@@ -3,12 +3,10 @@ a {
 }
 
 .wrapper {
-    margin: 16px;
+    margin: 24px;
 }
 
-.agregar,
-.nav-wrapper,
-.collapsible-header {
+.agregar {
     background: #0085ad;
 }
 
@@ -54,4 +52,8 @@ a {
 
 .disagree {
     background: #0085ad !important;
+}
+
+blockquote {
+    border-left: 5px solid #00205b;
 }

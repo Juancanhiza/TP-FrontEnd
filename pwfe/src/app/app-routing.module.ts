@@ -4,6 +4,11 @@ import { SubcategoriaComponent } from './subcategoria/subcategoria.component';
 import { PacientesComponent } from './pacientes/pacientes-list/pacientes.component';
 
 const appRoutes: Routes = [
+  {
+    path: '', 
+    redirectTo: 'reservas', 
+    pathMatch: 'full'
+  },
   { path: 'subcategorias', component:SubcategoriaComponent },
   //{ path: 'pacientes', component:PacientesComponent },
 ];

@@ -38,8 +38,15 @@ export class ConfagendamientoExcepListComponent implements OnInit, AfterViewInit
   page = 1;
   limit = 10;
 
+  detail = {
+    dia: '',
+    medico: '',
+    desde: '',
+    hasta: '',
+    tiempo: ''
+  }
+
   constructor(private api: ConfagendamientoExcepService) { }
-  tableHeaders = ['Médico', 'Desde', 'Hasta', 'Fecha', 'Atenderá', 'Acciones'];
   ngOnInit() {
     this.getAgendamientosConfRango();
     this.getMedicos();
@@ -150,6 +157,10 @@ export class ConfagendamientoExcepListComponent implements OnInit, AfterViewInit
     this.api.getMedicos().subscribe(
       data => {
         this.medicos = data.lista;
+        setTimeout(()=>{
+          $('#selectMedicos').formSelect();
+        },2000)
+        $('select').formSelect();
       },
       error => {
         console.log(error);
@@ -193,6 +204,13 @@ export class ConfagendamientoExcepListComponent implements OnInit, AfterViewInit
   onPrev(): void {
     this.page--;
     this.getAgendamientosConfRango();
+
+  saveDetail(el){
+    this.detail.medico = el.idEmpleado.nombre + " " + el.idEmpleado.apellido;
+    this.detail.desde = el.horaApertura;
+    this.detail.hasta = el.horaCierre;
+    this.detail.tiempo = el.fecha;
+    this.detail.dia = el.fecha;
   }
 
 }

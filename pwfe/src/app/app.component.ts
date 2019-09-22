@@ -11,8 +11,11 @@ export class AppComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     $('.sidenav').sidenav();
     $("#menu").click(function () {
-      $('.sidenav').sidenav('open');
+      $('#slide-out').sidenav('open');
       $('.collapsible').collapsible();
+    });
+    $("#menu-mobile").click(function () {
+      $('#slide-out-mobile').sidenav('open');
     });
   }
   ngOnInit() {

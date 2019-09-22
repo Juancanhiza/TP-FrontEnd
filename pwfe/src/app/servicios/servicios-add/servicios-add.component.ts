@@ -24,7 +24,6 @@ export class ServiciosAddComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    $('select').formSelect();
   }
 
   getSubCategorias = () => {
@@ -32,6 +31,9 @@ export class ServiciosAddComponent implements OnInit {
     this.service.getSubcategorias().subscribe(
       data => {
         that.subcategorias = data.lista;
+        setTimeout(()=>{
+          $('select').formSelect(); 
+        },2000);
       },
       error => {
         console.log(error);

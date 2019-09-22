@@ -25,7 +25,13 @@ export class ConfagendamientoListComponent implements OnInit {
     id: '',
     pos: ''
   }
-
+  detail = {
+    dia: '',
+    medico: '',
+    desde: '',
+    hasta: '',
+    tiempo: ''
+  }
   filtros = {
     doc: '',
     dia: ''
@@ -38,7 +44,7 @@ export class ConfagendamientoListComponent implements OnInit {
   limit = 10;
 
   constructor(private api: ConfagendamientoService) { }
-  tableHeaders = ['Día', 'Médico', 'Desde', 'Hasta', 'Tiempo de consulta', 'Acciones'];
+
   ngOnInit() {
     this.getAgendamientosConfRango();
     this.getMedicos();
@@ -56,6 +62,7 @@ export class ConfagendamientoListComponent implements OnInit {
       dismissible: false
     });
     $('.collapsible').collapsible();
+    $('#selectDias').formSelect();
   }
   getAgendamientosConf = () => {
     var that = this;
@@ -116,6 +123,9 @@ export class ConfagendamientoListComponent implements OnInit {
     this.api.getMedicos().subscribe(
       data => {
         this.medicos = data.lista;
+        setTimeout(()=>{
+          $('#selectMedicos').formSelect();
+        },2000);
       },
       error => {
         console.log(error);
@@ -159,5 +169,12 @@ export class ConfagendamientoListComponent implements OnInit {
   onPrev(): void {
     this.page--;
     this.getAgendamientosConfRango();
+
+  saveDetail(el){
+    this.detail.medico = el.idEmpleado.nombre + " " + el.idEmpleado.apellido;
+    this.detail.desde = el.horaApertura;
+    this.detail.hasta = el.horaCierre;
+    this.detail.tiempo = el.intervaloMinutos;
+    this.detail.dia = el.diaCadena;
   }
 }
