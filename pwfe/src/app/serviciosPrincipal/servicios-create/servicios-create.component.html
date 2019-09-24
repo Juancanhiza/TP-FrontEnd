@@ -64,17 +64,71 @@
     </div>
     <div class="col s12 m6">
       <div class="input-field col s12">
-        <select>
-          <option value="" selected>Choose your option</option>
-          <option value="1">Option 1</option>
-          <option value="2">Option 2</option>
-          <option value="3">Option 3</option>
+
+        <select id="selectCategorias" (change)="obtenerIdCategoria($event.target.value)">
+            <option value="" disabled selected>Selecione una categoria</option>
+          <option *ngFor="let i of categorias" [value]="i.idCategoria">{{i.descripcion}}</option>
         </select>
-        <label>Materialize Select</label>
+        <label>Categorias</label>
+
       </div>
     </div>
     <div class="col s12 m6">
-
+      <div class="input-field col s12">
+        <select id="selectSubCategorias" (change)="obtenerIdSubcategoria($event.target.value)">
+          <option value="" disabled selected>Selecione una categoria</option>
+          <option *ngFor="let i of subcategorias"  [value]="i.idTipoProducto">{{i.descripcion}}</option>
+        </select>
+        <label>Subcategorias</label>
+      </div>
     </div>
+    <div class="col s12 m6">
+        <div class="input-field col s12">
+          <select id="selectTipoServicio" (change)="obtenerIdTipoServicio($event.target.value)">
+            <option value=""  selected>Selecione una subcategoria</option>
+            <option *ngFor="let i of tipoServicio"  [value]="i.idPresentacionProducto">{{i.descripcionGeneral}}</option>
+          </select>
+          <label>Tipo de Servicio</label>
+        </div>
+    </div>
+    <div class="col s12 m6">
+        <div class="input-field col s12 ">
+            <input [(ngModel)]="precioVenta" value="100" id="precioVenta" type="text" disabled class="validate">
+            <label for="precioVenta"></label>
+        </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col s12 m4">
+      <div class="input-field col s12 ">
+        <input [(ngModel)]="cantidad" id="cantidad" min="1" type="number" class="validate">
+        <label for="cantidad">Cantidad</label>
+      </div>
+    </div>
+      <div class="col s12 m6">
+          <a (click)='agregarDetalle()' class="waves-effect waves-light btn right agree" style="margin:4px;">Agregar Detalle</a>
+      </div>
+  </div>
+  <div class="row">
+      <table class="striped">
+          <thead>
+            <tr><!-- terminar tabla eliminar y luego post de cabecera y post de detalle-->
+              <th *ngFor="let i of tableHeadersDetalle">
+                {{ i }}
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let i of arrayDetalle; index as j">
+              <th>{{ i.idPresentacionProducto }}</th>
+              <th>{{i.descripcionGeneral}}</th>
+              <th>{{ precioVenta }}</th>
+              <th>{{ cantidad }}</th>
+              <th>{{ total }}</th>
+              <th><a (click)="eliminarDetalle()">Eliminar</a></th>
+              <th></th>
+            </tr>
+          </tbody>
+        </table>
   </div>
 </div>
