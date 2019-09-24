@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
@@ -14,6 +14,15 @@ export class CategoriasService {
   }
   getCategoria(id): Observable<any> {
     return this.http.get('/stock-pwfe/categoria/' + id, {headers: this.hhtpHeaders});
+  }
+  
+  getCategoriaRango(element): Observable<any> {
+    var params = new HttpParams();
+    params = params.append('inicio', JSON.stringify(element.inicio));
+    params = params.append('cantidad', JSON.stringify(element.cantidad));
+    params = params.append('orderBy', 'idCategoria');
+    params = params.append('orderDir', 'asc');
+    return this.http.get('/stock-pwfe/categoria/', { params: params});
   }
 
 

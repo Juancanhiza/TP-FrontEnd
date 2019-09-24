@@ -14,6 +14,15 @@ export class ConfagendamientoExcepService {
     return this.http.get('/stock-pwfe/horarioExcepcion', {headers: this.hhtpHeaders});
   }
 
+  getAgendamientosConfRango(element): Observable<any> {
+    var params = new HttpParams();
+    params = params.append('inicio', JSON.stringify(element.inicio));
+    params = params.append('cantidad', JSON.stringify(element.cantidad));
+    //params = params.append('orderBy', 'fechaCadena');
+    //params = params.append('orderDir', 'asc');
+    return this.http.get('/stock-pwfe/horarioExcepcion/', { params: params});
+  }
+
   getAgendamientoConf(id): Observable<any> {
     return this.http.get('/stock-pwfe/horarioExcepcion/' + id, {headers: this.hhtpHeaders});
   }

@@ -1,0 +1,62 @@
+<div class="fixed-action-btn">
+    <a [routerLink]="['/comision/add']" class="btn-floating btn-large agregar">
+        <i class="large material-icons">add</i>
+    </a>
+</div>
+<div class="wrapper">
+    <div class="row">
+        <div class="col s12">
+            <h4 class="center-align hide-on-small-and-down">Comisiones</h4>
+            <h5 class="center-align hide-on-med-and-up">Comisiones</h5>
+        </div>
+        <div class="col s12">
+            <table class="striped centered">
+                <colgroup>
+                    <col span="1" style="width: 35%;">
+                    <col span="1" style="width: 35%;">
+                    <col span="1" style="width: 15%;">
+                    <col span="1" style="width: 15%;">
+                </colgroup>
+                <thead>
+                    <tr>
+                        <th>Servicio</th>
+                        <th>Médico</th>
+                        <th>Comision</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+
+                <tbody>
+
+                    <tr *ngFor="let i of data; index as j">
+                        <td>{{ i.idPresentacionProducto.nombre }}</td>
+                        <td *ngIf='i.idEmpleado != null; else block'>{{ i.idEmpleado.nombre }} {{ i.idEmpleado.apellido }}</td>
+                        <ng-template #block><td></td></ng-template>
+                        <td>{{ i.porcentajeComision }}</td>
+                        <td>
+                            <a [routerLink]="['/comision/edit', i.idComisionEmpleado]" title="Editar">
+                                <i class="material-icons hide-on-small-and-down" style="color:#FFC107">mode_edit</i>
+                                <i class="tiny material-icons hide-on-med-and-up" style="color:#FFC107">mode_edit</i>
+                            </a>
+                            <a href='#modal_delete' (click)="saveDeleteRecord(i.idComisionEmpleado, j)" title="Eliminar" class="modal-trigger">
+                                <i class="material-icons hide-on-small-and-down" style="color:#F44336">delete</i>
+                                <i class="tiny material-icons hide-on-med-and-up" style="color:#F44336">delete</i>
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="modal_delete" class="modal">
+    <div class="modal-content">
+        <h4>¿Eliminar registro?</h4>
+        <p class="red-text">Esta acción no puede deshacerse</p>
+    </div>
+    <div class="modal-footer">
+        <a class="modal-close waves-effect waves-green btn disagree" style="margin:4px;">Cancelar</a>
+        <a (click)='deleteRecord()' class="modal-close waves-effect waves-green btn agree" style="margin:4px;">Eliminar</a>
+    </div>
+</div>

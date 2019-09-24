@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -16,6 +16,14 @@ export class ApiService {
   }
   getSubCategorias(): Observable<any> {
     return this.http.get('/stock-pwfe/tipoProducto', {headers: this.hhtpHeaders});
+  }
+  getSubCategoriasRango(element): Observable<any> {
+    var params = new HttpParams();
+    params = params.append('inicio', JSON.stringify(element.inicio));
+    params = params.append('cantidad', JSON.stringify(element.cantidad));
+    params = params.append('orderBy', 'descripcion');
+    params = params.append('orderDir', 'asc');
+    return this.http.get('/stock-pwfe/tipoProducto/', { params: params});
   }
   getServicios(): Observable<any> {
     return this.http.get('/stock-pwfe/presentacionProducto', {headers: this.hhtpHeaders});

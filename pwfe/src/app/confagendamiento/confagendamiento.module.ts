@@ -8,6 +8,7 @@ import { ConfagendamientoEditComponent } from './confagendamiento-edit/confagend
 import { ConfagendamientoDetailComponent } from './confagendamiento-detail/confagendamiento-detail.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { PaginacionSharedModule } from '../paginacionShared/paginacionShared.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { FormsModule } from '@angular/forms';
   imports: [
     CommonModule,
     HttpClientModule,
-    FormsModule,    
+    FormsModule,
+    PaginacionSharedModule,    
     ConfagendamientoRoutingModule
   ]
 })

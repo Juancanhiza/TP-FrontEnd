@@ -9,16 +9,18 @@ import { PacientesModule } from './pacientes/pacientes.module';
 import { ConfagendamientoModule } from './confagendamiento/confagendamiento.module';
 import { ConfagendamientoExcepModule } from './confagendamiento-excep/confagendamiento-excep.module';
 import { CategoriasModule } from './categorias/categorias.module';
+import { PaginacionSharedModule } from './paginacionShared/paginacionShared.module';
 import { ServiciosPrincipalModule } from './serviciosPrincipal/servicios-principal.module';
 import { ReservasModule } from './reservas/reservas.module';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ExcelService } from './servicios/servicios-list/service/excel.service';
 import { FichasModule } from './fichas/fichas.module';
+import { ComisionesModule } from './comisiones/comisiones.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    SubcategoriaComponent,
+    SubcategoriaComponent
   ],
   imports: [
     BrowserModule,
@@ -26,15 +28,18 @@ import { FichasModule } from './fichas/fichas.module';
     FormsModule,
     ServiciosModule,
     PacientesModule,
-    AppRoutingModule,
     ConfagendamientoModule,
     ConfagendamientoExcepModule,
     CategoriasModule,
-    AppRoutingModule,
+    PaginacionSharedModule,
     ServiciosPrincipalModule,
     ReservasModule,
-    FichasModule  ],
+    FichasModule,
+    AppRoutingModule,
+    ComisionesModule
+    ],
   providers: [ExcelService],
+  
   bootstrap: [AppComponent]
 })
 export class AppModule { }
