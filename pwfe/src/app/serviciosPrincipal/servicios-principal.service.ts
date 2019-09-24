@@ -9,7 +9,7 @@ import { Observable } from 'rxjs';
 
 export class ServiciosPrincipalService {
 
-  httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json' });
+  httpHeaders = new HttpHeaders({ 'Content-Type': 'application/json'});
 
   constructor(private http: HttpClient) { }
 
@@ -17,9 +17,12 @@ export class ServiciosPrincipalService {
     return this.http.get('/stock-pwfe/servicio', { headers: this.httpHeaders });
   }
 
-  getSubCategorias(): Observable<any> {
-
+  getSubCategorias1(): Observable<any> {
     return this.http.get('/stock-pwfe/tipoProducto/', {headers: this.httpHeaders});
+  }
+
+  getCategorias(): Observable<any> {
+    return this.http.get('/stock-pwfe/categoria/', {headers: this.httpHeaders});
   }
 
   getMedicos(): Observable<any> {
@@ -48,11 +51,11 @@ export class ServiciosPrincipalService {
 
   getFicha(idCliente,idEmpleado): Observable<any> {
     const parametros = {
-        idEmpleado: { 
+        idEmpleado: {
           idPersona: Number.parseInt(idEmpleado)
         },
-        idCliente: { 
-          idPersona: Number.parseInt(idCliente) 
+        idCliente: {
+          idPersona: Number.parseInt(idCliente)
         }
     };
 
@@ -62,7 +65,101 @@ export class ServiciosPrincipalService {
     return this.http.get('/stock-pwfe/fichaClinica/', {params});
   }
 
+  getSubCategorias(idCat): Observable<any> {
+
+    const parametros = {
+        idCategoria: {
+          idCategoria: Number.parseInt(idCat, 10)
+        }
+    };
+
+    let params = new HttpParams();
+    params = params.append('ejemplo', JSON.stringify(parametros));
+
+    return this.http.get('/stock-pwfe/tipoProducto/', {params:params});
+  }
+
+  getTipoServicio(idSub): Observable<any> {
 
 
+    const parametros = {
+        idProducto: {
+          idTipoProducto: {
+            idTipoProducto:
+              Number.parseInt(idSub, 10)
+          }
+        }
+    };
+
+    let params = new HttpParams();
+    params = params.append('ejemplo', JSON.stringify(parametros));
+
+    return this.http.get('/stock-pwfe/presentacionProducto/', {params});
+  }
+
+  getPresentacion(idTipo): Observable<any> {
+
+    return this.http.get('/stock-pwfe/presentacionProducto/'+idTipo, {headers: this.httpHeaders});
+  }
+
+  getPrecioVenta(idProductSer): Observable<any> {
+
+    const parametros = {
+      idPresentacionProductoTransient: Number.parseInt('4', 10)
+    };
+
+    console.log(idProductSer);
+
+    let h = new HttpHeaders();
+    h = h.append('Content-Type','application/json');
+    h = h.append('usuario','gustavo');
+
+    let params = new HttpParams();
+    params = params.append('ejemplo', JSON.stringify(parametros));
+
+    return this.http.get('/stock-pwfe/existenciaProducto/', {headers:h ,params:params});
+  }
+
+  agregarDetalle(datos){
+
+    const parametros = {
+      idPresentacionProductoTransient: Number.parseInt('4', 10)
+    };
+
+    //console.log(idProductSer);
+
+    let h = new HttpHeaders();
+    h = h.append('Content-Type','application/json');
+    h = h.append('usuario','gustavo');
+
+    let params = new HttpParams();
+    params = params.append('ejemplo', JSON.stringify(parametros));
+
+    return this.http.get('/stock-pwfe/existenciaProducto/', {headers:h ,params:params});
+
+
+  }
+
+  postDetalle(idServicio,datos){
+    let h = new HttpHeaders();
+    h = h.append('Content-Type','application/json');
+    h = h.append('usuario','gustavo');
+    return this.http.post('/stock-pwfe/servicio/'+idServicio+'/detalle', datos, {headers:h});
+  }
+
+  guardarServicio(datos) {
+
+    const parametros = {
+      idFichaClinica: {
+        idFichaClinica: Number.parseInt(datos.idFichaClinica, 10)
+      },
+      observacion: datos.obs
+    };
+    var h = new HttpHeaders();
+    h = h.append('Content-Type','application/json');
+    h = h.append('usuario','ana');
+
+    return this.http.post('/stock-pwfe/servicio', parametros,{headers: h });
+  }
 
 }
