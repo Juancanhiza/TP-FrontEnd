@@ -104,7 +104,7 @@ export class PacientesComponent implements OnInit, AfterViewInit {
     this.page--;
     this.getPacientesRango();
   }
-}
+
   saveDetail(el){
     this.detail.nombre = el.nombre;
     this.detail.apellido = el.apellido;

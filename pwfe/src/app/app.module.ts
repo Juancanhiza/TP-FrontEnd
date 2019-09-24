@@ -15,6 +15,7 @@ import { ReservasModule } from './reservas/reservas.module';
 import {NgxPaginationModule} from 'ngx-pagination';
 import { ExcelService } from './servicios/servicios-list/service/excel.service';
 import { FichasModule } from './fichas/fichas.module';
+import { ComisionesModule } from './comisiones/comisiones.module';
 
 @NgModule({
   declarations: [
@@ -30,12 +31,12 @@ import { FichasModule } from './fichas/fichas.module';
     ConfagendamientoModule,
     ConfagendamientoExcepModule,
     CategoriasModule,
-    AppRoutingModule,
-    PaginacionSharedModule
+    PaginacionSharedModule,
     ServiciosPrincipalModule,
     ReservasModule,
     FichasModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ComisionesModule
     ],
   providers: [ExcelService],
   

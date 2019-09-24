@@ -204,7 +204,7 @@ export class ConfagendamientoExcepListComponent implements OnInit, AfterViewInit
   onPrev(): void {
     this.page--;
     this.getAgendamientosConfRango();
-
+  }
   saveDetail(el){
     this.detail.medico = el.idEmpleado.nombre + " " + el.idEmpleado.apellido;
     this.detail.desde = el.horaApertura;
