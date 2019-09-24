@@ -32,7 +32,6 @@ export class ServiciosListComponent implements OnInit, AfterViewInit {
   page = 1;
   limit = 20;
 
-  constructor(private api: ServiciosService) { }
   constructor(private api: ServiciosService,private excelService:ExcelService) { }
   tableHeaders = ['Nombre', 'Subcategoría', 'Acciones'];
   ngOnInit() {

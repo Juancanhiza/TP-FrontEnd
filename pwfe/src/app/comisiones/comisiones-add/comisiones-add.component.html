@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="row">
+        <div class="col s12">
+            <h4 class="center-align">Agregar Comisión</h4>
+        </div>
+        <div class="input-field col s12">
+            <select id='servicios'>
+                <option *ngFor='let i of servicios' value="{{i.idPresentacionProducto}}">{{i.nombre}}</option>
+            </select>
+            <label>Tipo de Servicios</label>
+        </div>
+        <div class="input-field col s12">
+            <select id='medicos'>
+              <option *ngFor='let i of medicos' value="{{i.idPersona}}">{{i.nombre}} {{i.apellido}}</option>
+            </select>
+            <label>Médico (Opcional)</label>
+        </div>
+        <div class="input-field col s6">
+            <input placeholder="" id="comision" type="text">
+            <label for="comision">Comisión</label>
+        </div>
+        <div class="col s12">
+            <a (click)='post()' class="waves-effect waves-light btn right">Agregar</a>
+        </div>    
+    </div>
+</div>

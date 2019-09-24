@@ -144,6 +144,9 @@ export class SubcategoriaComponent implements OnInit {
         that.data = data.lista;
         this.total = data.totalDatos;
         this.loading=false;
+      }
+    )
+  }
   updateSubCategoria(element) { 
     this.api.updateSubCategoria(element).subscribe(
       data => {
