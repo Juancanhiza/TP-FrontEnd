@@ -93,7 +93,7 @@
                             <a (click)="saveDetail(i)" href='#modal_detail' title="Ver detalles" class="modal-trigger">
                                 <i class="tiny material-icons hide-on-med-and-up" style="color:#371777">details</i>
                             </a>
-                            <a title="Agregar Servicio">
+                            <a title="Agregar Servicio" [routerLink]="['/serviciosPrincipal/', i.idCliente.idPersona,i.idEmpleado.idPersona, 'add' ]" >
                                 <i class="material-icons hide-on-small-and-down" style="color:#0085ad">local_hospital</i>
                                 <i class="tiny material-icons hide-on-med-and-up" style="color:#0085ad">local_hospital</i>
                             </a>
