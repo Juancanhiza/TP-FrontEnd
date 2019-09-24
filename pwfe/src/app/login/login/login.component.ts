@@ -1,18 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { first } from 'rxjs/operators';
 
 import { AuthenticationService } from '../services';
 
-@Component({templateUrl: 'login.component.html'})
+@Component({templateUrl: 'login.component.html',
+styleUrls: ['./login.component.css']})
 export class LoginComponent implements OnInit {
     loginForm: FormGroup;
     loading = false;
     submitted = false;
     returnUrl: string;
     error = '';
-
+    bkUrl = {};   
     constructor(
         private formBuilder: FormBuilder,
         private route: ActivatedRoute,
@@ -20,6 +20,7 @@ export class LoginComponent implements OnInit {
         private authenticationService: AuthenticationService) {}
 
     ngOnInit() {
+        this.bkUrl = this.getBkUrl();
         this.loginForm = this.formBuilder.group({
             username: ['', Validators.required],
             password: ['', Validators.required]
@@ -67,5 +68,12 @@ export class LoginComponent implements OnInit {
                     this.error = error;
                     this.loading = false;
                 });
+    }
+    getBkUrl() {
+        const styles = {
+            'background-image': 'url(assets/images/background.png)'
+        };
+        console.log(styles);
+        return styles;
     }
 }
