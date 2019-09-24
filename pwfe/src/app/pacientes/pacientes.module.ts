@@ -8,6 +8,7 @@ import { PacientesEditComponent } from './pacientes-edit/pacientes-edit.componen
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { PaginacionSharedModule } from '../paginacionShared/paginacionShared.module';
+import { SharedHomeModule } from '../home/shared-home/shared-home.module';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { PaginacionSharedModule } from '../paginacionShared/paginacionShared.mod
     HttpClientModule,
     PacientesRoutingModule,
     FormsModule,
-    PaginacionSharedModule
+    PaginacionSharedModule,
+    SharedHomeModule
   ]
 })
 export class PacientesModule { }

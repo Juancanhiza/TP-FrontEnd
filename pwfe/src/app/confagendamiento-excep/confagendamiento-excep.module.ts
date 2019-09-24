@@ -6,6 +6,7 @@ import { ConfagendamientoExcepAddComponent } from './confagendamiento-excep-add/
 import { ConfagendamientoExcepListComponent } from './confagendamiento-excep-list/confagendamiento-excep-list.component';
 import { ConfagendamientoExcepEditComponent } from './confagendamiento-excep-edit/confagendamiento-excep-edit.component';
 import { PaginacionSharedModule } from '../paginacionShared/paginacionShared.module';
+import { SharedHomeModule } from '../home/shared-home/shared-home.module';
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import { PaginacionSharedModule } from '../paginacionShared/paginacionShared.mod
   imports: [
     CommonModule,
     ConfagendamientoExcepRoutingModule,
-    PaginacionSharedModule
+    PaginacionSharedModule,
+    SharedHomeModule
   ]
 })
 export class ConfagendamientoExcepModule { }

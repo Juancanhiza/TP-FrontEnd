@@ -9,6 +9,7 @@ import { ConfagendamientoDetailComponent } from './confagendamiento-detail/confa
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { PaginacionSharedModule } from '../paginacionShared/paginacionShared.module';
+import { SharedHomeModule } from '../home/shared-home/shared-home.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,9 @@ import { PaginacionSharedModule } from '../paginacionShared/paginacionShared.mod
     HttpClientModule,
     FormsModule,
     PaginacionSharedModule,    
-    ConfagendamientoRoutingModule
+    ConfagendamientoRoutingModule,    
+    ConfagendamientoRoutingModule,
+    SharedHomeModule
   ]
 })
 export class ConfagendamientoModule { }
