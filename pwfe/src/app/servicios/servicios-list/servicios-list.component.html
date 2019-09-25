@@ -1,17 +1,14 @@
-<div class="fixed-action-btn hide-on-small-and-down">
+<app-home></app-home>
+<div class="fixed-action-btn">
     <a [routerLink]="['/servicio-admin/add']" class="btn-floating btn-large agregar">
         <i class="large material-icons">{{icon}}</i>
     </a>
-</div>
-<div class="fixed-action-btn hide-on-med-and-up">
-  <ul>
-    <li>
-    <a [routerLink]="['/servicio-admin/add']" class="btn-floating btn agregar">
-        <i class="large material-icons">{{icon}}</i>
-    </a></li>
-    <li><a class="btn-floating yellow darken-1" (click)="captureScreen()" title="Descargar pdf"><i class="material-icons">description</i></a></li>
-    <li><a class="btn-floating green" (click)="exportAsXLSX()" title="Descargar excel"><i class="material-icons">description</i></a></li>
-  </ul>
+    <ul>
+        <li><a class="btn-floating yellow darken-1" (click)="captureScreen()" title="Descargar pdf"><i
+                    class="material-icons">description</i></a></li>
+        <li><a class="btn-floating green" (click)="exportAsXLSX()" title="Descargar excel"><i
+                    class="material-icons">description</i></a></li>
+    </ul>
 </div>
 <div class="container">
     <div class="row">
@@ -32,8 +29,10 @@
             </select>
         </div>
         <div class="col s12">
-            <a (click)='getBySubcategoria()' class="waves-effect waves-light btn right azul-claro" style="margin:4px;"><i class="material-icons left">search</i>Buscar</a>
-            <a (click)='clearFilter()' class="waves-effect waves-light btn right azul-marino" style="margin:4px;">Limpiar</a>
+            <a (click)='getBySubcategoria()' class="waves-effect waves-light btn right azul-claro"
+                style="margin:4px;"><i class="material-icons left">search</i>Buscar</a>
+            <a (click)='clearFilter()' class="waves-effect waves-light btn right azul-marino"
+                style="margin:4px;">Limpiar</a>
         </div>
         <div class="col s12">
             <table class="striped" id="contentToConvert">
@@ -56,7 +55,8 @@
                         <td>
                             <a [routerLink]="['/servicio-admin/edit', i.idPresentacionProducto]" title="Editar"><i
                                     class="material-icons" style="color:#FFC107">mode_edit</i></a>
-                            <a href='#modal_delete' (click)="saveDeleteRecord(i.idPresentacionProducto, j)" title="Eliminar" class="modal-trigger"><i class="material-icons"
+                            <a href='#modal_delete' (click)="saveDeleteRecord(i.idPresentacionProducto, j)"
+                                title="Eliminar" class="modal-trigger"><i class="material-icons"
                                     style="color:#F44336">delete</i></a>
                         </td>
                     </tr>
@@ -64,14 +64,8 @@
             </table>
 
             <div class="center-align" style="margin: 16px">
-                <app-paginacion
-                    (goPage)="goToPage($event)"
-                    (goNext)="onNext()"
-                    (goPrev)="onPrev()"
-                    [pagesToShow]="3"
-                    [page]="page"
-                    [perPage]="limit"
-                    [count]="total">
+                <app-paginacion (goPage)="goToPage($event)" (goNext)="onNext()" (goPrev)="onPrev()" [pagesToShow]="3"
+                    [page]="page" [perPage]="limit" [count]="total">
                 </app-paginacion>
             </div>
 
@@ -86,6 +80,7 @@
     </div>
     <div class="modal-footer">
         <a class="modal-close waves-effect waves-green btn disagree" style="margin:4px;">Cancelar</a>
-        <a (click)='deleteRecord()' class="modal-close waves-effect waves-green btn agree" style="margin:4px;">Eliminar</a>
+        <a (click)='deleteRecord()' class="modal-close waves-effect waves-green btn agree"
+            style="margin:4px;">Eliminar</a>
     </div>
 </div>

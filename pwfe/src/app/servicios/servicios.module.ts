@@ -10,6 +10,7 @@ import { ServiciosDetailComponent } from './servicios-detail/servicios-detail.co
 import { ServiciosFilterPipe } from './servicios-filter.pipe';
 import { HttpClientModule } from '@angular/common/http';
 import { PaginacionSharedModule } from '../paginacionShared/paginacionShared.module';
+import { SharedHomeModule } from '../home/shared-home/shared-home.module';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { PaginacionSharedModule } from '../paginacionShared/paginacionShared.mod
     FormsModule,
     HttpClientModule,
     ServiciosRoutingModule,
-    PaginacionSharedModule
+    PaginacionSharedModule,
+    SharedHomeModule
   ]
 })
 export class ServiciosModule { }

@@ -69,7 +69,7 @@ export class ServiciosListComponent implements OnInit, AfterViewInit {
 
   getSubcategorias = () => {
     const context = this;
-    this.api.getSubCategorias().subscribe(
+    this.api.getSubCategorias1().subscribe(
       (data) => {
         context.subcategorias = data.lista;
         setTimeout( () => {
