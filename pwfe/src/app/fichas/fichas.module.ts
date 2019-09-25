@@ -7,7 +7,6 @@ import { FichasAddComponent } from './fichas-add/fichas-add.component';
 import { FichasEditComponent } from './fichas-edit/fichas-edit.component';
 import { HttpClientModule } from '@angular/common/http';
 import { SharedHomeModule } from '../home/shared-home/shared-home.module';
->>>>>>> pwfe/src/app/fichas/fichas.module.ts
 
 
 @NgModule({

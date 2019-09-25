@@ -18,15 +18,14 @@ import { FichasModule } from './fichas/fichas.module';
 import { ComisionesModule } from './comisiones/comisiones.module';
 import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login/login.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BasicAuthInterceptor, ErrorInterceptor, fakeBackendProvider } from './login/helpers';
 import { SharedHomeModule } from './home/shared-home/shared-home.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ArchivoComponent,
-    SubcategoriaComponent
+    SubcategoriaComponent,
     LoginComponent,
   ],
   imports: [
