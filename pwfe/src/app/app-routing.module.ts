@@ -14,7 +14,7 @@ import { ConfagendamientoExcepListComponent } from './confagendamiento-excep/con
 
 const appRoutes: Routes = [
  { path: 'login', component: LoginComponent },
- { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+ { path: '', redirectTo:'reservas', pathMatch: 'full', canActivate: [AuthGuard] },
  { path: 'subcategorias', component:SubcategoriaComponent, canActivate: [AuthGuard]  }
  /* { path: '', component: HomeComponent, canActivate: [AuthGuard] },
  { path: 'login', component: LoginComponent },
