@@ -1,5 +1,6 @@
 import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { FichasService } from '../fichas.service';
+import { HttpClient } from '@angular/common/http';
 declare var $: any;
 declare var M: any;
 @Component({
@@ -40,7 +41,7 @@ export class FichasListComponent implements OnInit, AfterViewInit{
     idFichaClinica: -1,
     observacion: ''
   }
-  constructor(private api: FichasService) {
+  constructor(private api: FichasService, private http: HttpClient) {
   }
   ngOnInit() {
     this.getMedicos();
@@ -226,6 +227,44 @@ export class FichasListComponent implements OnInit, AfterViewInit{
     this.detail.paciente = el.idCliente.nombre + " " + el.idCliente.apellido;
     this.detail.categoria = el.idTipoProducto.idCategoria.descripcion;
     this.detail.subcategoria = el.idTipoProducto.descripcion;
+  }
+
+  fileData: File = null;
+  previewUrl: any = null;
+  fileUploadProgress: string = null;
+  uploadedFilePath: string = null;
+
+
+  fileProgress(fileInput: any) {
+    this.fileData = <File>fileInput.target.files[0];
+    this.preview();
+  }
+
+  preview() {
+    // Show preview 
+    var mimeType = this.fileData.type;
+    if (mimeType.match(/image\/*/) == null) {
+      return;
+    }
+
+    var reader = new FileReader();
+    reader.readAsDataURL(this.fileData);
+    reader.onload = (_event) => {
+      this.previewUrl = reader.result;
+    }
+  }
+
+  onSubmit() {
+    let formData = new FormData();
+    formData.append('file', this.fileData);
+    formData.append('nombre', 'hola.png');
+    formData.append('idFichaClinica', this.edit.id + ""); 
+    console.log(formData);
+    this.http.post('stock-pwfe/fichaArchivo/archivo', formData)
+      .subscribe(res => {
+        console.log(res);
+        alert('SUCCESS !!');
+      })
   }
 //"java.lang.IllegalArgumentException: id to load is required for loading"
 }

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { SubcategoriaComponent } from './subcategoria/subcategoria.component';
 import { PacientesComponent } from './pacientes/pacientes-list/pacientes.component';
+import { ArchivoComponent } from './archivo/archivo.component';
 
 const appRoutes: Routes = [
   {
@@ -10,6 +11,7 @@ const appRoutes: Routes = [
     pathMatch: 'full'
   },
   { path: 'subcategorias', component:SubcategoriaComponent },
+  { path: 'archivo', component: ArchivoComponent}
   //{ path: 'pacientes', component:PacientesComponent },
 ];
 

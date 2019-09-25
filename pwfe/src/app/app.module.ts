@@ -16,10 +16,13 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { ExcelService } from './servicios/servicios-list/service/excel.service';
 import { FichasModule } from './fichas/fichas.module';
 import { ComisionesModule } from './comisiones/comisiones.module';
+import { ArchivoComponent } from './archivo/archivo.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
+    ArchivoComponent,
     SubcategoriaComponent
   ],
   imports: [
@@ -35,8 +38,9 @@ import { ComisionesModule } from './comisiones/comisiones.module';
     ServiciosPrincipalModule,
     ReservasModule,
     FichasModule,
+    HttpClientModule,
+    ComisionesModule,
     AppRoutingModule,
-    ComisionesModule
     ],
   providers: [ExcelService],
   
