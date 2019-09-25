@@ -46,7 +46,6 @@ export class CategoriaListComponent implements OnInit, AfterViewInit {
     var that = this;
     this.api.getCategorias().subscribe(
       data => {
-        console.log(data.lista);
         that.data = data.lista;
       },
       error => {
@@ -111,4 +110,26 @@ export class CategoriaListComponent implements OnInit, AfterViewInit {
     this.getCategoriaRango();
   }
 
+  filter(){
+    var nombre = $('#buscar').val();
+    if(nombre != ''){
+      var el = {
+        descripcion: nombre
+      }
+      this.api.filter(el).subscribe(
+        data => {
+          this.data= data.lista;
+          console.log(this.data);
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    }
+  }
+
+  clear(){
+    this.data = [];
+    this.getCategoriaRango();
+  }
 }

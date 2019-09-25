@@ -39,4 +39,12 @@ export class CategoriasService {
     return this.http.delete('/stock-pwfe/categoria/' + id, {headers: this.hhtpHeaders});
   }
 
+  filter(ej): Observable<any> {
+    var params = new HttpParams();
+    params = params.append('ejemplo', JSON.stringify(ej));
+    params = params.append('like', 'S');
+
+    return this.http.get('/stock-pwfe/categoria', {params: params});
+  }
+
 }

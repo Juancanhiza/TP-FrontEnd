@@ -112,4 +112,28 @@ export class PacientesComponent implements OnInit, AfterViewInit {
     this.detail.telefono = el.telefono;
     this.detail.cedula = el.cedula;
   }
+
+  filter(){
+    var nombre = $('#buscar').val();
+    console.log(nombre);
+    if(nombre != ''){
+      var el = {
+        nombre: nombre
+      }
+      this.api.filter(el).subscribe(
+        data => {
+          this.data= data.lista;
+          console.log(this.data);
+        },
+        error => {
+          console.log(error);
+        }
+      )
+    }
+  }
+
+  clear(){
+    this.data = [];
+    this.getPacientesRango();
+  }
 }

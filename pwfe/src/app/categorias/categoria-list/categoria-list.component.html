@@ -1,35 +1,23 @@
 <app-home></app-home>
 <div class="fixed-action-btn">
-    <a [routerLink]="['/categorias/add']" class="btn-floating btn-large agregar">
+    <a [routerLink]="['/categorias/add']" class="btn-floating btn-large agregar agree">
         <i class="large material-icons">{{icon}}</i>
     </a>
 </div>
 <div class="wrapper">
     <div class="row">
         <div class="col s12">
-            <h4 class="center-align">Categorías</h4>
+            <h4 class="center-align">Categorías</h4></div>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">search</i>
+            <input placeholder="Ingrese nombre de la categoria" id="buscar" type="text" class="">
+            <label for="buscar" class="active">Buscar</label>
         </div>
-        <!-- <div class="input-field col s12 m3">
-          <i class="material-icons prefix">search</i>
-          <input id="buscar" type="text" class="" placeholder="Nombre...">
-          <span class="helper-text">(Enter para buscar)</span>
-          <label for="buscar" class="active">Buscar</label>
+        <div class="col s12">
 
-          <ul class="collapsible">
-              <li>
-                  <div class="collapsible-header white-text"><i class="material-icons">format_list_bulleted</i>Subcategorías</div>
-                  <div class="collapsible-body">
-                      <p *ngFor='let i of subcategorias'>
-                          <label>
-                              <input (click)='getBySubcategoria(i.idTipoProducto)' class="with-gap"
-                                  name="{{i.descripcion}}" type="radio" id="{{i.idTipoProducto}}" />
-                              <span>{{i.descripcion}}</span>
-                          </label>
-                      </p>
-                  </div>
-              </li>
-          </ul>
-      </div> -->
+            <a (click)='filter()' class="waves-effect waves-light btn agregar right disagree" style="margin:4px"><i class="material-icons right">search</i>buscar</a>
+            <a (click)='clear()' class="waves-effect waves-light btn agregar right agree" style="margin:4px">limpiar</a>
+        </div>
         <div class="col s12 m9 offset-m2">
             <table class="striped">
                 <colgroup>

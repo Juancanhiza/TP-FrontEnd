@@ -11,7 +11,19 @@
 </div>
 
 <div class="wrapper">
-    <h4 class="center">Pacientes</h4>
+    <div class="row">
+            <h4 class="center">Pacientes</h4>
+        <div class="input-field col s12">
+            <i class="material-icons prefix">search</i>
+            <input placeholder="Ingrese nombre del paciente" id="buscar" type="text" class="">
+            <label for="buscar" class="active">Buscar</label>
+        </div>
+        <div class="col s12">
+
+            <a (click)='filter()' class="waves-effect waves-light btn agregar right" style="margin:4px"><i class="material-icons right">search</i>buscar</a>
+            <a (click)='clear()' class="waves-effect waves-light btn agregar right agree" style="margin:4px">limpiar</a>
+        </div>
+    </div>
     <table class="centered striped">
         <colgroup>
             <col span="1" style="width: 15%;">
@@ -53,7 +65,6 @@
                         <i class="tiny material-icons hide-on-med-and-up" style="color:#F44336">delete</i>
                     </a>
                     <a href='#modal_detail' (click)="saveDetail(i)" title="Ver detalles" class="modal-trigger">
-                        <i class="material-icons hide-on-small-and-down" style="color:#371777">details</i>
                         <i class="tiny material-icons hide-on-med-and-up" style="color:#371777">details</i>
                     </a>
                 </td>
