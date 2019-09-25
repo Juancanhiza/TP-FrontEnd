@@ -4,13 +4,16 @@ import { CommonModule } from '@angular/common';
 import { ServiciosPrincipalRoutingModule } from './servicios-principal-routing.module';
 import { ServiciosListComponent } from './servicios-list/servicios-list.component';
 import { ServiciosCreateComponent } from './servicios-create/servicios-create.component';
+import { SharedHomeModule } from '../home/shared-home/shared-home.module';
+
 
 @NgModule({
   declarations: [ServiciosListComponent, ServiciosCreateComponent],
   imports: [
     CommonModule,
     FormsModule,
-    ServiciosPrincipalRoutingModule
+    ServiciosPrincipalRoutingModule,
+    SharedHomeModule
   ]
 })
 export class ServiciosPrincipalModule { }

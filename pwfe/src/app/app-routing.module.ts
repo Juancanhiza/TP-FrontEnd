@@ -13,18 +13,10 @@ import { ConfagendamientoListComponent } from './confagendamiento/confagendamien
 import { ConfagendamientoExcepListComponent } from './confagendamiento-excep/confagendamiento-excep-list/confagendamiento-excep-list.component';
 
 const appRoutes: Routes = [
-  /*
-  {
-    path: '', 
-    redirectTo: 'reservas', 
-    pathMatch: 'full'
-  },
-  { path: 'subcategorias', component:SubcategoriaComponent },
-  */
-
- { path: '', component: HomeComponent, canActivate: [AuthGuard] },
  { path: 'login', component: LoginComponent },
- { path: 'subcategorias', component:SubcategoriaComponent, canActivate: [AuthGuard]  },
+ { path: '', component: HomeComponent, canActivate: [AuthGuard] },
+ { path: 'subcategorias', component:SubcategoriaComponent, canActivate: [AuthGuard]  }
+ /* { path: '', component: HomeComponent, canActivate: [AuthGuard] },
  { path: 'login', component: LoginComponent },
  { path: 'pacientes', component: PacientesComponent, canActivate: [AuthGuard]  },
  { path: 'servicios', component: ServiciosListComponent, canActivate: [AuthGuard] },
@@ -32,10 +24,8 @@ const appRoutes: Routes = [
  { path: 'fichas', component: FichasListComponent, canActivate: [AuthGuard] },
  { path: 'categorias', component: CategoriaListComponent, canActivate: [AuthGuard] },
  { path: 'horario-atencion-conf', component: ConfagendamientoListComponent, canActivate: [AuthGuard] },
- { path: 'horario-atencion-excep-conf', component: ConfagendamientoExcepListComponent, canActivate: [AuthGuard] },
+ { path: 'horario-atencion-excep-conf', component: ConfagendamientoExcepListComponent, canActivate: [AuthGuard] }, */
 
-   // otherwise redirect to home
-   { path: '**', redirectTo: '' }
 ];
 
 @NgModule({
