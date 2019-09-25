@@ -14,7 +14,6 @@ declare var $: any
 export class ServiciosListComponent implements OnInit, AfterViewInit {
 
 
-  tableHeaders = ['Fecha', 'Id ficha', 'Profesional', 'Cliente', 'Categoria', 'Subcategoria', 'Acciones'];
 
   datos : Array<any>;
   subcategorias = [];
