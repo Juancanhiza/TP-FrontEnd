@@ -6,6 +6,7 @@ import { ComisionesAddComponent } from './comisiones-add/comisiones-add.componen
 import { ComisionesEditComponent } from './comisiones-edit/comisiones-edit.component';
 import { ComisionesListComponent } from './comisiones-list/comisiones-list.component';
 import { FormsModule } from '@angular/forms';
+import { SharedHomeModule } from '../home/shared-home/shared-home.module';
 import { HttpClientModule } from '@angular/common/http';
 
 
@@ -15,6 +16,7 @@ import { HttpClientModule } from '@angular/common/http';
     CommonModule,
     FormsModule,
     HttpClientModule,
+    SharedHomeModule,
     ComisionesRoutingModule
   ]
 })

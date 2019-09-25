@@ -19,10 +19,11 @@ import { SharedHomeModule } from '../home/shared-home/shared-home.module';
   imports: [
     CommonModule,
     HttpClientModule,
-    PacientesRoutingModule,
     FormsModule,
     PaginacionSharedModule,
-    SharedHomeModule
+    SharedHomeModule,
+    PacientesRoutingModule,
+
   ]
 })
 export class PacientesModule { }
