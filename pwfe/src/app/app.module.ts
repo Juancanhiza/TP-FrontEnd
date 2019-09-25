@@ -16,16 +16,17 @@ import {NgxPaginationModule} from 'ngx-pagination';
 import { ExcelService } from './servicios/servicios-list/service/excel.service';
 import { FichasModule } from './fichas/fichas.module';
 import { ComisionesModule } from './comisiones/comisiones.module';
+import { HttpClientModule } from '@angular/common/http';
 import { LoginComponent } from './login/login/login.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BasicAuthInterceptor, ErrorInterceptor, fakeBackendProvider } from './login/helpers';
 import { SharedHomeModule } from './home/shared-home/shared-home.module';
 
-
 @NgModule({
   declarations: [
     AppComponent,
-    SubcategoriaComponent,
+    ArchivoComponent,
+    SubcategoriaComponent
     LoginComponent,
   ],
   imports: [
@@ -41,11 +42,14 @@ import { SharedHomeModule } from './home/shared-home/shared-home.module';
     ServiciosPrincipalModule,
     ReservasModule,
     FichasModule,
-    AppRoutingModule,
+    HttpClientModule,
+    ComisionesModule,
     ComisionesModule,
     ReactiveFormsModule,
     SharedHomeModule,
     HttpClientModule,
+    AppRoutingModule,
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: BasicAuthInterceptor, multi: true },
@@ -53,6 +57,7 @@ import { SharedHomeModule } from './home/shared-home/shared-home.module';
     ExcelService,
     fakeBackendProvider
   ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }
